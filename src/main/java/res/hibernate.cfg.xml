@@ -14,9 +14,9 @@
 
      <property name="current_session_context_class">thread</property>
     <property name="show_sql">true</property>
-    <mapping class="src.classes.Recurs"/>
-    <mapping class="src.classes.Reserva"/>
-    <mapping class="src.classes.Usuari"/>
+    <mapping class="domain.classes.Recurs"/>
+    <mapping class="domain.classes.Reserva"/>
+    <mapping class="domain.classes.Usuari"/>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

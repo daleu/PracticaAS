@@ -1,3 +1,4 @@
+package persistence;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -7,28 +8,34 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-//Classe amb funcions utils per a l'ús de l'eina Hibernate
+
 public class HibernateUtils {
 
     private static ServiceRegistry serviceRegistry;
     private static SessionFactory sessionFactory = buildSessionFactory();
 
+    //Crea nueva sesion
     private static SessionFactory buildSessionFactory() {
         try {
+
             Configuration configuration = new Configuration();
             configuration.configure("res/hibernate.cfg.xml");
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             sessionFactory  = configuration.buildSessionFactory(serviceRegistry);
             return sessionFactory;
+
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
 
+    //Recoge sesion actual
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+    /** Funciones que usan hiberate como engranaje con base de datos */
 
     public static Object save(Object o) {
         SessionFactory sf = HibernateUtils.getSessionFactory();

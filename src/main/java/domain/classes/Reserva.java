@@ -1,4 +1,4 @@
-package src.classes;
+package domain.classes;
 
 import javax.persistence.*;
 import java.sql.Date;

@@ -1,10 +1,10 @@
-import src.classes.Recurs;
-import src.classes.Reserva;
-import src.classes.Usuari;
+import domain.classes.Recurs;
+import domain.classes.Reserva;
+import domain.classes.Usuari;
+import persistence.HibernateUtils;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
