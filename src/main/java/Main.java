@@ -1,7 +1,6 @@
 import domain.classes.Recurs;
 import domain.classes.Reserva;
 import domain.classes.Usuari;
-import persistence.HibernateUtils;
 
 import java.sql.Date;
 import java.util.ArrayList;

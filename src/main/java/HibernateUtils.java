@@ -1,5 +1,3 @@
-package persistence;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,9 +17,11 @@ public class HibernateUtils {
         try {
 
             Configuration configuration = new Configuration();
-            configuration.configure("res/hibernate.cfg.xml");
+            configuration.configure();
+
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             sessionFactory  = configuration.buildSessionFactory(serviceRegistry);
+
             return sessionFactory;
 
         } catch (Throwable ex) {
