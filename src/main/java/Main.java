@@ -47,7 +47,7 @@ public class Main {
         Date d2 = new Date(20160602);
         Date d3 = new Date(20160602);
 
-        Reserva rr = new Reserva(d,d2,d3, null,rE.getNom());
+        Reserva rr = new Reserva(d,d2,d3, null,rE.getNom(),uE.getUsername());
 
         HibernateUtils.save(rr);
     }

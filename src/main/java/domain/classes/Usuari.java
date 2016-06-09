@@ -33,7 +33,7 @@ public class Usuari {
     }
 
     @Basic
-    @Column(name = "nom", nullable = true, length = 255)
+    @Column(name = "nom", nullable = false, length = 255)
     public String getNom() {
         return nom;
     }
@@ -43,7 +43,7 @@ public class Usuari {
     }
 
     @Basic
-    @Column(name = "email", nullable = true, length = 255)
+    @Column(name = "email", nullable = false, length = 255, unique=true)
     public String getEmail() {
         return email;
     }

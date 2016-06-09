@@ -7,9 +7,9 @@ import java.sql.Date;
  * Created by usuario on 06/06/2016.
  */
 @Entity
-@Table(name = "reserva", schema = "public", catalog = "postgres")
-@IdClass(ReservaPK.class)
-public class Reserva {
+@Table(name = "reservaambnotificacio", schema = "public", catalog = "postgres")
+@IdClass(ReservaambnotificacioPK.class)
+public class ReservaAmbNotificacio {
     private Date data;
     private Date horainici;
     private Date horafi;
@@ -19,10 +19,10 @@ public class Reserva {
     private Recurs recurs;
     private Usuari usuari;
 
-    public Reserva() {
+    public ReservaAmbNotificacio() {
     }
 
-    public Reserva(Date data, Date horainici, Date horafi, String comentaris, String nomrecurs, String username) {
+    public ReservaAmbNotificacio(Date data, Date horainici, Date horafi, String comentaris, String nomrecurs, String username) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
@@ -96,7 +96,7 @@ public class Reserva {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Reserva that = (Reserva) o;
+        ReservaAmbNotificacio that = (ReservaAmbNotificacio) o;
 
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
         if (horainici != null ? !horainici.equals(that.horainici) : that.horainici != null) return false;

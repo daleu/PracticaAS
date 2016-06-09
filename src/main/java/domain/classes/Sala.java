@@ -83,7 +83,7 @@ public class Sala {
         this.recurs = recurs;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "nomordinador", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
     public Ordinador getOrdinador() {
         return ordinador;
@@ -93,7 +93,7 @@ public class Sala {
         this.ordinador = ordinador;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "nomprojector", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
     public Projector getProjector() {
         return projector;
