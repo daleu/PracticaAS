@@ -18,6 +18,9 @@
     <mapping class="domain.classes.Recurs"/>
     <mapping class="domain.classes.Reserva"/>
     <mapping class="domain.classes.Usuari"/>
+    <mapping class="domain.classes.Projector"/>
+    <mapping class="domain.classes.Ordinador"/>
+    <mapping class="domain.classes.Sala"/>
     <!-- DB schema will be updated if needed -->
   </session-factory>
 
