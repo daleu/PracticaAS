@@ -14,17 +14,18 @@ public class Reserva {
     private Date horainici;
     private Date horafi;
     private String comentaris;
-    private String recurs;
+    private String nomrecurs;
+    private Recurs recurs;
 
     public Reserva() {
     }
 
-    public Reserva(Date data, Date horainici, Date horafi, String comentaris, String recurs) {
+    public Reserva(Date data, Date horainici, Date horafi, String comentaris, String nomrecurs) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
         this.comentaris = comentaris;
-        this.recurs = recurs;
+        this.nomrecurs = nomrecurs;
     }
 
     @Id
@@ -68,13 +69,13 @@ public class Reserva {
     }
 
     @Id
-    @Column(name = "recurs", nullable = false, length = 255)
-    public String getRecurs() {
-        return recurs;
+    @Column(name = "nomrecurs", nullable = false, length = 255)
+    public String getnomrecurs() {
+        return nomrecurs;
     }
 
-    public void setRecurs(String recurs) {
-        this.recurs = recurs;
+    public void setnomrecurs(String nomrecurs) {
+        this.nomrecurs = nomrecurs;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class Reserva {
         if (horainici != null ? !horainici.equals(that.horainici) : that.horainici != null) return false;
         if (horafi != null ? !horafi.equals(that.horafi) : that.horafi != null) return false;
         if (comentaris != null ? !comentaris.equals(that.comentaris) : that.comentaris != null) return false;
-        if (recurs != null ? !recurs.equals(that.recurs) : that.recurs != null) return false;
+        if (nomrecurs != null ? !nomrecurs.equals(that.nomrecurs) : that.nomrecurs != null) return false;
 
         return true;
     }
@@ -99,7 +100,17 @@ public class Reserva {
         result = 31 * result + (horainici != null ? horainici.hashCode() : 0);
         result = 31 * result + (horafi != null ? horafi.hashCode() : 0);
         result = 31 * result + (comentaris != null ? comentaris.hashCode() : 0);
-        result = 31 * result + (recurs != null ? recurs.hashCode() : 0);
+        result = 31 * result + (nomrecurs != null ? nomrecurs.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "nomrecurs", referencedColumnName = "nom", nullable = false,insertable = false, updatable = false)
+    public Recurs getRecurs() {
+        return recurs;
+    }
+
+    public void setRecurs(Recurs recurs) {
+        this.recurs = recurs;
     }
 }

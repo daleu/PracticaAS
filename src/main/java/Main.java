@@ -27,6 +27,11 @@ public class Main {
         luE.add(uE);
         uE = new Usuari("Amancio","amador","amadorLL@gmail.com");
         luE.add(uE);
+
+        for (Usuari u: luE) {
+            HibernateUtils.save(u);
+        }
+
         Recurs rE = new Recurs("SALA15");
         lrE.add(rE);
         rE = new Recurs("Ord2323");
@@ -34,6 +39,9 @@ public class Main {
         rE = new Recurs("projFX8");
         lrE.add(rE);
 
+        for(Recurs r: lrE) {
+            HibernateUtils.save(r);
+        }
 
         Date d = new Date(20160602);
         Date d2 = new Date(20160602);
@@ -41,13 +49,6 @@ public class Main {
 
         Reserva rr = new Reserva(d,d2,d3, null,rE.getNom());
 
-        for (Usuari u: luE) {
-            HibernateUtils.save(u);
-        }
-
-        for(Recurs r: lrE) {
-            HibernateUtils.save(r);
-        }
         HibernateUtils.save(rr);
     }
 }
