@@ -23,8 +23,8 @@ public class FactoriaCtrl {
         if (ctrlUsuari == null) {
            //ctrlUsuari = new CtrlUsuari();
         }
-
         return ctrlUsuari;
     }
 
+    //TODO: Anar assignant els demes controladors de OBJECTES
 }
