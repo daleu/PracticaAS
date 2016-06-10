@@ -3,7 +3,9 @@ import domain.classes.Reserva;
 import domain.classes.Usuari;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -43,11 +45,27 @@ public class Main {
             HibernateUtils.save(r);
         }
 
-        Date d = new Date(20160602);
-        Date d2 = new Date(20160602);
-        Date d3 = new Date(20160602);
+        //TODO: Ejemplo de como gestionar las fechas y horas
+        Calendar cDia = Calendar.getInstance();
+        cDia.set(2016,4,30);
+        Date dia =  new Date(cDia.getTimeInMillis());
 
-        Reserva rr = new Reserva(d,d2,d3, null,rE.getNom(),uE.getUsername());
+       Calendar cHIni = Calendar.getInstance();
+        cHIni.set(Calendar.HOUR_OF_DAY, 12);
+        cHIni.set(Calendar.MINUTE,30);
+        cHIni.set(Calendar.SECOND,0); //Hay que re-inicializarlo si no se te queda con el actual
+        cHIni.set(Calendar.MILLISECOND,0);
+        Date dIni =  new Date(cHIni.getTimeInMillis());
+        Time tIni = new Time(dIni.getTime());
+       Calendar cHFi = Calendar.getInstance();
+        cHFi.set(Calendar.HOUR_OF_DAY, 12);
+        cHFi.set(Calendar.MINUTE,40);
+        cHFi.set(Calendar.SECOND,0);
+        cHFi.set(Calendar.MILLISECOND,0);
+        Date dFi =  new Date(cHFi.getTimeInMillis());
+        Time tFi = new Time(dFi.getTime());
+
+        Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 
         HibernateUtils.save(rr);
     }

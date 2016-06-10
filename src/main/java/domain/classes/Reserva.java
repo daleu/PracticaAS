@@ -2,6 +2,7 @@ package domain.classes;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -11,8 +12,8 @@ import java.sql.Date;
 @IdClass(ReservaPK.class)
 public class Reserva {
     private Date data;
-    private Date horainici;
-    private Date horafi;
+    private Time horainici;
+    private Time horafi;
     private String comentaris;
     private String nomrecurs;
     private String username;
@@ -22,7 +23,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Date data, Date horainici, Date horafi, String comentaris, String nomrecurs, String username) {
+    public Reserva(Date data, Time horainici, Time horafi, String comentaris, String nomrecurs, String username) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
@@ -30,6 +31,7 @@ public class Reserva {
         this.nomrecurs = nomrecurs;
         this.username = username;
     }
+
 
     @Id
     @Column(name = "data", nullable = false)
@@ -43,21 +45,21 @@ public class Reserva {
 
     @Id
     @Column(name = "horainici", nullable = false)
-    public Date getHorainici() {
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Date horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 
     @Basic
     @Column(name = "horafi", nullable = true)
-    public Date getHorafi() {
+    public Time getHorafi() {
         return horafi;
     }
 
-    public void setHorafi(Date horafi) {
+    public void setHorafi(Time horafi) {
         this.horafi = horafi;
     }
 
