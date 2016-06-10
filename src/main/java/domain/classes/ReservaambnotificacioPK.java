@@ -4,13 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by usuario on 06/06/2016.
  */
 public class ReservaambnotificacioPK implements Serializable {
     private Date data;
-    private Date horainici;
+    private Time horainici;
     private String nomrecurs;
 
     @Column(name = "data", nullable = false)
@@ -25,11 +26,11 @@ public class ReservaambnotificacioPK implements Serializable {
 
     @Column(name = "horainici", nullable = false)
     @Id
-    public Date getHorainici() {
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Date horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 

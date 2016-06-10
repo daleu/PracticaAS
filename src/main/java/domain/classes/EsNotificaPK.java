@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by aleue on 9/6/2016.
@@ -11,7 +12,7 @@ import java.sql.Date;
 public class EsNotificaPK implements Serializable {
 
     private Date data;
-    private Date horainici;
+    private Time horainici;
     private String nomrecurs;
     private String username;
 
@@ -31,11 +32,11 @@ public class EsNotificaPK implements Serializable {
 
     @Id
     @Column(name = "horainici", nullable = false)
-    public Date getHorainici() {
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Date horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 
