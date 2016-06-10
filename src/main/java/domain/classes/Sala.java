@@ -1,5 +1,7 @@
 package domain.classes;
 
+import org.hibernate.annotations.Check;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "sala", schema = "public", catalog = "postgres")
+@Check(constraints = "aforament>0")
 public class Sala {
 
     private String nom;
@@ -54,7 +57,7 @@ public class Sala {
     }
 
     @Basic
-    @Column(name = "nomordinador", nullable = false, length = 255)
+    @Column(name = "nomordinador", nullable = false, length = 255, unique=true)
     public String getNomordinador() {
         return nomordinador;
     }
@@ -64,7 +67,7 @@ public class Sala {
     }
 
     @Basic
-    @Column(name = "nomprojector", nullable = false, length = 255)
+    @Column(name = "nomprojector", nullable = false, length = 255, unique= true)
     public String getNomprojector() {
         return nomprojector;
     }
