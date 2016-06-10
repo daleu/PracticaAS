@@ -1,42 +1,27 @@
 package domain.classes;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by aleue on 9/6/2016.
+ * Created by usuario on 10/06/2016.
  */
-
 @Entity
-@Table(name = "ordinador", schema = "public", catalog = "postgres")
 public class Ordinador {
-
-    private String nom;
+    private String nomrecurs;
     private String marca;
     private String model;
-    private Recurs recurs;
-
-    public Ordinador(){
-
-    }
 
     @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
+    @Column(name = "nomrecurs", nullable = false, length = 255)
+    public String getNomrecurs() {
+        return nomrecurs;
     }
 
-    public void setNom(String nomP) {
-        this.nom = nomP;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "nom", referencedColumnName = "nom", nullable = false,insertable = false, updatable = false)
-    public Recurs getRecurs() {
-        return recurs;
-    }
-
-    public void setRecurs(Recurs recurs) {
-        this.recurs = recurs;
+    public void setNomrecurs(String nomrecurs) {
+        this.nomrecurs = nomrecurs;
     }
 
     @Basic
@@ -57,5 +42,27 @@ public class Ordinador {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ordinador ordinador = (Ordinador) o;
+
+        if (nomrecurs != null ? !nomrecurs.equals(ordinador.nomrecurs) : ordinador.nomrecurs != null) return false;
+        if (marca != null ? !marca.equals(ordinador.marca) : ordinador.marca != null) return false;
+        if (model != null ? !model.equals(ordinador.model) : ordinador.model != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nomrecurs != null ? nomrecurs.hashCode() : 0;
+        result = 31 * result + (marca != null ? marca.hashCode() : 0);
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        return result;
     }
 }

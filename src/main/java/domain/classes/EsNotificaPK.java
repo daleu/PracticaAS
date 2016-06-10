@@ -4,23 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
- * Created by aleue on 9/6/2016.
+ * Created by usuario on 10/06/2016.
  */
-public class EsNotificaPK implements Serializable {
-
+public class EsnotificaPK implements Serializable {
     private Date data;
-    private Date horainici;
-    private String nomrecurs;
-    private String username;
+    private Time horainici;
+    private String recurs;
+    private String usuari;
 
-    public EsNotificaPK(){
-
-    }
-
-    @Id
     @Column(name = "data", nullable = false)
+    @Id
     public Date getData() {
         return data;
     }
@@ -29,34 +25,57 @@ public class EsNotificaPK implements Serializable {
         this.data = data;
     }
 
-    @Id
     @Column(name = "horainici", nullable = false)
-    public Date getHorainici() {
+    @Id
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Date horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 
+    @Column(name = "recurs", nullable = false, length = 255)
     @Id
-    @Column(name = "nomrecurs", nullable = false, length = 255)
-    public String getNomrecurs() {
-        return nomrecurs;
+    public String getRecurs() {
+        return recurs;
     }
 
-    public void setNomrecurs(String nomrecurs) {
-        this.nomrecurs = nomrecurs;
+    public void setRecurs(String recurs) {
+        this.recurs = recurs;
     }
 
+    @Column(name = "usuari", nullable = false, length = 255)
     @Id
-    @Column(name = "username", nullable = false, length = 255)
-    public String getUsername() {
-        return username;
+    public String getUsuari() {
+        return usuari;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsuari(String usuari) {
+        this.usuari = usuari;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EsnotificaPK that = (EsnotificaPK) o;
+
+        if (data != null ? !data.equals(that.data) : that.data != null) return false;
+        if (horainici != null ? !horainici.equals(that.horainici) : that.horainici != null) return false;
+        if (recurs != null ? !recurs.equals(that.recurs) : that.recurs != null) return false;
+        if (usuari != null ? !usuari.equals(that.usuari) : that.usuari != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = data != null ? data.hashCode() : 0;
+        result = 31 * result + (horainici != null ? horainici.hashCode() : 0);
+        result = 31 * result + (recurs != null ? recurs.hashCode() : 0);
+        result = 31 * result + (usuari != null ? usuari.hashCode() : 0);
+        return result;
+    }
 }

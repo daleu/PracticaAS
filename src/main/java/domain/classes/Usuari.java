@@ -1,26 +1,18 @@
 package domain.classes;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by usuario on 06/06/2016.
+ * Created by usuario on 10/06/2016.
  */
 @Entity
-@Table(name = "usuari", schema = "public", catalog = "postgres")
 public class Usuari {
     private String username;
     private String nom;
     private String email;
-
-    public Usuari(){
-
-    }
-
-    public Usuari(String username, String nom, String email) {
-        this.username = username;
-        this.nom = nom;
-        this.email = email;
-    }
 
     @Id
     @Column(name = "username", nullable = false, length = 255)
@@ -43,7 +35,7 @@ public class Usuari {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 255, unique=true)
+    @Column(name = "email", nullable = false, length = 255)
     public String getEmail() {
         return email;
     }
@@ -57,11 +49,11 @@ public class Usuari {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Usuari that = (Usuari) o;
+        Usuari usuari = (Usuari) o;
 
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (username != null ? !username.equals(usuari.username) : usuari.username != null) return false;
+        if (nom != null ? !nom.equals(usuari.nom) : usuari.nom != null) return false;
+        if (email != null ? !email.equals(usuari.email) : usuari.email != null) return false;
 
         return true;
     }

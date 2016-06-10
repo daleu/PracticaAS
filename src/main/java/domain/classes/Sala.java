@@ -1,36 +1,29 @@
 package domain.classes;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by aleue on 9/6/2016.
+ * Created by usuario on 10/06/2016.
  */
-
 @Entity
-@Table(name = "sala", schema = "public", catalog = "postgres")
 public class Sala {
-
-    private String nom;
+    private String nomrecurs;
     private Integer aforament;
     private String ubicacio;
-    private String nomordinador;
-    private String nomprojector;
-    private Recurs recurs;
-    private Ordinador ordinador;
-    private Projector projector;
-
-    public Sala(){
-
-    }
+    private String projector;
+    private String ordinador;
 
     @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
+    @Column(name = "nomrecurs", nullable = false, length = 255)
+    public String getNomrecurs() {
+        return nomrecurs;
     }
 
-    public void setNom(String nomP) {
-        this.nom = nomP;
+    public void setNomrecurs(String nomrecurs) {
+        this.nomrecurs = nomrecurs;
     }
 
     @Basic
@@ -54,52 +47,48 @@ public class Sala {
     }
 
     @Basic
-    @Column(name = "nomordinador", nullable = false, length = 255)
-    public String getNomordinador() {
-        return nomordinador;
-    }
-
-    public void setNomordinador(String nomordinador) {
-        this.nomordinador = nomordinador;
-    }
-
-    @Basic
-    @Column(name = "nomprojector", nullable = false, length = 255)
-    public String getNomprojector() {
-        return nomprojector;
-    }
-
-    public void setNomprojector(String nomprojector) {
-        this.nomprojector = nomprojector;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "nom", referencedColumnName = "nom", nullable = false,insertable = false, updatable = false)
-    public Recurs getRecurs() {
-        return recurs;
-    }
-
-    public void setRecurs(Recurs recurs) {
-        this.recurs = recurs;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "nomordinador", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
-    public Ordinador getOrdinador() {
-        return ordinador;
-    }
-
-    public void setOrdinador(Ordinador ordinador) {
-        this.ordinador = ordinador;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "nomprojector", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
-    public Projector getProjector() {
+    @Column(name = "projector", nullable = true, length = 255)
+    public String getProjector() {
         return projector;
     }
 
-    public void setProjector(Projector projector) {
+    public void setProjector(String projector) {
         this.projector = projector;
+    }
+
+    @Basic
+    @Column(name = "ordinador", nullable = true, length = 255)
+    public String getOrdinador() {
+        return ordinador;
+    }
+
+    public void setOrdinador(String ordinador) {
+        this.ordinador = ordinador;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Sala sala = (Sala) o;
+
+        if (nomrecurs != null ? !nomrecurs.equals(sala.nomrecurs) : sala.nomrecurs != null) return false;
+        if (aforament != null ? !aforament.equals(sala.aforament) : sala.aforament != null) return false;
+        if (ubicacio != null ? !ubicacio.equals(sala.ubicacio) : sala.ubicacio != null) return false;
+        if (projector != null ? !projector.equals(sala.projector) : sala.projector != null) return false;
+        if (ordinador != null ? !ordinador.equals(sala.ordinador) : sala.ordinador != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nomrecurs != null ? nomrecurs.hashCode() : 0;
+        result = 31 * result + (aforament != null ? aforament.hashCode() : 0);
+        result = 31 * result + (ubicacio != null ? ubicacio.hashCode() : 0);
+        result = 31 * result + (projector != null ? projector.hashCode() : 0);
+        result = 31 * result + (ordinador != null ? ordinador.hashCode() : 0);
+        return result;
     }
 }
