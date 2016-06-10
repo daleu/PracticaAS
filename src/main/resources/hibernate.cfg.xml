@@ -8,22 +8,21 @@
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="connection.user">postgres</property>
     <property name="connection.password">userBD</property>
-      <property name="connection.pool_size">2</property>
+     <property name="connection.pool_size">2</property>
       <property name="hibernate.format_sql">true</property>
       <property name="hbm2ddl.auto">create</property>
 
 
      <property name="current_session_context_class">thread</property>
     <property name="show_sql">true</property>
-    <mapping class="domain.classes.Esnotifica"/>
-    <mapping class="domain.classes.Ordinador"/>
-    <mapping class="domain.classes.Projector"/>
     <mapping class="domain.classes.Recurs"/>
     <mapping class="domain.classes.Reserva"/>
-    <mapping class="domain.classes.Reservaambnotificacio"/>
-    <mapping class="domain.classes.Sala"/>
     <mapping class="domain.classes.Usuari"/>
-
+    <mapping class="domain.classes.Projector"/>
+    <mapping class="domain.classes.Ordinador"/>
+    <mapping class="domain.classes.Sala"/>
+    <mapping class="domain.classes.ReservaAmbNotificacio"/>
+    <mapping class="domain.classes.EsNotifica"/>
     <!-- DB schema will be updated if needed -->
   </session-factory>
 

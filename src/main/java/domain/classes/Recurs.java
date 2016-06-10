@@ -3,13 +3,21 @@ package domain.classes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * Created by usuario on 10/06/2016.
+ * Created by usuario on 06/06/2016.
  */
 @Entity
+@Table(name = "recurs", schema = "public", catalog = "postgres")
 public class Recurs {
     private String nom;
+
+    public Recurs() {
+    }
+    public Recurs(String nom) {
+        this.nom = nom;
+    }
 
     @Id
     @Column(name = "nom", nullable = false, length = 255)
@@ -26,9 +34,9 @@ public class Recurs {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Recurs recurs = (Recurs) o;
+        Recurs that = (Recurs) o;
 
-        if (nom != null ? !nom.equals(recurs.nom) : recurs.nom != null) return false;
+        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
 
         return true;
     }

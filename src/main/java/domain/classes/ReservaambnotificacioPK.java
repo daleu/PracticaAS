@@ -4,15 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 
 /**
- * Created by usuario on 10/06/2016.
+ * Created by usuario on 06/06/2016.
  */
 public class ReservaambnotificacioPK implements Serializable {
     private Date data;
-    private Time horainici;
-    private String recurs;
+    private Date horainici;
+    private String nomrecurs;
 
     @Column(name = "data", nullable = false)
     @Id
@@ -26,22 +25,22 @@ public class ReservaambnotificacioPK implements Serializable {
 
     @Column(name = "horainici", nullable = false)
     @Id
-    public Time getHorainici() {
+    public Date getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Time horainici) {
+    public void setHorainici(Date horainici) {
         this.horainici = horainici;
     }
 
-    @Column(name = "recurs", nullable = false, length = 255)
+    @Column(name = "nomrecurs", nullable = false, length = 255)
     @Id
-    public String getRecurs() {
-        return recurs;
+    public String getnomrecurs() {
+        return nomrecurs;
     }
 
-    public void setRecurs(String recurs) {
-        this.recurs = recurs;
+    public void setnomrecurs(String nomrecurs) {
+        this.nomrecurs = nomrecurs;
     }
 
     @Override
@@ -53,7 +52,7 @@ public class ReservaambnotificacioPK implements Serializable {
 
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
         if (horainici != null ? !horainici.equals(that.horainici) : that.horainici != null) return false;
-        if (recurs != null ? !recurs.equals(that.recurs) : that.recurs != null) return false;
+        if (nomrecurs != null ? !nomrecurs.equals(that.nomrecurs) : that.nomrecurs != null) return false;
 
         return true;
     }
@@ -62,7 +61,7 @@ public class ReservaambnotificacioPK implements Serializable {
     public int hashCode() {
         int result = data != null ? data.hashCode() : 0;
         result = 31 * result + (horainici != null ? horainici.hashCode() : 0);
-        result = 31 * result + (recurs != null ? recurs.hashCode() : 0);
+        result = 31 * result + (nomrecurs != null ? nomrecurs.hashCode() : 0);
         return result;
     }
 }
