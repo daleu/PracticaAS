@@ -20,7 +20,7 @@ public class Main {
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
 
-        List<Usuari> luE = new ArrayList<Usuari>();
+        /*List<Usuari> luE = new ArrayList<Usuari>();
         List<Recurs> lrE = new ArrayList<Recurs>();
 
         Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
@@ -67,6 +67,6 @@ public class Main {
 
         Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 
-        HibernateUtils.save(rr);
+        HibernateUtils.save(rr);*/
     }
 }

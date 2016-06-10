@@ -1,18 +1,22 @@
 package domain.classes;
 
+import org.hibernate.annotations.Check;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by usuario on 06/06/2016.
  */
 @Entity
 @Table(name = "reservaambnotificacio", schema = "public", catalog = "postgres")
+@Check(constraints = "(horainici < horafi) AND horaInici <= '23:59:59' AND horaFi>= '00:00:00' AND  horaFi<='23:59:59' AND horaInici >='00:00:00'")
 @IdClass(ReservaambnotificacioPK.class)
 public class ReservaAmbNotificacio {
     private Date data;
-    private Date horainici;
-    private Date horafi;
+    private Time horainici;
+    private Time horafi;
     private String comentaris;
     private String nomrecurs;
     private String username;
@@ -22,7 +26,7 @@ public class ReservaAmbNotificacio {
     public ReservaAmbNotificacio() {
     }
 
-    public ReservaAmbNotificacio(Date data, Date horainici, Date horafi, String comentaris, String nomrecurs, String username) {
+    public ReservaAmbNotificacio(Date data, Time horainici, Time horafi, String comentaris, String nomrecurs, String username) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
@@ -43,21 +47,21 @@ public class ReservaAmbNotificacio {
 
     @Id
     @Column(name = "horainici", nullable = false)
-    public Date getHorainici() {
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Date horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 
     @Basic
     @Column(name = "horafi", nullable = true)
-    public Date getHorafi() {
+    public Time getHorafi() {
         return horafi;
     }
 
-    public void setHorafi(Date horafi) {
+    public void setHorafi(Time horafi) {
         this.horafi = horafi;
     }
 
