@@ -1,3 +1,4 @@
+import presentation.crearReservaController;
 import domain.classes.Recurs;
 import domain.classes.Reserva;
 import domain.classes.Usuari;
@@ -7,14 +8,15 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 /**
  * Created by usuario on 06/06/2016.
  */
 public class Main {
 
+
     public static void main(final String[] args) throws Exception {
         createJocProves();
+        crearReservaController crc = new crearReservaController();
     }
 
     private static void createJocProves() {
