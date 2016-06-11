@@ -11,6 +11,7 @@ import java.sql.Time;
  */
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Check(constraints = "(horainici < horafi) AND horaInici <= '23:59:59' AND horaFi>= '00:00:00' AND  horaFi<='23:59:59' AND horaInici >='00:00:00'")
 @IdClass(ReservaPK.class)
 public class Reserva {

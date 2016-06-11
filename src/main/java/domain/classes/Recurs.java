@@ -1,14 +1,12 @@
 package domain.classes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by usuario on 06/06/2016.
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "recurs", schema = "public", catalog = "postgres")
 public class Recurs {
     private String nom;
