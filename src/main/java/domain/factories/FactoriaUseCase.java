@@ -27,6 +27,13 @@ public class FactoriaUseCase {
         return crearReservaAmbNotificacio;
     }
 
+    public AssignarUsuarisANotificarUseCaseController getAssignarUsuarisANotificarAUnaReserva(){
+        if (assignarUsuarisANotificarAUnaReserva == null) {
+            assignarUsuarisANotificarAUnaReserva = new AssignarUsuarisANotificarUseCaseController();
+        }
+        return assignarUsuarisANotificarAUnaReserva;
+    }
+
     //TODO: Fer les demes getInstances
 
 }
