@@ -20,7 +20,7 @@ public class AssignarUsuarisANotificarUseCaseController {
                 .getCtrlReserva()
                 .getReserva(nomR,horaInici,data);
 
-        //reserva.reservaValida();
+        reserva.reservaValida();
 
 
 

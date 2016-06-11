@@ -144,4 +144,8 @@ public class Reserva {
     public void setUsuari(Usuari usuari) {
         this.usuari = usuari;
     }
+
+    public void reservaValida() throws Exception{
+
+    }
 }

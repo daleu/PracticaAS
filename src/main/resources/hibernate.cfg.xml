@@ -22,7 +22,6 @@
     <mapping class="domain.classes.Ordinador"/>
     <mapping class="domain.classes.Sala"/>
     <mapping class="domain.classes.ReservaAmbNotificacio"/>
-    <mapping class="domain.classes.EsNotifica"/>
     <!-- DB schema will be updated if needed -->
   </session-factory>
 

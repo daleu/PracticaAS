@@ -3,6 +3,7 @@ package domain.classesDBCtrls;
 import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.ReservaPK;
+import domain.classes.ReservaambnotificacioPK;
 import domain.controllers.CtrlReserva;
 import domain.exceptions.NoHiHaReserva;
 import domain.hibernate.HibernateUtils;
@@ -21,9 +22,9 @@ public class CtrlReservaDB implements CtrlReserva {
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
 
-        Reserva res1 = (Reserva) session.get(Reserva.class, Reserva.class);
+        Reserva res1 = (Reserva) session.get(Reserva.class, ReservaPK.class);
 
-        Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaAmbNotificacio.class);
+        Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaambnotificacioPK.class);
         session.close();
 
         if(res1 == null) throw new NoHiHaReserva();
