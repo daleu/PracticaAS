@@ -5,10 +5,6 @@ import domain.classes.ReservaAmbNotificacio;
 import domain.classes.ReservaPK;
 import domain.classes.ReservaambnotificacioPK;
 import domain.controllers.CtrlReserva;
-import domain.exceptions.NoHiHaReserva;
-import domain.hibernate.HibernateUtils;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,9 +18,9 @@ public class CtrlReservaDB implements CtrlReserva {
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
 
-        Reserva res1 = (Reserva) session.get(Reserva.class, ReservaPK.class);
+        Reserva res1 = (Reserva) session.get(Reserva.class, Reserva.class);
 
-        Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaambnotificacioPK.class);
+        Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaAmbNotificacio.class);
         session.close();
 
         if(res1 == null) throw new NoHiHaReserva();

@@ -11,7 +11,7 @@ import java.sql.Time;
  */
 public class ReservaambnotificacioPK implements Serializable {
     private Date data;
-    private Integer horainici;
+    private Time horainici;
     private String nomrecurs;
 
     @Column(name = "data", nullable = false)
@@ -26,11 +26,11 @@ public class ReservaambnotificacioPK implements Serializable {
 
     @Column(name = "horainici", nullable = false)
     @Id
-    public Integer getHorainici() {
+    public Time getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Integer horainici) {
+    public void setHorainici(Time horainici) {
         this.horainici = horainici;
     }
 

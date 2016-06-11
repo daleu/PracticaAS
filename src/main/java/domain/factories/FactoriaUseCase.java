@@ -1,8 +1,8 @@
 package domain.factories;
 
-import domain.casesControllers.AssignarUsuarisANotificarUseCaseController;
-import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseController;
-import domain.casesControllers.CrearReservaAmbNotificacioUseCaseController;
+import domain.cases.AssignarUsuarisANotificarAUnaReserva;
+import domain.cases.ConsultarRecursosDisponiblesPerData;
+import domain.cases.CrearReservaAmbNotificacio;
 import domain.controllers.CtrlUsuari;
 
 /**
@@ -12,26 +12,19 @@ public class FactoriaUseCase {
 
     private static FactoriaUseCase ourInstance = new FactoriaUseCase();
 
-    private AssignarUsuarisANotificarUseCaseController assignarUsuarisANotificarAUnaReserva;
-    private ConsultarRecursosDisponiblesPerDataUseCaseController consultarRecursosDisponiblesPerData;
-    private CrearReservaAmbNotificacioUseCaseController crearReservaAmbNotificacio;
+    private AssignarUsuarisANotificarAUnaReserva assignarUsuarisANotificarAUnaReserva;
+    private ConsultarRecursosDisponiblesPerData consultarRecursosDisponiblesPerData;
+    private CrearReservaAmbNotificacio crearReservaAmbNotificacio;
 
     public static FactoriaUseCase getInstance() {
         return ourInstance;
     }
 
-    public CrearReservaAmbNotificacioUseCaseController getCrearReservaAmbNotificacio(){
+    public CrearReservaAmbNotificacio getCrearReservaAmbNotificacio(){
         if (crearReservaAmbNotificacio == null) {
-            crearReservaAmbNotificacio = new CrearReservaAmbNotificacioUseCaseController();
+            crearReservaAmbNotificacio = new CrearReservaAmbNotificacio();
         }
         return crearReservaAmbNotificacio;
-    }
-
-    public AssignarUsuarisANotificarUseCaseController getAssignarUsuarisANotificarAUnaReserva(){
-        if (assignarUsuarisANotificarAUnaReserva == null) {
-            assignarUsuarisANotificarAUnaReserva = new AssignarUsuarisANotificarUseCaseController();
-        }
-        return assignarUsuarisANotificarAUnaReserva;
     }
 
     //TODO: Fer les demes getInstances
