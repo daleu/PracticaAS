@@ -2,6 +2,8 @@ package domain.classesDBCtrls;
 
 import domain.classes.Reserva;
 import domain.controllers.CtrlReserva;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
