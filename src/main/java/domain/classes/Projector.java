@@ -8,24 +8,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "projector", schema = "public", catalog = "postgres")
-public class Projector {
+public class Projector extends Recurs{
 
-    private String nom;
     private String resolucio;
     private Recurs recurs;
 
     public Projector(){
 
-    }
-
-    @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nomP) {
-        this.nom = nomP;
     }
 
     @Basic

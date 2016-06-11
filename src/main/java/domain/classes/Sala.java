@@ -11,9 +11,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sala", schema = "public", catalog = "postgres")
 @Check(constraints = "aforament>0")
-public class Sala {
+public class Sala extends Recurs{
 
-    private String nom;
     private Integer aforament;
     private String ubicacio;
     private String nomordinador;
@@ -24,16 +23,6 @@ public class Sala {
 
     public Sala(){
 
-    }
-
-    @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nomP) {
-        this.nom = nomP;
     }
 
     @Basic

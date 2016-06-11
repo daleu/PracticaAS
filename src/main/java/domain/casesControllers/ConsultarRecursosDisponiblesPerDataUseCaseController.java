@@ -5,7 +5,7 @@ import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
-
+import domain.dataTypes.RecursDisponiblesPerData;
 import java.sql.Time;
 import java.util.Date;
 import java.util.ArrayList;
@@ -15,19 +15,6 @@ import java.util.List;
  * Created by crist_000 on 11/06/2016.
  */
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
-
-    class RecursDisponiblesPerData {
-        String nom;
-        String marca;
-        String model;
-        String resolució;
-        String aforament;
-        String ubicació;
-        String marcaOrdSala;
-        String modelOrdSala;
-        String resolucióProjSala;
-    };
-
 
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
 
@@ -63,11 +50,13 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
         //Hay que mirar de todos ellos si alguno es sala, mirar si tiene ordenadores i proyectores y quitarlos de disponibles
         //Por cada recurso si es de un tipo o de otro rellenar en el struct y añadirlo a result
 
-        RecursDisponiblesPerData r = new RecursDisponiblesPerData();
+
+        //S'ha de fer el filtratge
+        /*RecursDisponiblesPerData r = new RecursDisponiblesPerData();
         for(int i = 0; i < llistaRecursosDisponibles.size(); ++i){
             r.nom =  llistaRecursosDisponibles.get(i).getNom();
             result.add(r);
-        }
+        }*/
 
         return result;
     }
