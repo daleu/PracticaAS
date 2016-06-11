@@ -2,6 +2,7 @@ package domain.casesControllers;
 
 
 import domain.classes.Reserva;
+import domain.classes.ReservaAmbNotificacio;
 import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
@@ -16,11 +17,10 @@ public class AssignarUsuarisANotificarUseCaseController {
 
         Reserva reserva = FactoriaCtrl
                 .getInstance()
-                .getCtrlReserva().getReserva(nomR,horaInici,data);
+                .getCtrlReserva()
+                .getReserva(nomR,horaInici,data);
 
-        if(reserva!= null){
-            throw new Exception("noReservaAmbNotificació: la reserva no és del tipus amb notificació");
-        }
+        //reserva.reservaValida();
 
 
 

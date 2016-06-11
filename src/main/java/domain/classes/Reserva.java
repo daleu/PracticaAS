@@ -1,5 +1,7 @@
 package domain.classes;
 
+import domain.exceptions.NoEsReservaAmbNotificacio;
+import domain.exceptions.NoHiHaReserva;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
