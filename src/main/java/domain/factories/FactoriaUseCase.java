@@ -1,8 +1,8 @@
 package domain.factories;
 
-import domain.cases.AssignarUsuarisANotificarAUnaReserva;
-import domain.cases.ConsultarRecursosDisponiblesPerData;
-import domain.cases.CrearReservaAmbNotificacio;
+import domain.casesControllers.AssignarUsuarisANotificarUseCaseController;
+import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseController;
+import domain.casesControllers.CrearReservaAmbNotificacioUseCaseController;
 import domain.controllers.CtrlUsuari;
 
 /**
@@ -12,17 +12,17 @@ public class FactoriaUseCase {
 
     private static FactoriaUseCase ourInstance = new FactoriaUseCase();
 
-    private AssignarUsuarisANotificarAUnaReserva assignarUsuarisANotificarAUnaReserva;
-    private ConsultarRecursosDisponiblesPerData consultarRecursosDisponiblesPerData;
-    private CrearReservaAmbNotificacio crearReservaAmbNotificacio;
+    private AssignarUsuarisANotificarUseCaseController assignarUsuarisANotificarAUnaReserva;
+    private ConsultarRecursosDisponiblesPerDataUseCaseController consultarRecursosDisponiblesPerData;
+    private CrearReservaAmbNotificacioUseCaseController crearReservaAmbNotificacio;
 
     public static FactoriaUseCase getInstance() {
         return ourInstance;
     }
 
-    public CrearReservaAmbNotificacio getCrearReservaAmbNotificacio(){
+    public CrearReservaAmbNotificacioUseCaseController getCrearReservaAmbNotificacio(){
         if (crearReservaAmbNotificacio == null) {
-            crearReservaAmbNotificacio = new CrearReservaAmbNotificacio();
+            crearReservaAmbNotificacio = new CrearReservaAmbNotificacioUseCaseController();
         }
         return crearReservaAmbNotificacio;
     }
