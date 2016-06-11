@@ -1,3 +1,4 @@
+
 import presentation.crearReservaController;
 import domain.classes.Recurs;
 import domain.classes.Reserva;
@@ -8,6 +9,9 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import domain.hibernate.HibernateUtils;
+
 /**
  * Created by usuario on 06/06/2016.
  */
@@ -33,7 +37,7 @@ public class Main {
         luE.add(uE);
 
         for (Usuari u: luE) {
-            HibernateUtils.save(u);
+            domain.hibernate.HibernateUtils.save(u);
         }
 
         Recurs rE = new Recurs("SALA15");
@@ -44,7 +48,7 @@ public class Main {
         lrE.add(rE);
 
         for(Recurs r: lrE) {
-            HibernateUtils.save(r);
+            domain.hibernate.HibernateUtils.save(r);
         }
 
         //TODO: Ejemplo de como gestionar las fechas y horas
@@ -69,6 +73,6 @@ public class Main {
 
         Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 
-        HibernateUtils.save(rr);*/
+        domain.hibernate.HibernateUtils.save(rr);*/
     }
 }
