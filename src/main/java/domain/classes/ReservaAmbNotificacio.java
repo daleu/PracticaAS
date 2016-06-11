@@ -13,9 +13,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "reservaambnotificacio", schema = "public", catalog = "postgres")
-@Check(constraints = "(horainici < horafi) AND horaInici <= '23:59:59' AND horaFi>= '00:00:00' AND  horaFi<='23:59:59' AND horaInici >='00:00:00'")
+@Check(constraints = "(horainici < horafi) AND horaInici <= '23' AND horaFi>= '1' AND  horaFi<='24' AND horaInici >='0'")
 @IdClass(ReservaambnotificacioPK.class)
-
 public class ReservaAmbNotificacio extends Reserva{
 
     public void reservaValida() throws Exception{
@@ -33,6 +32,4 @@ public class ReservaAmbNotificacio extends Reserva{
     private boolean esReservaAmbNotificacio(){
         return true;
     }
-
-
 }

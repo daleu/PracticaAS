@@ -14,12 +14,12 @@ import java.sql.Time;
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Check(constraints = "(horainici < horafi) AND horaInici <= '23:59:59' AND horaFi>= '00:00:00' AND  horaFi<='23:59:59' AND horaInici >='00:00:00'")
+@Check(constraints = "(horainici < horafi) AND horaInici <= '23' AND horaFi>= '1' AND  horaFi<='24' AND horaInici >='0'")
 @IdClass(ReservaPK.class)
 public class Reserva {
     private Date data;
-    private Time horainici;
-    private Time horafi;
+    private Integer horainici;
+    private Integer horafi;
     private String comentaris;
     private String nomrecurs;
     private String username;
@@ -29,7 +29,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Date data, Time horainici, Time horafi, String comentaris, String nomrecurs, String username) {
+    public Reserva(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username) {
         this.data = data;
         this.horainici = horainici;
         this.horafi = horafi;
@@ -51,21 +51,21 @@ public class Reserva {
 
     @Id
     @Column(name = "horainici", nullable = false)
-    public Time getHorainici() {
+    public Integer getHorainici() {
         return horainici;
     }
 
-    public void setHorainici(Time horainici) {
+    public void setHorainici(Integer horainici) {
         this.horainici = horainici;
     }
 
     @Basic
     @Column(name = "horafi", nullable = true)
-    public Time getHorafi() {
+    public Integer getHorafi() {
         return horafi;
     }
 
-    public void setHorafi(Time horafi) {
+    public void setHorafi(Integer horafi) {
         this.horafi = horafi;
     }
 

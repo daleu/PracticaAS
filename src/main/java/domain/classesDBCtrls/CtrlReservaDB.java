@@ -23,12 +23,12 @@ public class CtrlReservaDB implements CtrlReserva {
 
         Reserva res1 = (Reserva) session.get(Reserva.class, Reserva.class);
 
-        Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaAmbNotificacio.class);
-        session.close();
+       // Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaAmbNotificacio.class);
+       // session.close();
 
-        if(res1 == null && res2 == null) throw new NoHiHaReserva();
-        if(res1!=null) return res1;
-        else return res2;
+        if(res1 == null) throw new NoHiHaReserva();
+        return res1;
+       // else return res2;
     }
 
     public void insertarReserva(Reserva reserva) {
