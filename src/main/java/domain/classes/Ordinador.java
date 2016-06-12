@@ -14,7 +14,6 @@ public class Ordinador extends Recurs {
     private String nomsala;
 
     public Ordinador(){
-
     }
 
     protected boolean recursAssignatASala() {

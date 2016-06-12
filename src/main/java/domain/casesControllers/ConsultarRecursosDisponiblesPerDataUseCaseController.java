@@ -12,24 +12,21 @@ import domain.dataTypes.RecursDisponiblesPerData;
 
 import javax.persistence.Tuple;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
 
-        List <RecursDisponiblesPerData>  result = new ArrayList<RecursDisponiblesPerData>();
-        if(hf < hi) {
+        List<RecursDisponiblesPerData> result = new ArrayList<RecursDisponiblesPerData>();
+        if (hf < hi) {
             throw new PeriodeErrorni();
         }
 
         Calendar today = Calendar.getInstance();
         Date todaySQL = new Date((today.getTime()).getTime());
 
-        if(d.before(todaySQL)){
+        if (d.before(todaySQL)) {
             throw new PeriodeErrorni();
         }
 
@@ -38,16 +35,15 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
         CtrlReserva resCtrl = facCtrl.getCtrlReserva();
 
 
-
-        List<Recurs> llistaRecursosTotal = recCtrl.getAll();
-        List<Recurs> llistaRecursosDisponibles = new ArrayList<Recurs>();
+        Collection<Recurs> llistaRecursosTotal = recCtrl.getAll();
+        Collection<Recurs> llistaRecursosDisponibles = new ArrayList<Recurs>();
 
 
         List<RecursDisponiblesPerData> llistaRecuros = new ArrayList<RecursDisponiblesPerData>();
 
-        for(Recurs r: llistaRecursosTotal) {
+        for (Recurs r : llistaRecursosTotal) {
 
-            if(r.getDisponibilitat(d,hi,hf)) {
+            if (r.getDisponibilitat(d, hi, hf)) {
 
                 //llistaRecuros.add(r.getInfo());
 
@@ -55,9 +51,11 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
 
 
         }
+        return null;
+    }
 
 
-
+/*
 
         for(int i = 0; i < llistaRecursosTotal.size(); ++i){
             //Per cada recurs mirem si te alguna reserva que sigui conflictiva (es a dir que comenci dintre de hi -- hf)
@@ -133,6 +131,7 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
         return l;
     }
 
+    */
 
     //TODO: Operacions de crida a la persistencia
 }

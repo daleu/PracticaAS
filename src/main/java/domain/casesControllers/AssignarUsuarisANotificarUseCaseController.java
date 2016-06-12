@@ -46,7 +46,7 @@ public class AssignarUsuarisANotificarUseCaseController {
                 }
             }
         }
-/*
+
         //Afegir Usuaris
         ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
         TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(UsuarisANotificar);
@@ -57,6 +57,6 @@ public class AssignarUsuarisANotificarUseCaseController {
         IAdaptadorMissatgeria iAdapatorMissatgeria = FactoriaAdaptadors.getInstance()
                                                                         .getAdaptadorMissatgeria();
 
-        iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviarDadesAReserva);*/
+        iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviarDadesAReserva);
     }
 }

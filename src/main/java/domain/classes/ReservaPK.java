@@ -6,13 +6,16 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 public class ReservaPK implements Serializable {
     private Date data;
     private Integer horainici;
     private String nomrecurs;
+
+
+    public ReservaPK() {
+
+    }
 
     public ReservaPK(String nomRecurs, Integer horaInici, Date data) {
 
