@@ -40,7 +40,7 @@ public class Main {
         persistence.hibernate.HibernateUtils.save(uX);
 
         Calendar cDia = Calendar.getInstance();
-        cDia.set(2016,4,30);
+        cDia.set(2016,7,30);
         Date dia =  new Date(cDia.getTimeInMillis());
 
         Integer hi = 2;
@@ -71,7 +71,7 @@ public class Main {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Num de recursos disponibles: "+res.size());
+        System.out.println("Num usuaris disponibles: "+res.size());
     }
 
     private static void provaConsultarRecursosDisponibles() throws Exception {

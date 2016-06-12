@@ -1,6 +1,7 @@
 package persistence.classesDBCtrls;
 
 import domain.classes.Reserva;
+import domain.classes.ReservaAmbNotificacio;
 import domain.classes.ReservaPK;
 import domain.controllers.CtrlReserva;
 import persistence.hibernate.HibernateUtils;
@@ -32,13 +33,14 @@ public class CtrlReservaDB implements CtrlReserva {
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
 
-        Reserva u = (Reserva) session.get(Reserva.class,new ReservaPK(nomRecurs,horaInici,data));
-        sf.close();
+        Reserva u2 = (Reserva) session.get(Reserva.class,new ReservaPK(nomRecurs,horaInici,data));
+        Reserva u = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class,new ReservaPK(nomRecurs,horaInici,data));
+        session.close();
 
-        if (u == null)
+        if (u == null && u2==null)
             throw new IllegalStateException("reservaNoExisteix");
-
-        return u;
+        else if(u!=null) return u;
+        else return u2;
     }
 
 }

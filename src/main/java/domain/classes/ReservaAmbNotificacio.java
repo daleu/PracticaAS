@@ -4,6 +4,7 @@ import domain.dataTypes.TuplaEnviarDadesAReserva;
 import domain.dataTypes.TupleUsers;
 import domain.exceptions.NoEsReservaAmbNotificacio;
 import domain.exceptions.ReservaATope;
+import domain.exceptions.ReservaCaducada;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -40,7 +41,9 @@ public class ReservaAmbNotificacio extends Reserva{
         boolean bool = esReservaAmbNotificacio();
         if(bool==false) throw new NoEsReservaAmbNotificacio();
         boolean bool2 = esReservaCaduca();
-        if(bool2==false) throw new NoEsReservaAmbNotificacio();
+        if(bool2==false) throw new ReservaCaducada();
+        int usuarisnotificats = UsuarisANotificar();
+        if(usuarisnotificats==10) throw new ReservaATope();
     }
 
     public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Usuari user) {
@@ -105,6 +108,10 @@ public class ReservaAmbNotificacio extends Reserva{
                                                                         super.getComentaris(),
                                                                         null);
         return tupla;
+    }
+
+    public int UsuarisANotificar() {
+        return usuaris.size();
     }
 
 }
