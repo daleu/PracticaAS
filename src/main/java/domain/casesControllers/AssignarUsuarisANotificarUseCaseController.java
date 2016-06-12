@@ -39,31 +39,22 @@ public class AssignarUsuarisANotificarUseCaseController {
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{
 
-        Collection<Usuari> allUsuaris = FactoriaCtrl.getInstance()
+        Collection<Usuari> usuaris = FactoriaCtrl.getInstance()
                                         .getCtrlUsuari().getall();
 
-        Collection<Usuari> UsuarisANotificar = null;
 
         List<String> emails = new ArrayList<String>();
 
-        for(Usuari u: allUsuaris) {
-            for (String username: usernameList) {
-                if ( u.getUsername() == username) {
-                    //Si troba objecte del username:
-                            //agafa objecte
-                            //guarda mail
-                            //fa llista d'usernames mes petita
-                    UsuarisANotificar.add(u);
-                    emails.add(u.getEmail());
-                    usernameList.remove(username);
-                    break;
-                }
+        for(Usuari u: usuaris) {
+            if (!usernameList.contains(u.getUsername())) {
+               usuaris.remove(u);
             }
         }
 
         //Afegir Usuaris
         ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
-        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(UsuarisANotificar);
+
+        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(usuaris);
 
 
         //Enviar dades
@@ -73,4 +64,5 @@ public class AssignarUsuarisANotificarUseCaseController {
 
         iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviarDadesAReserva);
     }
+
 }

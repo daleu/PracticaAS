@@ -34,7 +34,7 @@ public class CtrlUsuariDB implements domain.controllers.CtrlUsuari {
         Session session = sf.openSession();
 
         Usuari u = (Usuari) session.get(Usuari.class,username);
-        sf.close();
+        session.close();
 
         if (u == null)
             throw new IllegalStateException("usuariNoExisteix");

@@ -13,4 +13,9 @@ public class TupleUsers {
         this.email = email;
     }
 
+
+    public String getUsername() {
+        return username;
+    }
+
 }

@@ -21,13 +21,12 @@ public class CtrlRecursDB implements CtrlRecurs {
         Session session = sf.openSession();
 
         Recurs r = (Recurs) session.get(Recurs.class,nomRecurs);
-        sf.close();
+        session.close();
 
         if (r == null)
             throw new IllegalStateException("recursNoExisteix");
         return r;
     }
-
 
     public Collection<Recurs> getAll() {
         SessionFactory sf = HibernateUtils.getSessionFactory();

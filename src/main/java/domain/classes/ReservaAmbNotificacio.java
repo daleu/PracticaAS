@@ -112,13 +112,8 @@ public class ReservaAmbNotificacio extends Reserva{
         return usuaris.size();
     }
 
-    public void assignarUsuaris(List<String> usuariList) {
-
-        //CREAR INSTANCIA DE ESNOTIFICA PER A CADA USUARILIST
-    }
 
     public void associarUsuaris(Collection<Usuari> usuarisAAssignar) {
-
         this.usuaris = usuarisAAssignar;
     }
 

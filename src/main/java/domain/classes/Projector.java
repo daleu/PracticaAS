@@ -14,9 +14,16 @@ public class Projector extends Recurs{
 
 
     public Projector(){
-
-
     }
+
+
+    public Projector(String nom, String resolucio, String nomsala) {
+        super(nom);
+        this.resolucio = resolucio;
+        this.nomsala = nomsala;
+        this.sala = null;
+    }
+
 
     protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
         r.resolucio = this.resolucio;
