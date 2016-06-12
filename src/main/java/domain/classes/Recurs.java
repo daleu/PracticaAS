@@ -12,6 +12,7 @@ import java.sql.Date;
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "recurs", schema = "public", catalog = "postgres")
 public abstract class Recurs {
+    public static final String TAULA = "Recurs";
     private String nom;
 
     public Recurs() {

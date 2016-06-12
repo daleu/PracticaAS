@@ -7,6 +7,5 @@ import java.util.Collection;
 
 public interface CtrlUsuari {
     public Collection<Usuari> getall();
-
-    Usuari getUsuari(String username);
+    public Usuari getUsuari(String username);
 }

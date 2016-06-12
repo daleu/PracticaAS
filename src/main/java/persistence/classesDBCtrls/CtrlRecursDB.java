@@ -1,6 +1,7 @@
 package persistence.classesDBCtrls;
 
 import domain.classes.Recurs;
+import domain.classes.Reserva;
 import domain.classes.Usuari;
 import domain.controllers.CtrlRecurs;
 import persistence.hibernate.HibernateUtils;
@@ -9,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,19 +28,15 @@ public class CtrlRecursDB implements CtrlRecurs {
         return r;
     }
 
-    public void insertarRecurs(Recurs reserva) {
 
-    }
-
-
-    public ArrayList<Recurs> getAll() {
+    public Collection<Recurs> getAll() {
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
-        Criteria crit = session.createCriteria(Recurs.class);
 
-        List recurs = crit.list();
+        Collection<Recurs> res = (Collection<Recurs>) session.createQuery("from "+ Recurs.TAULA).list();
+        session.close();
+        return res;
 
-        return (ArrayList<Recurs>) recurs;
     }
 
 }

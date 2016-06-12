@@ -27,7 +27,6 @@ public class CtrlReservaDB implements CtrlReserva {
 
     }
 
-
     public Reserva getReserva(String nomRecurs, Integer horaInici, Date data) {
 
         SessionFactory sf = HibernateUtils.getSessionFactory();
@@ -40,11 +39,6 @@ public class CtrlReservaDB implements CtrlReserva {
             throw new IllegalStateException("reservaNoExisteix");
 
         return u;
-    }
-
-
-    public void insertarReserva(Reserva reserva) {
-
     }
 
 }
