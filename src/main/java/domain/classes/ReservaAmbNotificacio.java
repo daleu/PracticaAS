@@ -30,11 +30,12 @@ public class ReservaAmbNotificacio extends Reserva{
 
     }
 
-    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Collection<Usuari> usuaris) {
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username) {
         super(data, horainici, horafi, comentaris, nomrecurs, username);
-
-        this.usuaris = usuaris;
+        this.usuaris = null;
     }
+
+
 
     @Override
     public void reservaValida() throws Exception{

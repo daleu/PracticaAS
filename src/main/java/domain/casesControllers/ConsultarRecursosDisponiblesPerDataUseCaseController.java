@@ -49,6 +49,7 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
         return llistaRecursosDisponibles;
     }
 
+
     private List<Recurs> ElimnarElementsDeLaSala(java.lang.String s, List<Recurs> l) {
         for (Iterator<Recurs> iterator = l.iterator(); iterator.hasNext(); ) {
             Recurs r = iterator.next();

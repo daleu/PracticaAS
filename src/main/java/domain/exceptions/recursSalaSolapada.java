@@ -3,11 +3,11 @@ package domain.exceptions;
 /**
  * Created by aleue on 12/6/2016.
  */
-public class recursSalaSolapada extends Exception {
+public class RecursSalaSolapada extends Exception {
 
-    private static final String message = "recursSalaSolapada";
+    private static final String message = "RecursSalaSolapada";
 
-    public recursSalaSolapada() {
+    public RecursSalaSolapada() {
         super(message);
     }
 }

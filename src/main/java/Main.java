@@ -46,7 +46,7 @@ public class Main {
         Integer hi = 2;
         Integer hf = 3;
 
-        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername(),uE);
+        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername());
         ArrayList<Usuari> aux = new ArrayList<Usuari>();
         aux.add(uR);
         aux.add(uE);
@@ -136,7 +136,7 @@ public class Main {
         Integer hi = 2;
         Integer hf = 3;
 
-        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername(),uE);
+        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername());
         persistence.hibernate.HibernateUtils.save(rr);
         uE.setReserves(Collections.singletonList(rr));
         persistence.hibernate.HibernateUtils.update(uE);

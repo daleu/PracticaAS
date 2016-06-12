@@ -10,9 +10,7 @@ import java.sql.Time;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)

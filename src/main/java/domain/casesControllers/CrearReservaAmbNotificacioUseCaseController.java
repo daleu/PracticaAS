@@ -8,11 +8,8 @@ import domain.exceptions.NoHiHaRecursos;
 import domain.exceptions.PeriodeErrorni;
 import domain.exceptions.RecursSalaSolapada;
 import domain.exceptions.RecursNoSala;
-import domain.exceptions.recursSalaSolapada;
-import domain.factories.FactoriaAdaptadors;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
-import domain.structures.TupleUsers;
 import domain.dataTypes.TupleUsers;
 
 import java.sql.Date;
