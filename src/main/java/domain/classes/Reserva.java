@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Check(constraints = "(horainici < horafi) AND horainici <= '23' AND horafi>= '1' AND  horafi<='24' AND horainici >='0'")
 @IdClass(ReservaPK.class)
 public class Reserva {

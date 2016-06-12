@@ -3,10 +3,12 @@ import domain.classes.*;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.factories.FactoriaUseCase;
 import persistence.hibernate.HibernateUtils;
+import presentation.crearReservaController;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         createJocProves();
         provaConsultarRecursosDisponibles();
-
+        crearReservaController crc = new crearReservaController();
     }
 
     private static void provaConsultarRecursosDisponibles(){
@@ -64,6 +66,25 @@ public class Main {
     }
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
+        Projector proj = new Projector();
+        proj.setNom("proj2");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+
+        Calendar cDia = Calendar.getInstance();
+        cDia.set(2016,4,30);
+        Date dia =  new Date(cDia.getTimeInMillis());
+
+        Integer hi = 2;
+        Integer hf = 3;
+
+        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername(),uE);
+        persistence.hibernate.HibernateUtils.save(rr);
+        uE.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uE);
         /*List<Usuari> luE = new ArrayList<Usuari>();
         List<Recurs> lrE = new ArrayList<Recurs>();
 
