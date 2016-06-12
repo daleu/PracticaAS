@@ -4,6 +4,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -54,8 +55,17 @@ public abstract class Recurs {
 
     public boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
 
-
-
         return false;
+    }
+
+    private Collection<Reserva> reserves;
+
+    @OneToMany(mappedBy = "recurs")
+    public Collection<Reserva> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(Collection<Reserva> reserves) {
+        this.reserves = reserves;
     }
 }

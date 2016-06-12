@@ -1,6 +1,7 @@
 package domain.classes;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -95,5 +96,13 @@ public class Usuari {
 
     public void setReserves(Collection<ReservaAmbNotificacio> reserves) {
         this.reserves = reserves;
+    }
+
+    public boolean teSalaEnPeriode(Date dateRActual, Integer hiActual, Integer hfActual) {
+
+
+
+
+        return false;
     }
 }
