@@ -11,7 +11,7 @@ public class Ordinador extends Recurs {
 
     private String marca;
     private String model;
-    private Recurs recurs;
+    private String nomsala;
 
     public Ordinador(){
 
@@ -19,16 +19,6 @@ public class Ordinador extends Recurs {
 
     protected boolean recursAssignatASala() {
         return false;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "nom", referencedColumnName = "nom", nullable = false,insertable = false, updatable = false)
-    public Recurs getRecurs() {
-        return recurs;
-    }
-
-    public void setRecurs(Recurs recurs) {
-        this.recurs = recurs;
     }
 
     @Basic
@@ -49,6 +39,16 @@ public class Ordinador extends Recurs {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Basic
+    @Column(name = "sala", nullable = true, length = 255)
+    public String getNomsala() {
+        return nomsala;
+    }
+
+    public void setNomsala(String nomSala) {
+        this.nomsala = nomSala;
     }
 
     private Sala sala;

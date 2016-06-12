@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Projector extends Recurs{
 
     private String resolucio;
-    private Recurs recurs;
+    private String nomsala;
 
 
     public Projector(){
@@ -29,17 +29,6 @@ public class Projector extends Recurs{
         this.resolucio = resolucio;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "nom", referencedColumnName = "nom", nullable = false,insertable = false, updatable = false)
-    public Recurs getRecurs() {
-        return recurs;
-    }
-
-    public void setRecurs(Recurs recurs) {
-        this.recurs = recurs;
-    }
-
-
     protected boolean recursAssignatASala() {
         return false;
     }
@@ -54,4 +43,15 @@ public class Projector extends Recurs{
     public void setSala(Sala sala) {
         this.sala = sala;
     }
+
+    @Basic
+    @Column(name = "sala", nullable = true, length = 255)
+    public String getNomsala() {
+        return nomsala;
+    }
+
+    public void setNomsala(String nomSala) {
+        this.nomsala = nomSala;
+    }
+
 }
