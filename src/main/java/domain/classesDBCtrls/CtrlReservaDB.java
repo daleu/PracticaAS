@@ -33,7 +33,7 @@ public class CtrlReservaDB implements CtrlReserva {
     }*/
     // David no se si a ti tu getReserva te funciona, pero a mi no, he comentado la tuya y puesto la mia =)
     // A la mia le faltaria el tratado de excepciones, la tuya tiene un error en el session.get que nunca le pasas el identificador asi que no se com hacias el get
-    // Si crees que puedes adaptar la mia goes! =) 
+    // Si crees que puedes adaptar la mia goes! =)
     public Reserva getReserva(String nomRecurs, Integer horaInici, Date data) {
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
