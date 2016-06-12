@@ -23,7 +23,6 @@
     <mapping class="domain.classes.Ordinador"/>
     <mapping class="domain.classes.Sala"/>
     <mapping class="domain.classes.ReservaAmbNotificacio"/>
-
   </session-factory>
 
 </hibernate-configuration>
