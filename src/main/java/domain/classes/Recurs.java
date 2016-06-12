@@ -53,6 +53,8 @@ public abstract class Recurs {
 
     public boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
 
+
+
         return false;
     }
 }

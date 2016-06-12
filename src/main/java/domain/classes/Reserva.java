@@ -18,6 +18,7 @@ import java.util.List;
 @IdClass(ReservaPK.class)
 public class Reserva {
 
+    public static final String TAULA = "Reserva";
     private Date data;
     private Integer horainici;
     private Integer horafi;

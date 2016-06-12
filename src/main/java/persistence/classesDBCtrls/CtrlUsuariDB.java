@@ -19,10 +19,26 @@ public class CtrlUsuariDB implements domain.controllers.CtrlUsuari {
 
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
-        Criteria crit = session.createCriteria(Usuari.class);
 
-        List allUsuaris = crit.list();
+        List<Usuari> allusuaris = (List<Usuari>)session.createQuery("from "+ Usuari.TAULA).list();
+        session.close();
 
-        return (Collection<Usuari>) allUsuaris;
+        //TODO: Saber fer un getALL
+
+        return (Collection<Usuari>) allusuaris;
+    }
+
+    public Usuari getUsuari(String username) {
+
+        SessionFactory sf = HibernateUtils.getSessionFactory();
+        Session session = sf.openSession();
+
+        Usuari u = (Usuari) session.get(Usuari.class,username);
+        sf.close();
+
+        if (u == null)
+            throw new IllegalStateException("usuariNoExisteix");
+
+        return u;
     }
 }

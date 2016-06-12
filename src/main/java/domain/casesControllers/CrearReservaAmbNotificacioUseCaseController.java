@@ -1,9 +1,15 @@
 package domain.casesControllers;
 
+import domain.classes.Recurs;
 import domain.classes.ReservaAmbNotificacio;
+import domain.classes.Usuari;
+import domain.controllers.CtrlRecurs;
+import domain.controllers.CtrlReserva;
+import domain.controllers.CtrlUsuari;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.exceptions.NoHiHaRecursos;
 import domain.exceptions.PeriodeErrorni;
+import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 import domain.structures.TupleUsers;
 
@@ -13,6 +19,7 @@ import java.util.List;
 public class CrearReservaAmbNotificacioUseCaseController {
 
     private FactoriaUseCase factoriaUseCase;
+    private FactoriaCtrl fatoriaACtrl;
     //PROVISIONAL
     private Date dateRActual;
     private Integer hiActual;
@@ -23,8 +30,27 @@ public class CrearReservaAmbNotificacioUseCaseController {
     public CrearReservaAmbNotificacioUseCaseController() {
 
        factoriaUseCase = FactoriaUseCase.getInstance();
+        fatoriaACtrl = FactoriaCtrl.getInstance();
 
-       // crearReservaAmbNotificacio =
+    }
+
+
+    //(nomR: String, username: String,
+    // comentari: String[0..1])
+
+    public void crearReservaAmbNotificacio(String nomR, String username, String comentari){
+
+        CtrlRecurs cRec = fatoriaACtrl.getCtrlRecurs();
+        CtrlUsuari cUsu = fatoriaACtrl.getCtrlUsuari();
+        CtrlReserva cRes = fatoriaACtrl.getCtrlReserva();
+
+
+        Usuari u = cUsu.getUsuari(username);
+        Recurs r = cRec.getRecurs(nomR);
+
+
+
+
 
     }
 
@@ -44,11 +70,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
         return recursos;
     }
 
-    /*context CapaDomini :: obtéUsuarisPerAssignar():Set(TupleType(username: String, nom:
-            String, email: String))
-    exc noHiHaProuUsuaris: no hi ha usuaris al sistema que puguin ser assignats.
-    post result= obté el username, nom i email dels usuaris que no estiguin assignats per ser
-    notificats a la reserva.*/
+
 
 
     public List<TupleUsers> obteUsuarisPerAssignar() throws Exception {
@@ -58,6 +80,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
                                                 .obteUsuarisAAssignar(rN.getNomrecurs(),dateRActual,hiActual);
 
         return usuarisPerAssignar;
+
     }
 
 

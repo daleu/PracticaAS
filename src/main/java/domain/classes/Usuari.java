@@ -5,12 +5,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 @Entity
 @Table(name = "usuari", schema = "public", catalog = "postgres")
 public class Usuari {
+    public static final String TAULA = "Usuari";
     private String username;
     private String nom;
     private String email;
