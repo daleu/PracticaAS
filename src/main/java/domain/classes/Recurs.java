@@ -1,6 +1,8 @@
 package domain.classes;
 
 import domain.dataTypes.RecursDisponiblesPerData;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -32,7 +34,6 @@ public abstract class Recurs {
         this.nom = nom;
     }
 
-    //public abstract RecursDisponiblesPerData getInfo();
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,21 +52,40 @@ public abstract class Recurs {
     }
 
 
-    protected abstract boolean recursAssignatASala();
+    protected abstract Boolean recursNoAssignatASala();
 
-    public boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
-
-        return false;
-    }
 
     private Collection<Reserva> reserves;
 
-    @OneToMany(mappedBy = "recurs")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recurs")
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<Reserva> getReserves() {
         return reserves;
     }
 
     public void setReserves(Collection<Reserva> reserves) {
         this.reserves = reserves;
+    }
+
+    public RecursDisponiblesPerData returnInfo(){
+        RecursDisponiblesPerData tuple = new RecursDisponiblesPerData();
+        tuple.nom = this.nom;
+        tuple = getRecursInfoEsp(tuple);
+        return tuple;
+    }
+
+    protected abstract RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r);
+
+    public Boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
+        Boolean b = recursNoAssignatASala();
+        for (Reserva r: reserves) {
+            if(b) {
+                Boolean b2 = r.reservaFeta(d,hi,hf);
+                if(b2){
+                    b = false;
+                }
+            }
+        }
+        return b;
     }
 }

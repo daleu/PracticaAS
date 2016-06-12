@@ -151,5 +151,13 @@ public class Reserva {
 
     }
 
+    public Boolean reservaFeta(Date d, Integer hi, Integer hf){
+        Boolean b = false;
+        if(d == data && ((hi <= horainici && hf > horainici)|| (hi <horafi && hf > horafi)||(hi>=horainici && hf <= horafi))){
+            b = true;
+        }
+        return b;
+    }
+
 
 }

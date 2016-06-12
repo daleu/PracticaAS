@@ -19,7 +19,8 @@ public class Projector extends Recurs{
     }
 
     protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
-        return null;
+        r.resolucio = this.resolucio;
+        return r;
     }
 
     @Basic
@@ -33,8 +34,8 @@ public class Projector extends Recurs{
     }
 
     protected Boolean recursNoAssignatASala() {
-        Boolean b = true;
-        if(nomsala.equals(null)){
+        Boolean b = new Boolean(true);
+        if(nomsala != null){
             b = false;
         }
         return b;

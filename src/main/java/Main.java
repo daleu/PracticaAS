@@ -22,7 +22,7 @@ public class Main {
         crearReservaController crc = new crearReservaController();
     }
 
-    private static void provaConsultarRecursosDisponibles(){
+    private static void provaConsultarRecursosDisponibles() throws Exception {
         Ordinador ord = new Ordinador();
         ord.setNom("ord");
         ord.setMarca("HP");
@@ -62,10 +62,10 @@ public class Main {
             res = crData.obtéRecursosDisponiblesPerData(todaySQL, 2, 22);
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
         }
 
-        //System.out.println("Num de recursos disponibles: "+res.size());
+        System.out.println("Num de recursos disponibles per data "+todaySQL.toString()+": "+res.size()+" recursos");
     }
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
