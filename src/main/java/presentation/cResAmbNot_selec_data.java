@@ -3,12 +3,12 @@ package presentation;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class creaReservaAmbNotificacio_1 extends JFrame {
+public class cResAmbNot_selec_data extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private crearReservaController c;
 
-    public creaReservaAmbNotificacio_1(crearReservaController ctrl) {
+    public cResAmbNot_selec_data(crearReservaController ctrl) {
         setContentPane(contentPane);
         pack();
         getRootPane().setDefaultButton(buttonOK);
