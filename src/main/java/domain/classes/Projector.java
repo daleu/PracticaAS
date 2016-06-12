@@ -4,9 +4,6 @@ import domain.dataTypes.RecursDisponiblesPerData;
 
 import javax.persistence.*;
 
-/**
- * Created by aleue on 9/6/2016.
- */
 
 @Entity
 @Table(name = "projector", schema = "public", catalog = "postgres")
@@ -15,17 +12,11 @@ public class Projector extends Recurs{
     private String resolucio;
     private Recurs recurs;
 
-    private Sala sala;
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
 
     public Projector(){
 
 
     }
-
 
 
     @Basic
@@ -44,14 +35,6 @@ public class Projector extends Recurs{
         return recurs;
     }
 
-
-    @OneToOne
-    @JoinColumn(name = "nom", referencedColumnName = "nomprojector", nullable = true,insertable = false, updatable = false)
-    public Sala getSala() {
-        return sala;
-    }
-
-
     public void setRecurs(Recurs recurs) {
         this.recurs = recurs;
     }
@@ -61,4 +44,14 @@ public class Projector extends Recurs{
         return false;
     }
 
+    private Sala sala;
+
+    @OneToOne(mappedBy = "projector")
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
 }

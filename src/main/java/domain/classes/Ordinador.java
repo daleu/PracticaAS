@@ -53,7 +53,7 @@ public class Ordinador extends Recurs {
 
     private Sala sala;
 
-    @OneToOne(mappedBy = "ordinador")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "ordinador")
     public Sala getSala() {
         return sala;
     }

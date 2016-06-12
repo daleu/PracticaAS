@@ -17,11 +17,6 @@ public class Sala extends Recurs{
     private String nomprojector;
     private Recurs recurs;
     private Ordinador ordinador;
-
-    public void setOrdinador(Projector ordinador) {
-        //this.ordinador = ordinador;
-    }
-
     private Projector projector;
 
     public Sala(){
@@ -78,7 +73,7 @@ public class Sala extends Recurs{
         this.recurs = recurs;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nomordinador", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
     public Ordinador getOrdinador() {
         return ordinador;
@@ -102,7 +97,6 @@ public class Sala extends Recurs{
     protected boolean recursAssignatASala() {
         return true;
     }
-
 
 
 }
