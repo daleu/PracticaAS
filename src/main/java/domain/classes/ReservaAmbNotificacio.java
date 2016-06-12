@@ -50,8 +50,12 @@ public class ReservaAmbNotificacio extends Reserva{
     }
 
     private boolean esReservaCaduca(){
-        //Falta comparar les hores i els dies!
-        return true;
+        Calendar today = Calendar.getInstance();
+        Date todaySQL = new Date((today.getTime()).getTime());
+        Integer horaactual =today.get(Calendar.HOUR_OF_DAY);
+        if(todaySQL.after(data))return false;
+        else if(todaySQL.equals(data) && horaactual>horainici) return false;
+        else return true;
     }
 
     @Override

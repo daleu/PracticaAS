@@ -1,6 +1,8 @@
+import domain.casesControllers.AssignarUsuarisANotificarUseCaseController;
 import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseController;
 import domain.classes.*;
 import domain.dataTypes.RecursDisponiblesPerData;
+import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaUseCase;
 import persistence.hibernate.HibernateUtils;
 import presentation.crearReservaController;
@@ -17,9 +19,59 @@ import java.util.List;
 public class Main {
 
     public static void main(final String[] args) throws Exception {
-        createJocProves();
-        provaConsultarRecursosDisponibles();
-        crearReservaController crc = new crearReservaController();
+        //createJocProves();
+        //provaConsultarRecursosDisponibles();
+        provaConsultarUsuarisAAssignar();
+        //crearReservaController crc = new crearReservaController();
+    }
+
+    private static void provaConsultarUsuarisAAssignar() {
+
+        Projector proj = new Projector();
+        proj.setNom("proj2");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+        Usuari uR = new Usuari("Elena","elenabdn","elena.bdn@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uR);
+        Usuari uX = new Usuari("David","aleueet","aleueet@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uX);
+
+        Calendar cDia = Calendar.getInstance();
+        cDia.set(2016,4,30);
+        Date dia =  new Date(cDia.getTimeInMillis());
+
+        Integer hi = 2;
+        Integer hf = 3;
+
+        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername(),uE);
+        ArrayList<Usuari> aux = new ArrayList<Usuari>();
+        aux.add(uR);
+        aux.add(uE);
+        rr.setUsuaris(aux);
+        persistence.hibernate.HibernateUtils.save(rr);
+
+        uR.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uR);
+
+        uE.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uE);
+
+
+        FactoriaUseCase facCU = FactoriaUseCase.getInstance();
+        AssignarUsuarisANotificarUseCaseController auanucc = facCU.getAssignarUsuarisANotificarAUnaReserva();
+
+        List<TupleUsers> res = new ArrayList<TupleUsers>();
+
+        try{
+            res = auanucc.obteUsuarisAAssignar(rr.getNomrecurs(),rr.getData(),rr.getHorainici());
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Num de recursos disponibles: "+res.size());
     }
 
     private static void provaConsultarRecursosDisponibles() throws Exception {
