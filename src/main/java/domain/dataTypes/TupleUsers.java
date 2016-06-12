@@ -1,8 +1,6 @@
 package domain.dataTypes;
 
-/**
- * Created by aleue on 11/6/2016.
- */
+
 public class TupleUsers {
 
     private String username;

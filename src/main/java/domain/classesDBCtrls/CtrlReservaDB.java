@@ -16,13 +16,13 @@ import java.util.Date;
  * Created by crist_000 on 11/06/2016.
  */
 public class CtrlReservaDB implements CtrlReserva {
+
     public Reserva getReserva(String nomRecurs, Integer horainici, Date data) throws NoHiHaReserva{
 
         SessionFactory sf = HibernateUtils.getSessionFactory();
         Session session = sf.openSession();
 
         Reserva res1 = (Reserva) session.get(Reserva.class, Reserva.class);
-
         Reserva res2 = (ReservaAmbNotificacio) session.get(ReservaAmbNotificacio.class, ReservaAmbNotificacio.class);
         session.close();
 

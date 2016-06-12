@@ -13,6 +13,7 @@ public class FactoriaCtrl {
     private CtrlUsuari ctrlUsuari;
     private CtrlRecurs ctrlRecurs;
     private CtrlReserva ctrlReserva;
+
     public static FactoriaCtrl getInstance() {
         return ourInstance;
     }
