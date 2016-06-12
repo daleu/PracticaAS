@@ -10,10 +10,10 @@ import domain.controllers.CtrlUsuari;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.exceptions.NoHiHaRecursos;
 import domain.exceptions.PeriodeErrorni;
-import domain.exceptions.RecursSalaSolapada;
+import domain.exceptions.recursSalaSolapada;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
-import domain.structures.TupleUsers;
+import domain.dataTypes.TupleUsers;
 
 import java.sql.Date;
 import java.util.List;
@@ -38,7 +38,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
     //(nomR: String, username: String,
     // comentari: String[0..1])
 
-    public void crearReservaAmbNotificacio(String nomR, String username, String comentari) throws RecursSalaSolapada {
+    public void crearReservaAmbNotificacio(String nomR, String username, String comentari) throws recursSalaSolapada {
 
         CtrlRecurs cRec = fatoriaACtrl.getCtrlRecurs();
         CtrlUsuari cUsu = fatoriaACtrl.getCtrlUsuari();
@@ -51,7 +51,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
         if (r instanceof Sala) {
 
             if(u.teSalaEnPeriode(dateRActual,hiActual,hfActual)) {
-             throw new RecursSalaSolapada();
+             throw new recursSalaSolapada();
             }
         }
 
