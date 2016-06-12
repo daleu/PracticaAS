@@ -2,9 +2,8 @@ package domain.casesControllers;
 
 
 import domain.classes.Reserva;
-import domain.dataTypes.TupleUsers;
+import domain.structures.TupleUsers;
 import domain.factories.FactoriaCtrl;
-import domain.factories.FactoriaUseCase;
 
 import java.sql.Date;
 import java.util.List;
@@ -16,11 +15,10 @@ public class AssignarUsuarisANotificarUseCaseController {
 
         Reserva reserva = FactoriaCtrl
                 .getInstance()
-                .getCtrlReserva().getReserva(nomR,horaInici,data);
+                .getCtrlReserva()
+                .getReserva(nomR,horaInici,data);
 
-        if(reserva!= null){
-            throw new Exception("noReservaAmbNotificació: la reserva no és del tipus amb notificació");
-        }
+        reserva.reservaValida();
 
 
 

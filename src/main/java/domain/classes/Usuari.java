@@ -1,6 +1,9 @@
 package domain.classes;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -11,6 +14,9 @@ public class Usuari {
     private String username;
     private String nom;
     private String email;
+//    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "usuarisANotificar")
+//    public Set<ReservaAmbNotificacio> reservesANotificar;
+
 
     public Usuari(){
 
@@ -72,5 +78,23 @@ public class Usuari {
         result = 31 * result + (nom != null ? nom.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
+    }
+
+//    public Set<ReservaAmbNotificacio> getReservesANotificar() {
+//        return reservesANotificar;
+//    }
+//
+//    public void setReservesANotificar(Set<ReservaAmbNotificacio> reservesANotificar) {
+//        this.reservesANotificar = reservesANotificar;
+//    }
+    private Collection<ReservaAmbNotificacio> reserves;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usuaris")
+    public Collection<ReservaAmbNotificacio> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(Collection<ReservaAmbNotificacio> reserves) {
+        this.reserves = reserves;
     }
 }
