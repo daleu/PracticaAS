@@ -1,11 +1,13 @@
 package domain.exceptions;
 
-
-public class RecursSalaSolapada extends Exception {
+/**
+ * Created by aleue on 12/6/2016.
+ */
+public class recursSalaSolapada extends Exception {
 
     private static final String message = "recursSalaSolapada";
 
-    public RecursSalaSolapada() {
+    public recursSalaSolapada() {
         super(message);
     }
 }

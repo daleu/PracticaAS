@@ -1,11 +1,13 @@
 package domain.classes;
 
 import domain.dataTypes.TuplaEnviarDadesAReserva;
+import domain.dataTypes.TupleUsers;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -150,6 +152,13 @@ public class Reserva {
     public void reservaValida() throws Exception{
 
     }
+    public Boolean reservaFeta(Date d, Integer hi, Integer hf){
+        Boolean b = false;
+        if(d == data && ((hi <= horainici && hf > horainici)|| (hi <horafi && hf > horafi)||(hi>=horainici && hf <= horafi))){
+            b = true;
+        }
+        return b;
+    }
 
     public void associarRecurs(Recurs r) {
         this.recurs = r;
@@ -157,5 +166,8 @@ public class Reserva {
 
     public void associarUsuari(Usuari u) {
         this.usuari = u;
+    }
+    public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuaris) {
+        return null;
     }
 }

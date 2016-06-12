@@ -1,8 +1,10 @@
 package domain.classes;
 
 import domain.dataTypes.TuplaEnviarDadesAReserva;
+import domain.dataTypes.TupleUsers;
 import domain.exceptions.NoEsReservaAmbNotificacio;
 import domain.exceptions.ReservaATope;
+import domain.exceptions.ReservaCaducada;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -28,27 +30,48 @@ public class ReservaAmbNotificacio extends Reserva{
 
     }
 
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Collection<Usuari> usuaris) {
+        super(data, horainici, horafi, comentaris, nomrecurs, username);
 
+        this.usuaris = usuaris;
+    }
 
     @Override
     public void reservaValida() throws Exception{
         boolean bool = esReservaAmbNotificacio();
         if(bool==false) throw new NoEsReservaAmbNotificacio();
         boolean bool2 = esReservaCaduca();
-        if(bool2==false) throw new NoEsReservaAmbNotificacio();
+        if(bool2==false) throw new ReservaCaducada();
+        int usuarisnotificats = UsuarisANotificar();
+        if(usuarisnotificats==10) throw new ReservaATope();
     }
 
     public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Recurs r, Usuari u) {
         super(data,horainici,horafi,comentaris,r.getNom(),u.getUsername());
-
         super.associarRecurs(r);
         super.associarUsuari(u);
-        this.usuaris = null;
+        this.usuaris.add(u);
     }
 
     private boolean esReservaCaduca(){
-        //Falta comparar les hores i els dies!
-        return true;
+        Calendar today = Calendar.getInstance();
+        Date todaySQL = new Date((today.getTime()).getTime());
+        Integer horaactual =today.get(Calendar.HOUR_OF_DAY);
+        if(todaySQL.after(data))return false;
+        else if(todaySQL.equals(data) && horaactual>horainici) return false;
+        else return true;
+    }
+
+    @Override
+    public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuarisexistents) {
+        List<TupleUsers> aux = new ArrayList<TupleUsers>();
+        for(Usuari u : usuarisexistents){
+            if(!usuaris.contains(u)){
+                TupleUsers aux2 = new TupleUsers(u.getUsername(),u.getNom(),u.getEmail());
+                aux.add(aux2);
+            }
+        }
+        return aux;
     }
 
     private boolean esReservaAmbNotificacio(){
@@ -84,6 +107,10 @@ public class ReservaAmbNotificacio extends Reserva{
         return tupla;
     }
 
+    public int UsuarisANotificar() {
+        return usuaris.size();
+    }
+
     public void assignarUsuaris(List<String> usuariList) {
 
         //CREAR INSTANCIA DE ESNOTIFICA PER A CADA USUARILIST
@@ -93,4 +120,5 @@ public class ReservaAmbNotificacio extends Reserva{
 
         this.usuaris = usuarisAAssignar;
     }
+
 }

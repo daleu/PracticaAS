@@ -16,8 +16,18 @@ public class Ordinador extends Recurs {
     public Ordinador(){
     }
 
-    protected boolean recursAssignatASala() {
-        return false;
+    protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
+        r.marca = this.marca;
+        r.model = this.model;
+        return r;
+    }
+
+    protected Boolean recursNoAssignatASala() {
+        Boolean b = new Boolean(true);
+        if(nomsala != null){
+            b = false;
+        }
+        return b;
     }
 
     @Basic

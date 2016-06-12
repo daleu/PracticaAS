@@ -23,6 +23,19 @@ public class Sala extends Recurs{
 
     }
 
+    protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
+        r.aforament = this.aforament;
+        r.ubicacio = this.ubicacio;
+        if(ordinador != null){
+            r.marcaOrdSala = ordinador.getMarca();
+            r.modelOrdSala = ordinador.getModel();
+        }
+        if(projector != null){
+            r.resolucióProjSala = projector.getResolucio();
+        }
+        return r;
+    }
+
     @Basic
     @Column(name = "aforament", nullable = false)
     public Integer getAforament() {
@@ -94,7 +107,7 @@ public class Sala extends Recurs{
     }
 
     @Override
-    protected boolean recursAssignatASala() {
+    protected Boolean recursNoAssignatASala() {
         return true;
     }
 

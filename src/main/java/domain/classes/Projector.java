@@ -18,6 +18,10 @@ public class Projector extends Recurs{
 
     }
 
+    protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
+        r.resolucio = this.resolucio;
+        return r;
+    }
 
     @Basic
     @Column(name = "resolucio", nullable = false, length = 255)
@@ -29,9 +33,14 @@ public class Projector extends Recurs{
         this.resolucio = resolucio;
     }
 
-    protected boolean recursAssignatASala() {
-        return false;
+    protected Boolean recursNoAssignatASala() {
+        Boolean b = new Boolean(true);
+        if(nomsala != null){
+            b = false;
+        }
+        return b;
     }
+
 
     private Sala sala;
 
