@@ -5,6 +5,7 @@ import com.sun.org.apache.xpath.internal.operations.String;
 import domain.classes.*;
 import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
+import domain.exceptions.NoHiHaRecursos;
 import domain.exceptions.PeriodeErrorni;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
@@ -12,10 +13,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 
 import javax.persistence.Tuple;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
@@ -39,37 +37,32 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
 
 
 
-        List<Recurs> llistaRecursosTotal = recCtrl.getAll();
-        List<Recurs> llistaRecursosDisponibles = new ArrayList<Recurs>();
+        Collection<Recurs> llistaRecursosTotal = recCtrl.getAll();
 
-
-        List<RecursDisponiblesPerData> llistaRecuros = new ArrayList<RecursDisponiblesPerData>();
+        List<RecursDisponiblesPerData> llistaRecursosDisponibles = new ArrayList<RecursDisponiblesPerData>();
 
         for(Recurs r: llistaRecursosTotal) {
-
             if(r.getDisponibilitat(d,hi,hf)) {
-
-                //llistaRecuros.add(r.getInfo());
-
+                llistaRecursosDisponibles.add(r.getInfo());
             }
-
-
         }
+        if(llistaRecursosDisponibles.size() < 1){
+            throw new NoHiHaRecursos();
+        }
+        return llistaRecursosDisponibles;
 
 
-
-
-        for(int i = 0; i < llistaRecursosTotal.size(); ++i){
+        /*for(Recurs r: llistaRecursosTotal){
             //Per cada recurs mirem si te alguna reserva que sigui conflictiva (es a dir que comenci dintre de hi -- hf)
             Boolean ocupat = false;
             for (int j = hi; j < hf; ++j){
-                Reserva reserva = resCtrl.getReserva(llistaRecursosTotal.get(i).getNom(),j,d);
+                Reserva reserva = resCtrl.getReserva(r.getNom(),j,d);
                 if(reserva != null){
                     ocupat = true;
                 }
             }
             if(!ocupat){
-                llistaRecursosDisponibles.add(llistaRecursosTotal.get(i));
+                llistaRecursosDisponibles.add(r);
             }
         }
 
@@ -119,8 +112,7 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
             }
             result.add(r);
 
-        }
-        return result;
+        }*/
     }
 
     private List<Recurs> ElimnarElementsDeLaSala(java.lang.String s, List<Recurs> l) {
