@@ -22,17 +22,13 @@ public class ReservaAmbNotificacio extends Reserva{
 //                    @JoinColumn (name = "horainici"),
 //                    @JoinColumn (name = "data")},
 //            inverseJoinColumns = {@JoinColumn(name = "username")})
-//    public Set<Usuari> usuarisANotificar;
+
 
     public ReservaAmbNotificacio(){
 
     }
 
-    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Collection<Usuari> usuaris) {
-        super(data, horainici, horafi, comentaris, nomrecurs, username);
 
-        this.usuaris = usuaris;
-    }
 
     @Override
     public void reservaValida() throws Exception{
@@ -42,10 +38,12 @@ public class ReservaAmbNotificacio extends Reserva{
         if(bool2==false) throw new NoEsReservaAmbNotificacio();
     }
 
-    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Usuari user) {
-        super(data,horainici,horafi,comentaris,nomrecurs,username);
-        usuaris = new ArrayList<Usuari>();
-        usuaris.add(user);
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Recurs r, Usuari u) {
+        super(data,horainici,horafi,comentaris,r.getNom(),u.getUsername());
+
+        super.associarRecurs(r);
+        super.associarUsuari(u);
+        this.usuaris = null;
     }
 
     private boolean esReservaCaduca(){
@@ -56,14 +54,7 @@ public class ReservaAmbNotificacio extends Reserva{
     private boolean esReservaAmbNotificacio(){
         return true;
     }
-//
-//    public Set<Usuari> getUsarisANotificar() {
-//        return usarisANotificar;
-//    }
-//
-//    public void setUsarisANotificar(Set<Usuari> usarisANotificar) {
-//        this.usarisANotificar = usarisANotificar;
-//    }
+
     private Collection<Usuari> usuaris;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -78,8 +69,11 @@ public class ReservaAmbNotificacio extends Reserva{
     public TuplaEnviarDadesAReserva afegirUsuaris(Collection<Usuari> usuarisAAfegir) throws Exception {
 
         if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
+
+        //Afegeix nous usuaris
         usuaris.addAll(usuarisAAfegir);
 
+        //Agafa info per a enviar la info al servei
         TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(super.getNomrecurs(),
                                                                         super.getData(),
                                                                         super.getHorainici(),
@@ -90,4 +84,13 @@ public class ReservaAmbNotificacio extends Reserva{
         return tupla;
     }
 
+    public void assignarUsuaris(List<String> usuariList) {
+
+        //CREAR INSTANCIA DE ESNOTIFICA PER A CADA USUARILIST
+    }
+
+    public void associarUsuaris(Collection<Usuari> usuarisAAssignar) {
+
+        this.usuaris = usuarisAAssignar;
+    }
 }

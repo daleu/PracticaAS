@@ -34,11 +34,16 @@ public class AssignarUsuarisANotificarUseCaseController {
                                         .getCtrlUsuari().getall();
 
         Collection<Usuari> UsuarisANotificar = null;
+
         List<String> emails = new ArrayList<String>();
 
         for(Usuari u: allUsuaris) {
             for (String username: usernameList) {
                 if ( u.getUsername() == username) {
+                    //Si troba objecte del username:
+                            //agafa objecte
+                            //guarda mail
+                            //fa llista d'usernames mes petita
                     UsuarisANotificar.add(u);
                     emails.add(u.getEmail());
                     usernameList.remove(username);

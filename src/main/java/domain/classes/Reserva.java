@@ -151,5 +151,11 @@ public class Reserva {
 
     }
 
+    public void associarRecurs(Recurs r) {
+        this.recurs = r;
+    }
 
+    public void associarUsuari(Usuari u) {
+        this.usuari = u;
+    }
 }
