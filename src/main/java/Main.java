@@ -2,6 +2,7 @@ import domain.classes.Recurs;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Usuari;
 import domain.hibernate.HibernateUtils;
+import presentation.crearReservaController;
 
 import java.util.Calendar;
 import java.sql.Date;
@@ -14,6 +15,7 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         createJocProves();
+        crearReservaController crc = new crearReservaController();
     }
 
     private static void createJocProves() {
