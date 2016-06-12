@@ -46,7 +46,6 @@ public class Main {
         Projector proj = new Projector();
         proj.setNom("proj");
         proj.setResolucio("1080");
-        proj.setRecurs(proj);
         domain.hibernate.HibernateUtils.save(proj);
 
         FactoriaUseCase facCU = FactoriaUseCase.getInstance();
