@@ -2,12 +2,9 @@ package domain.casesControllers;
 
 
 import domain.classes.Reserva;
-import domain.structures.TupleUsers;
-import domain.classes.ReservaAmbNotificacio;
-import domain.classes.Usuari;
-import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
+import domain.structures.TupleUsers;
 
 import java.sql.Date;
 import java.util.List;
@@ -30,10 +27,7 @@ public class AssignarUsuarisANotificarUseCaseController {
 
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{
-
-       reserva.afegirUsuaris(usernameList);
-
+       //reserva.afegirUsuaris(usernameList);
     }
-
     //TODO: Operacions de crida a la persistencia
 }
