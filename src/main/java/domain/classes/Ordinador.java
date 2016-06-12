@@ -17,8 +17,12 @@ public class Ordinador extends Recurs {
 
     }
 
-    protected boolean recursAssignatASala() {
-        return false;
+    protected Boolean recursNoAssignatASala() {
+        Boolean b = true;
+        if(nomsala.equals(null)){
+            b = false;
+        }
+        return b;
     }
 
     @Basic

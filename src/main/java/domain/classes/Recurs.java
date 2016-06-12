@@ -31,7 +31,15 @@ public abstract class Recurs {
         this.nom = nom;
     }
 
-    //public abstract RecursDisponiblesPerData getInfo();
+    public RecursDisponiblesPerData getInfo() {
+        RecursDisponiblesPerData tuple = new RecursDisponiblesPerData();
+        tuple.nom = this.nom;
+        tuple = getRecursInfoEsp(tuple);
+        return tuple;
+    }
+
+    protected abstract RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r);
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,12 +58,11 @@ public abstract class Recurs {
     }
 
 
-    protected abstract boolean recursAssignatASala();
-
     public boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
-
-
+        Boolean b = recursNoAssignatASala();
+        //TODO acabar
 
         return false;
     }
+    protected abstract Boolean recursNoAssignatASala();
 }

@@ -23,6 +23,10 @@ public class Sala extends Recurs{
 
     }
 
+    protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
+        return null;
+    }
+
     @Basic
     @Column(name = "aforament", nullable = false)
     public Integer getAforament() {
@@ -94,7 +98,7 @@ public class Sala extends Recurs{
     }
 
     @Override
-    protected boolean recursAssignatASala() {
+    protected Boolean recursNoAssignatASala() {
         return true;
     }
 
