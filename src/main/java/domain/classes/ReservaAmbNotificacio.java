@@ -28,6 +28,12 @@ public class ReservaAmbNotificacio extends Reserva{
 
     }
 
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Collection<Usuari> usuaris) {
+        super(data, horainici, horafi, comentaris, nomrecurs, username);
+
+        this.usuaris = usuaris;
+    }
+
     @Override
     public void reservaValida() throws Exception{
         boolean bool = esReservaAmbNotificacio();
