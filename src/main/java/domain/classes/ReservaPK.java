@@ -14,6 +14,13 @@ public class ReservaPK implements Serializable {
     private Integer horainici;
     private String nomrecurs;
 
+    public ReservaPK(String nomRecurs, Integer horaInici, Date data) {
+
+        this.data = data;
+        this.nomrecurs = nomRecurs;
+        this.horainici = horaInici;
+    }
+
     @Column(name = "data", nullable = false)
     @Id
     public Date getData() {

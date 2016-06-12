@@ -1,19 +1,24 @@
 package domain.classes;
 
+import domain.dataTypes.TuplaEnviarDadesAReserva;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 /**
  * Created by usuario on 06/06/2016.
  */
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Check(constraints = "(horainici < horafi) AND horainici <= '23' AND horafi>= '1' AND  horafi<='24' AND horainici >='0'")
 @IdClass(ReservaPK.class)
 public class Reserva {
+
+    public static final String TAULA = "Reserva";
     private Date data;
     private Integer horainici;
     private Integer horafi;
@@ -145,4 +150,12 @@ public class Reserva {
     public void reservaValida() throws Exception{
 
     }
+/*
+    public TuplaEnviarDadesAReserva getInfoExtra() {
+
+        TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(nomrecurs,data,horainici,horafi,username,comentaris,null);
+        return tupla;
+    }
+    */
+
 }

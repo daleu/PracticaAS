@@ -2,10 +2,9 @@ package domain.dataTypes;
 
 import domain.classes.Recurs;
 
-/**
- * Created by aleue on 11/6/2016.
- */
+
 public class RecursDisponiblesPerData {
+
 
     public String nom;
     public String marca;

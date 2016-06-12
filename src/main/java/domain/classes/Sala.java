@@ -5,9 +5,6 @@ import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
-/**
- * Created by aleue on 9/6/2016.
- */
 
 @Entity
 @Table(name = "sala", schema = "public", catalog = "postgres")
@@ -76,7 +73,7 @@ public class Sala extends Recurs{
         this.recurs = recurs;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nomordinador", referencedColumnName = "nom", nullable = true,insertable = false, updatable = false)
     public Ordinador getOrdinador() {
         return ordinador;
@@ -95,4 +92,11 @@ public class Sala extends Recurs{
     public void setProjector(Projector projector) {
         this.projector = projector;
     }
+
+    @Override
+    protected boolean recursAssignatASala() {
+        return true;
+    }
+
+
 }

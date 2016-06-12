@@ -4,10 +4,11 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
+
     <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="connection.user">postgres</property>
-    <property name="connection.password">707070</property>
+    <property name="connection.password">userBD</property>
      <property name="connection.pool_size">2</property>
       <property name="hibernate.format_sql">true</property>
       <property name="hbm2ddl.auto">create</property>
@@ -22,7 +23,7 @@
     <mapping class="domain.classes.Ordinador"/>
     <mapping class="domain.classes.Sala"/>
     <mapping class="domain.classes.ReservaAmbNotificacio"/>
-    <!-- DB schema will be updated if needed -->
+
   </session-factory>
 
 </hibernate-configuration>

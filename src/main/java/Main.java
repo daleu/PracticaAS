@@ -2,11 +2,13 @@ import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseControl
 import domain.classes.*;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.factories.FactoriaUseCase;
-import domain.hibernate.HibernateUtils;
+import persistence.hibernate.HibernateUtils;
+import presentation.crearReservaController;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         createJocProves();
         provaConsultarRecursosDisponibles();
-
+        crearReservaController crc = new crearReservaController();
     }
 
     private static void provaConsultarRecursosDisponibles(){
@@ -25,14 +27,14 @@ public class Main {
         ord.setNom("ord");
         ord.setMarca("HP");
         ord.setModel("125");
-        domain.hibernate.HibernateUtils.save(ord);
+        persistence.hibernate.HibernateUtils.save(ord);
 
         Ordinador ord2 = new Ordinador();
         ord2.setNom("ord2");
         ord2.setMarca("HP");
         ord2.setModel("125");
         ord2.setModel("125");
-        domain.hibernate.HibernateUtils.save(ord2);
+        persistence.hibernate.HibernateUtils.save(ord2);
 
         /*Sala sala = new Sala();
         sala.setNom("sala");
@@ -41,12 +43,12 @@ public class Main {
         sala.setUbicacio("Edifici 3");
         sala.setNomordinador("ord2");
         sala.setRecurs(sala);
-        domain.hibernate.HibernateUtils.save(sala);*/
+        persistence.hibernate.HibernateUtils.save(sala);*/
 
         Projector proj = new Projector();
         proj.setNom("proj");
         proj.setResolucio("1080");
-        domain.hibernate.HibernateUtils.save(proj);
+        persistence.hibernate.HibernateUtils.save(proj);
 
         FactoriaUseCase facCU = FactoriaUseCase.getInstance();
         ConsultarRecursosDisponiblesPerDataUseCaseController crData = facCU.getConsultarRecursosDisponiblesPerData();
@@ -64,6 +66,25 @@ public class Main {
     }
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
+        Projector proj = new Projector();
+        proj.setNom("proj2");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+
+        Calendar cDia = Calendar.getInstance();
+        cDia.set(2016,4,30);
+        Date dia =  new Date(cDia.getTimeInMillis());
+
+        Integer hi = 2;
+        Integer hf = 3;
+
+        ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername(),uE);
+        persistence.hibernate.HibernateUtils.save(rr);
+        uE.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uE);
         /*List<Usuari> luE = new ArrayList<Usuari>();
         List<Recurs> lrE = new ArrayList<Recurs>();
 
@@ -75,12 +96,12 @@ public class Main {
         luE.add(uE);
 
         for (Usuari u: luE) {
-            domain.hibernate.HibernateUtils.save(u);
+            persistence.hibernate.HibernateUtils.save(u);
         }
 
 
         for(Recurs r: lrE) {
-            domain.hibernate.HibernateUtils.save(r);
+            persistence.hibernate.HibernateUtils.save(r);
         }
 
         //TODO: Ejemplo de como gestionar las fechas y horas
@@ -105,6 +126,6 @@ public class Main {
 
         Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 
-        domain.hibernate.HibernateUtils.save(rr);*/
+        persistence.hibernate.HibernateUtils.save(rr);*/
     }
 }

@@ -5,36 +5,60 @@ import com.sun.org.apache.xpath.internal.operations.String;
 import domain.classes.*;
 import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
+import domain.exceptions.PeriodeErrorni;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 import domain.dataTypes.RecursDisponiblesPerData;
+
+import javax.persistence.Tuple;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by crist_000 on 11/06/2016.
- */
+
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
+
         List <RecursDisponiblesPerData>  result = new ArrayList<RecursDisponiblesPerData>();
         if(hf < hi) {
-            throw new Exception("exc períodeErroni: el periode és erroni");
+            throw new PeriodeErrorni();
         }
 
         Calendar today = Calendar.getInstance();
         Date todaySQL = new Date((today.getTime()).getTime());
 
         if(d.before(todaySQL)){
-            throw new Exception("exc períodeErroni: el periode és erroni");
+            throw new PeriodeErrorni();
         }
+
         FactoriaCtrl facCtrl = FactoriaCtrl.getInstance();
         CtrlRecurs recCtrl = facCtrl.getCtrlRecurs();
         CtrlReserva resCtrl = facCtrl.getCtrlReserva();
+
+
+
         List<Recurs> llistaRecursosTotal = recCtrl.getAll();
         List<Recurs> llistaRecursosDisponibles = new ArrayList<Recurs>();
+
+
+        List<RecursDisponiblesPerData> llistaRecuros = new ArrayList<RecursDisponiblesPerData>();
+
+        for(Recurs r: llistaRecursosTotal) {
+
+            if(r.getDisponibilitat(d,hi,hf)) {
+
+                //llistaRecuros.add(r.getInfo());
+
+            }
+
+
+        }
+
+
+
+
         for(int i = 0; i < llistaRecursosTotal.size(); ++i){
             //Per cada recurs mirem si te alguna reserva que sigui conflictiva (es a dir que comenci dintre de hi -- hf)
             Boolean ocupat = false;
@@ -48,6 +72,7 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
                 llistaRecursosDisponibles.add(llistaRecursosTotal.get(i));
             }
         }
+
         //En la lista llistaRecursosDisponibles tenemos todos los recursos que no tienen una reserva en que se solape.
         //Hay que mirar de todos ellos si alguno es sala, mirar si tiene ordenadores i proyectores y quitarlos de disponibles
         for(int i = 0; i<llistaRecursosDisponibles.size(); ++i){

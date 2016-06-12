@@ -1,6 +1,8 @@
 package domain.classes;
 
+import domain.dataTypes.TuplaEnviarDadesAReserva;
 import domain.exceptions.NoEsReservaAmbNotificacio;
+import domain.exceptions.ReservaATope;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -68,4 +70,16 @@ public class ReservaAmbNotificacio extends Reserva{
     public void setUsuaris(Collection<Usuari> usuaris) {
         this.usuaris = usuaris;
     }
+
+    public TuplaEnviarDadesAReserva afegirUsuaris(Collection<Usuari> usuarisAAfegir) throws Exception {
+
+        if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
+        usuaris.addAll(usuarisAAfegir);
+
+
+        //TuplaEnviarDadesAReserva tupla = super.getInfoExtra();
+
+        return null;
+    }
+
 }
