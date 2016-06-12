@@ -5,9 +5,10 @@ import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Usuari;
 import domain.dataTypes.TuplaEnviarDadesAReserva;
+import domain.exceptions.NoHiHaProusUsuaris;
 import domain.factories.FactoriaAdaptadors;
 import domain.factories.FactoriaCtrl;
-import domain.structures.TupleUsers;
+import domain.dataTypes.TupleUsers;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -25,7 +26,15 @@ public class AssignarUsuarisANotificarUseCaseController {
                 .getReserva(nomR,horaInici,data);
 
         reserva.reservaValida();
-        return null;
+        Collection<Usuari> usuaris = FactoriaCtrl
+                .getInstance()
+                .getCtrlUsuari()
+                .getall();
+
+        List<TupleUsers> llistaUsuarisAAssignar = reserva.usuarisAAssignar(usuaris);
+        if (llistaUsuarisAAssignar==null) throw new NoHiHaProusUsuaris();
+
+        return llistaUsuarisAAssignar;
     }
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{

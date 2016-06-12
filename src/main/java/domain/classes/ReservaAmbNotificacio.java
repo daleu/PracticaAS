@@ -1,6 +1,7 @@
 package domain.classes;
 
 import domain.dataTypes.TuplaEnviarDadesAReserva;
+import domain.dataTypes.TupleUsers;
 import domain.exceptions.NoEsReservaAmbNotificacio;
 import domain.exceptions.ReservaATope;
 import org.hibernate.annotations.Check;
@@ -28,6 +29,12 @@ public class ReservaAmbNotificacio extends Reserva{
 
     }
 
+    public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, String nomrecurs, String username, Collection<Usuari> usuaris) {
+        super(data, horainici, horafi, comentaris, nomrecurs, username);
+
+        this.usuaris = usuaris;
+    }
+
     @Override
     public void reservaValida() throws Exception{
         boolean bool = esReservaAmbNotificacio();
@@ -45,6 +52,18 @@ public class ReservaAmbNotificacio extends Reserva{
     private boolean esReservaCaduca(){
         //Falta comparar les hores i els dies!
         return true;
+    }
+
+    @Override
+    public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuarisexistents) {
+        List<TupleUsers> aux = new ArrayList<TupleUsers>();
+        for(Usuari u : usuarisexistents){
+            if(!usuaris.contains(u)){
+                TupleUsers aux2 = new TupleUsers(u.getUsername(),u.getNom(),u.getEmail());
+                aux.add(aux2);
+            }
+        }
+        return aux;
     }
 
     private boolean esReservaAmbNotificacio(){
