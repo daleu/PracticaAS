@@ -4,6 +4,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Entity
@@ -19,8 +20,16 @@ public class Sala extends Recurs{
     private Ordinador ordinador;
     private Projector projector;
 
-    public Sala(){
+    public Sala() {
 
+    }
+
+    public Sala(String nom, Integer aforament, String ubicacio, String nomordinador, String nomprojector) {
+        super(nom);
+        this.aforament = aforament;
+        this.ubicacio = ubicacio;
+        this.nomordinador = nomordinador;
+        this.nomprojector = nomprojector;
     }
 
     protected RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r) {
@@ -57,7 +66,7 @@ public class Sala extends Recurs{
     }
 
     @Basic
-    @Column(name = "nomordinador", nullable = false, length = 255, unique=true)
+    @Column(name = "nomordinador", nullable = true, length = 255, unique=true)
     public String getNomordinador() {
         return nomordinador;
     }
@@ -67,7 +76,7 @@ public class Sala extends Recurs{
     }
 
     @Basic
-    @Column(name = "nomprojector", nullable = false, length = 255, unique= true)
+    @Column(name = "nomprojector", nullable = true, length = 255, unique= true)
     public String getNomprojector() {
         return nomprojector;
     }

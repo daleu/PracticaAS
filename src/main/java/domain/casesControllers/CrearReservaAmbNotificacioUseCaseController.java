@@ -13,6 +13,7 @@ import domain.factories.FactoriaUseCase;
 import domain.dataTypes.TupleUsers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,8 +30,6 @@ public class CrearReservaAmbNotificacioUseCaseController {
     //3a Funcio
     private ReservaAmbNotificacio rN = null;
 
-    //4a Funcio
-    private List<String> usuariList = null;
 
     public CrearReservaAmbNotificacioUseCaseController() {
        factoriaUseCase = FactoriaUseCase.getInstance();
@@ -58,19 +57,15 @@ public class CrearReservaAmbNotificacioUseCaseController {
         //CREA
         //Assigna data, hores, comentaris, recurs i usuari a la classe pare
         //Inicialitza llista d'usuaris a notificar
-        rN = new ReservaAmbNotificacio(dateRActual,hiActual,hfActual,comentari,r,u);
+        rN = new ReservaAmbNotificacio(dateRActual,hiActual,hfActual,comentari,r.getNom(),u.getUsername());
 
-        //ASSIGNA USUARIS
-        factoriaUseCase
-                .getAssignarUsuarisANotificarAUnaReserva().afegirUsuarisAReserva(usuariList);
+        //Associacions de classes i per a bd
+        rN.associarUsuari(u);
+        ArrayList<Usuari> users = new ArrayList<Usuari>();
+        users.add(u);
+        rN.setUsuaris(users);
+        persistence.hibernate.HibernateUtils.save(rN);
 
-        Collection<Usuari> cU = FactoriaCtrl.getInstance().getCtrlUsuari().getall();
-        Collection<Usuari> usuarisAAssignar = null;
-        for(Usuari usu: cU) {
-            usuariList.contains(usu.getUsername());
-            usuarisAAssignar.add(usu);
-        }
-        rN.associarUsuaris(usuarisAAssignar);
     }
 
 
@@ -100,8 +95,9 @@ public class CrearReservaAmbNotificacioUseCaseController {
     }
 
     /*4. ASSIGNAR USUARIS A RESERVA*/
-    public void assignarUsuarisAReserva(List<String> usuariList) {
-        this.usuariList = usuariList;
-        rN.assignarUsuaris(usuariList);
+    public void assignarUsuarisAReserva(List<String> usuariList) throws Exception {
+
+        FactoriaUseCase.getInstance().getAssignarUsuarisANotificarAUnaReserva().afegirUsuarisAReserva(usuariList);
+
     }
 }

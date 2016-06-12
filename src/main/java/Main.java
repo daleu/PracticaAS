@@ -13,16 +13,74 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 public class Main {
 
     public static void main(final String[] args) throws Exception {
         //createJocProves();
         //provaConsultarRecursosDisponibles();
-        provaConsultarUsuarisAAssignar();
+
+     //  provaConsultarUsuarisAAssignar();
+
+        provaCrearReservaAmbNotificacio();
         //crearReservaController crc = new crearReservaController();
+    }
+
+    private static void provaCrearReservaAmbNotificacio() throws Exception {
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+        Usuari uR = new Usuari("Elena","elenabdn","elena.bdn@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uR);
+        Usuari uX = new Usuari("David","aleueet","aleueet@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uX);
+
+        Ordinador ord2 = new Ordinador();
+        ord2.setNom("ord2");
+        ord2.setMarca("HP");
+        ord2.setModel("125");
+        ord2.setModel("125");
+        persistence.hibernate.HibernateUtils.save(ord2);
+
+        Projector proj = new Projector();
+        proj.setNom("proj");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Projector proj2 = new Projector();
+        proj2.setNom("proj2");
+        proj2.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj2);
+
+//String nom, Integer aforament, String ubicacio, String nomordinador, String nomprojector) {
+
+        Sala s = new Sala("S1",30, "OMEGA", ord2.getNom(),null);
+        persistence.hibernate.HibernateUtils.save(s);
+
+        ord2.setNomsala(s.getNom());
+        persistence.hibernate.HibernateUtils.update(ord2);
+
+        Sala s2 = new Sala("S2",30, "OMEGA", null,proj.getNom());
+        persistence.hibernate.HibernateUtils.save(s2);
+
+        proj.setNomsala(s2.getNom());
+        persistence.hibernate.HibernateUtils.update(proj);
+
+        Calendar cDia = Calendar.getInstance();
+        cDia.set(2016,11,30);
+        Date dia =  new Date(cDia.getTimeInMillis());
+
+        Integer hi = 2;
+        Integer hf = 3;
+
+        List<RecursDisponiblesPerData> res = FactoriaUseCase.getInstance().getCrearReservaAmbNotificacio().obteRecursosDisponibles(dia, hi,hf);
+
+        FactoriaUseCase.getInstance().getCrearReservaAmbNotificacio().crearReservaAmbNotificacio(s2.getNom(),uE.getUsername(),"MEC");
+
+        List<TupleUsers> res2 = FactoriaUseCase.getInstance().getCrearReservaAmbNotificacio().obteUsuarisPerAssignar();
+
+
+        hf=4;
     }
 
     private static void provaConsultarUsuarisAAssignar() {
@@ -72,6 +130,20 @@ public class Main {
             System.out.println(e.getMessage());
         }
         System.out.println("Num usuaris disponibles: "+res.size());
+
+        try{
+            List<String> users = new ArrayList<String>();
+            for(TupleUsers t : res) {
+                users.add(t.getUsername());
+            }
+
+            auanucc.afegirUsuarisAReserva(users);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     private static void provaConsultarRecursosDisponibles() throws Exception {
@@ -119,6 +191,8 @@ public class Main {
 
         System.out.println("Num de recursos disponibles per data "+todaySQL.toString()+": "+res.size()+" recursos");
     }
+
+
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
         Projector proj = new Projector();
