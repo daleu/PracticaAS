@@ -25,5 +25,4 @@ public class TuplaEnviarDadesAReserva {
         this.comentari = comentari;
         this.emailList = emailList;
     }
-
 }

@@ -3,11 +3,10 @@ package domain.adaptadors;
 
 import domain.dataTypes.TuplaEnviarDadesAReserva;
 
-public class AdaptadorMissatgeria {
-
-    public void enviarDadesMissatgeria(TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva) {
+public class AdaptadorMissatgeria implements IAdaptadorMissatgeria{
 
 
+    public void enviarDadesReserva(TuplaEnviarDadesAReserva tuplaEnviaDadesAReserva) {
+        //TODO: Afegir servei web
     }
-
 }

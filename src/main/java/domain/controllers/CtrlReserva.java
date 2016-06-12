@@ -6,9 +6,7 @@ import domain.exceptions.NoEsReservaAmbNotificacio;
 import java.util.ArrayList;
 import java.sql.Date;
 
-/**
- * Created by crist_000 on 11/06/2016.
- */
+
 public interface CtrlReserva {
     public Reserva getReserva(String nomRecurs, Integer horainici, Date data) throws NoEsReservaAmbNotificacio;
     public void insertarReserva(Reserva reserva);

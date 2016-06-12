@@ -75,6 +75,7 @@ public class ReservaAmbNotificacio extends Reserva{
 
         if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
 
+        usuaris.addAll(usuarisAAfegir);
     }
 
 }

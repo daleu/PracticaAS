@@ -1,10 +1,12 @@
 package domain.casesControllers;
 
 
+import domain.adaptadors.IAdaptadorMissatgeria;
 import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Usuari;
 import domain.dataTypes.TuplaEnviarDadesAReserva;
+import domain.factories.FactoriaAdaptadors;
 import domain.factories.FactoriaCtrl;
 import domain.structures.TupleUsers;
 
@@ -25,7 +27,6 @@ public class AssignarUsuarisANotificarUseCaseController {
                 .getReserva(nomR,horaInici,data);
 
         reserva.reservaValida();
-
         return null;
     }
 
@@ -52,9 +53,6 @@ public class AssignarUsuarisANotificarUseCaseController {
         ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
         reservaAmbNotificacio.afegirUsuaris(UsuarisANotificar);
 
-        String usuariQueHaFetReserva = reserva.getUsername();
-        //String nomR, String data, String horaIni,
-       // Integer horaFi, String username, String comentari, List<String> emailList) {
         TuplaEnviarDadesAReserva tuplaEnviaDadesAReserva = new TuplaEnviarDadesAReserva(reserva.getNomrecurs(),
                                                                 reserva.getData(),
                                                                 reserva.getHorainici(),
@@ -63,5 +61,9 @@ public class AssignarUsuarisANotificarUseCaseController {
                                                                 reserva.getComentaris(),
                                                                 emails);
 
+        IAdaptadorMissatgeria iAdapatorMissatgeria = FactoriaAdaptadors.getInstance()
+                                                                        .getAdaptadorMissatgeria();
+
+        iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviaDadesAReserva);
     }
 }

@@ -1,9 +1,13 @@
 package domain.factories;
 
-/**
- * Created by usuario on 11/06/2016.
- */
+
+import domain.adaptadors.AdaptadorMissatgeria;
+import domain.adaptadors.IAdaptadorMissatgeria;
+
 public class FactoriaAdaptadors {
+
+    private IAdaptadorMissatgeria iAdaptadorMissatgeria;
+
     private static FactoriaAdaptadors ourInstance = new FactoriaAdaptadors();
 
     public static FactoriaAdaptadors getInstance() {
@@ -11,5 +15,13 @@ public class FactoriaAdaptadors {
     }
 
     private FactoriaAdaptadors() {
+    }
+
+    public IAdaptadorMissatgeria getAdaptadorMissatgeria(){
+
+        if(iAdaptadorMissatgeria == null) {
+           // iAdaptadorMissatgeria  = new IAdaptadorMissatgeria();
+        }
+        return iAdaptadorMissatgeria;
     }
 }
