@@ -14,9 +14,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by crist_000 on 11/06/2016.
- */
+
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
         List <RecursDisponiblesPerData>  result = new ArrayList<RecursDisponiblesPerData>();

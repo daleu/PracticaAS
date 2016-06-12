@@ -5,6 +5,7 @@ import domain.classes.Recurs;
 
 public class RecursDisponiblesPerData {
 
+
     public String nom;
     public String marca;
     public String model;

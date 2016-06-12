@@ -1,5 +1,6 @@
 package domain.classes;
 
+import domain.dataTypes.TuplaEnviarDadesAReserva;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -148,4 +149,9 @@ public class Reserva {
 
     }
 
+    public TuplaEnviarDadesAReserva getInfoExtra() {
+
+        TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(nomrecurs,data,horainici,horafi,username,comentaris,null);
+        return tupla;
+    }
 }

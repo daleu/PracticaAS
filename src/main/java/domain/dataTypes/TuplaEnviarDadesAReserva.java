@@ -25,4 +25,8 @@ public class TuplaEnviarDadesAReserva {
         this.comentari = comentari;
         this.emailList = emailList;
     }
+
+    public void setEmails(List<String> emails) {
+        this.emailList = emails;
+    }
 }

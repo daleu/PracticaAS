@@ -1,6 +1,5 @@
 package domain.casesControllers;
 
-
 import domain.adaptadors.IAdaptadorMissatgeria;
 import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
@@ -20,7 +19,6 @@ public class AssignarUsuarisANotificarUseCaseController {
     private Reserva reserva;
 
     public List<TupleUsers> obteUsuarisAAssignar(String nomR, Date data, Integer horaInici) throws Exception{
-
         reserva = FactoriaCtrl
                 .getInstance()
                 .getCtrlReserva()
@@ -29,7 +27,6 @@ public class AssignarUsuarisANotificarUseCaseController {
         reserva.reservaValida();
         return null;
     }
-
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{
 
@@ -50,20 +47,16 @@ public class AssignarUsuarisANotificarUseCaseController {
             }
         }
 
+        //Afegir Usuaris
         ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
-        reservaAmbNotificacio.afegirUsuaris(UsuarisANotificar);
+        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(UsuarisANotificar);
 
-        TuplaEnviarDadesAReserva tuplaEnviaDadesAReserva = new TuplaEnviarDadesAReserva(reserva.getNomrecurs(),
-                                                                reserva.getData(),
-                                                                reserva.getHorainici(),
-                                                                reserva.getHorafi(),
-                                                                reserva.getUsername(),
-                                                                reserva.getComentaris(),
-                                                                emails);
 
+        //Enviar dades
+        tuplaEnviarDadesAReserva.setEmails(emails);
         IAdaptadorMissatgeria iAdapatorMissatgeria = FactoriaAdaptadors.getInstance()
                                                                         .getAdaptadorMissatgeria();
 
-        iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviaDadesAReserva);
+        iAdapatorMissatgeria.enviarDadesReserva(tuplaEnviarDadesAReserva);
     }
 }
