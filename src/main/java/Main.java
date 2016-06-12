@@ -1,4 +1,13 @@
+import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseController;
+import domain.classes.*;
+import domain.dataTypes.RecursDisponiblesPerData;
+import domain.factories.FactoriaUseCase;
 import domain.hibernate.HibernateUtils;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -7,11 +16,55 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         createJocProves();
+        provaConsultarRecursosDisponibles();
+
     }
 
+    private static void provaConsultarRecursosDisponibles(){
+        Ordinador ord = new Ordinador();
+        ord.setNom("ord");
+        ord.setMarca("HP");
+        ord.setModel("125");
+        domain.hibernate.HibernateUtils.save(ord);
+
+        Ordinador ord2 = new Ordinador();
+        ord2.setNom("ord2");
+        ord2.setMarca("HP");
+        ord2.setModel("125");
+        ord2.setModel("125");
+        domain.hibernate.HibernateUtils.save(ord2);
+
+        /*Sala sala = new Sala();
+        sala.setNom("sala");
+        sala.setAforament(12);
+        sala.setOrdinador(ord2);
+        sala.setUbicacio("Edifici 3");
+        sala.setNomordinador("ord2");
+        sala.setRecurs(sala);
+        domain.hibernate.HibernateUtils.save(sala);*/
+
+        Projector proj = new Projector();
+        proj.setNom("proj");
+        proj.setResolucio("1080");
+        proj.setRecurs(proj);
+        domain.hibernate.HibernateUtils.save(proj);
+
+        FactoriaUseCase facCU = FactoriaUseCase.getInstance();
+        ConsultarRecursosDisponiblesPerDataUseCaseController crData = facCU.getConsultarRecursosDisponiblesPerData();
+
+        Calendar today = Calendar.getInstance();
+        Date todaySQL = new Date((today.getTime()).getTime());
+        List<RecursDisponiblesPerData> res = new ArrayList<RecursDisponiblesPerData>();
+        try{
+            res = crData.obtéRecursosDisponiblesPerData(todaySQL, 2, 22);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Num de recursos disponibles: "+res.size());
+    }
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();
-
         /*List<Usuari> luE = new ArrayList<Usuari>();
         List<Recurs> lrE = new ArrayList<Recurs>();
 
@@ -26,12 +79,6 @@ public class Main {
             domain.hibernate.HibernateUtils.save(u);
         }
 
-        Recurs rE = new Recurs("SALA15");
-        lrE.add(rE);
-        rE = new Recurs("Ord2323");
-        lrE.add(rE);
-        rE = new Recurs("projFX8");
-        lrE.add(rE);
 
         for(Recurs r: lrE) {
             domain.hibernate.HibernateUtils.save(r);
