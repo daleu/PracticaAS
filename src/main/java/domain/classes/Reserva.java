@@ -5,6 +5,7 @@ import org.hibernate.annotations.Check;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -14,6 +15,7 @@ import java.sql.Time;
 @Check(constraints = "(horainici < horafi) AND horainici <= '23' AND horafi>= '1' AND  horafi<='24' AND horainici >='0'")
 @IdClass(ReservaPK.class)
 public class Reserva {
+
     private Date data;
     private Integer horainici;
     private Integer horafi;
@@ -145,4 +147,5 @@ public class Reserva {
     public void reservaValida() throws Exception{
 
     }
+
 }

@@ -5,9 +5,6 @@ import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
-/**
- * Created by aleue on 9/6/2016.
- */
 
 @Entity
 @Table(name = "sala", schema = "public", catalog = "postgres")

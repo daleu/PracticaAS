@@ -2,7 +2,7 @@ import domain.casesControllers.ConsultarRecursosDisponiblesPerDataUseCaseControl
 import domain.classes.*;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.factories.FactoriaUseCase;
-import domain.hibernate.HibernateUtils;
+import persistence.hibernate.HibernateUtils;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -25,14 +25,14 @@ public class Main {
         ord.setNom("ord");
         ord.setMarca("HP");
         ord.setModel("125");
-        domain.hibernate.HibernateUtils.save(ord);
+        persistence.hibernate.HibernateUtils.save(ord);
 
         Ordinador ord2 = new Ordinador();
         ord2.setNom("ord2");
         ord2.setMarca("HP");
         ord2.setModel("125");
         ord2.setModel("125");
-        domain.hibernate.HibernateUtils.save(ord2);
+        persistence.hibernate.HibernateUtils.save(ord2);
 
         /*Sala sala = new Sala();
         sala.setNom("sala");
@@ -41,12 +41,12 @@ public class Main {
         sala.setUbicacio("Edifici 3");
         sala.setNomordinador("ord2");
         sala.setRecurs(sala);
-        domain.hibernate.HibernateUtils.save(sala);*/
+        persistence.hibernate.HibernateUtils.save(sala);*/
 
         Projector proj = new Projector();
         proj.setNom("proj");
         proj.setResolucio("1080");
-        domain.hibernate.HibernateUtils.save(proj);
+        persistence.hibernate.HibernateUtils.save(proj);
 
         FactoriaUseCase facCU = FactoriaUseCase.getInstance();
         ConsultarRecursosDisponiblesPerDataUseCaseController crData = facCU.getConsultarRecursosDisponiblesPerData();
@@ -75,12 +75,12 @@ public class Main {
         luE.add(uE);
 
         for (Usuari u: luE) {
-            domain.hibernate.HibernateUtils.save(u);
+            persistence.hibernate.HibernateUtils.save(u);
         }
 
 
         for(Recurs r: lrE) {
-            domain.hibernate.HibernateUtils.save(r);
+            persistence.hibernate.HibernateUtils.save(r);
         }
 
         //TODO: Ejemplo de como gestionar las fechas y horas
@@ -105,6 +105,6 @@ public class Main {
 
         Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 
-        domain.hibernate.HibernateUtils.save(rr);*/
+        persistence.hibernate.HibernateUtils.save(rr);*/
     }
 }

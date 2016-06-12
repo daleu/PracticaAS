@@ -1,4 +1,4 @@
-package domain.hibernate;
+package persistence.hibernate;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

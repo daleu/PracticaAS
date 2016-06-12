@@ -1,12 +1,9 @@
-package domain.classesDBCtrls;
+package persistence.classesDBCtrls;
 
 import domain.classes.Reserva;
-import domain.classes.ReservaAmbNotificacio;
 import domain.classes.ReservaPK;
-import domain.classes.ReservaambnotificacioPK;
 import domain.controllers.CtrlReserva;
-import domain.exceptions.NoEsReservaAmbNotificacio;
-import domain.hibernate.HibernateUtils;
+import persistence.hibernate.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

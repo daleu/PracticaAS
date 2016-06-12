@@ -1,7 +1,9 @@
 package domain.classes;
 
 import domain.exceptions.NoEsReservaAmbNotificacio;
+import domain.exceptions.ReservaATope;
 import org.hibernate.annotations.Check;
+import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -68,4 +70,11 @@ public class ReservaAmbNotificacio extends Reserva{
     public void setUsuaris(Collection<Usuari> usuaris) {
         this.usuaris = usuaris;
     }
+
+    public void afegirUsuaris(Collection<Usuari> usuarisAAfegir) throws Exception {
+
+        if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
+
+    }
+
 }

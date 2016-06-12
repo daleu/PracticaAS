@@ -1,8 +1,8 @@
 package domain.factories;
 
-import domain.classesDBCtrls.CtrlRecursDB;
-import domain.classesDBCtrls.CtrlReservaDB;
-import domain.classesDBCtrls.CtrlUsuariDB;
+import persistence.classesDBCtrls.CtrlRecursDB;
+import persistence.classesDBCtrls.CtrlReservaDB;
+import persistence.classesDBCtrls.CtrlUsuariDB;
 import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
 import domain.controllers.CtrlUsuari;
