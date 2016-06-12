@@ -9,9 +9,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.*;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 @Entity
 @Table(name = "reservaambnotificacio", schema = "public", catalog = "postgres")
 @Check(constraints = "(horainici < horafi) AND horainici <= '23' AND horafi>= '1' AND  horafi<='24' AND horainici >='0'")
@@ -76,10 +74,14 @@ public class ReservaAmbNotificacio extends Reserva{
         if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
         usuaris.addAll(usuarisAAfegir);
 
-
-        //TuplaEnviarDadesAReserva tupla = super.getInfoExtra();
-
-        return null;
+        TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(super.getNomrecurs(),
+                                                                        super.getData(),
+                                                                        super.getHorainici(),
+                                                                        super.getHorafi(),
+                                                                        super.getUsername(),
+                                                                        super.getComentaris(),
+                                                                        null);
+        return tupla;
     }
 
 }

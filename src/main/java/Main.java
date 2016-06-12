@@ -36,7 +36,8 @@ public class Main {
         ord2.setModel("125");
         persistence.hibernate.HibernateUtils.save(ord2);
 
-        /*Sala sala = new Sala();
+       /*
+        Sala sala = new Sala();
         sala.setNom("sala");
         sala.setAforament(12);
         sala.setOrdinador(ord2);
@@ -55,6 +56,7 @@ public class Main {
 
         Calendar today = Calendar.getInstance();
         Date todaySQL = new Date((today.getTime()).getTime());
+
         List<RecursDisponiblesPerData> res = new ArrayList<RecursDisponiblesPerData>();
         try{
             res = crData.obtéRecursosDisponiblesPerData(todaySQL, 2, 22);
@@ -62,7 +64,8 @@ public class Main {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Num de recursos disponibles: "+res.size());
+
+        //System.out.println("Num de recursos disponibles: "+res.size());
     }
     private static void createJocProves() {
         HibernateUtils hU = new HibernateUtils();

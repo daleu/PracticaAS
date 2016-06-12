@@ -4,6 +4,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Created by usuario on 06/06/2016.
@@ -31,15 +32,7 @@ public abstract class Recurs {
         this.nom = nom;
     }
 
-    public RecursDisponiblesPerData getInfo() {
-        RecursDisponiblesPerData tuple = new RecursDisponiblesPerData();
-        tuple.nom = this.nom;
-        tuple = getRecursInfoEsp(tuple);
-        return tuple;
-    }
-
-    protected abstract RecursDisponiblesPerData getRecursInfoEsp(RecursDisponiblesPerData r);
-
+    //public abstract RecursDisponiblesPerData getInfo();
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,11 +51,21 @@ public abstract class Recurs {
     }
 
 
+    protected abstract boolean recursAssignatASala();
+
     public boolean getDisponibilitat(Date d, Integer hi, Integer hf) {
-        Boolean b = recursNoAssignatASala();
-        //TODO acabar
 
         return false;
     }
-    protected abstract Boolean recursNoAssignatASala();
+
+    private Collection<Reserva> reserves;
+
+    @OneToMany(mappedBy = "recurs")
+    public Collection<Reserva> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(Collection<Reserva> reserves) {
+        this.reserves = reserves;
+    }
 }

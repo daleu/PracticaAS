@@ -19,10 +19,10 @@ import java.util.List;
 public class Reserva {
 
     public static final String TAULA = "Reserva";
-    private Date data;
-    private Integer horainici;
-    private Integer horafi;
-    private String comentaris;
+    protected Date data;
+    protected Integer horainici;
+    protected Integer horafi;
+    protected String comentaris;
     private String nomrecurs;
     private String username;
     private Recurs recurs;
@@ -150,12 +150,6 @@ public class Reserva {
     public void reservaValida() throws Exception{
 
     }
-/*
-    public TuplaEnviarDadesAReserva getInfoExtra() {
 
-        TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(nomrecurs,data,horainici,horafi,username,comentaris,null);
-        return tupla;
-    }
-    */
 
 }
