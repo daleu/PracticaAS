@@ -1,7 +1,6 @@
 package presentation;
 
 import javax.swing.*;
-import java.util.List;
 
 /**
  * Created by Usuario on 11/06/2016.
@@ -17,6 +16,7 @@ public class crearReservaVistaSistema implements crearReservaVista {
 
     public void mostraIntroduccioData(){
         c.setVisible(false);
-        c = new creaReservaAmbNotificacio_1(ctrl);
+        c = new cResAmbNot_selec_data(ctrl);
     }
+
 }

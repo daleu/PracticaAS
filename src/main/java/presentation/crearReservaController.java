@@ -1,14 +1,11 @@
 package presentation;
 
-import presentation.creaReservaAmbNotificacio_1;
-import presentation.menuPrincipal;
-
 /**
  * Created by Usuario on 11/06/2016.
  */
 public class crearReservaController {
     menuPrincipal mp;
-    creaReservaAmbNotificacio_1 creaAmbNot1;
+    cResAmbNot_selec_data creaAmbNot1;
 
     crearReservaVista vista;
 
