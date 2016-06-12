@@ -1,5 +1,4 @@
 import domain.classes.Recurs;
-import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Usuari;
 import domain.hibernate.HibernateUtils;
@@ -34,7 +33,7 @@ public class Main {
         Integer hf = 3;
 
         ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,rE.getNom(),uE.getUsername(),uE);
-        //domain.hibernate.HibernateUtils.save(rr);
+        //domain.hibernate.domain.hibernate.HibernateUtils.save(rr);
         uE.setReserves(Collections.singletonList(rr));
         domain.hibernate.HibernateUtils.update(uE);
 //
@@ -49,7 +48,7 @@ public class Main {
 //        luE.add(uE);
 //
 //        for (Usuari u: luE) {
-//            domain.hibernate.HibernateUtils.save(u);
+//            domain.hibernate.domain.hibernate.HibernateUtils.save(u);
 //        }
 //
 //        Recurs rE = new Recurs("SALA15");
@@ -60,7 +59,7 @@ public class Main {
 //        lrE.add(rE);
 //
 //        for(Recurs r: lrE) {
-//            domain.hibernate.HibernateUtils.save(r);
+//            domain.hibernate.domain.hibernate.HibernateUtils.save(r);
 //        }
 //
 //        //TODO: Ejemplo de como gestionar las fechas y horas
@@ -85,6 +84,6 @@ public class Main {
 //
 //        Reserva rr = new Reserva(dia,tIni,tFi, null,rE.getNom(),uE.getUsername());
 //
-//        domain.hibernate.HibernateUtils.save(rr);*/
+//        domain.hibernate.domain.hibernate.HibernateUtils.save(rr);*/
     }
 }

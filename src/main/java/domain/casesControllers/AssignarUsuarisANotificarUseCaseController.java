@@ -2,10 +2,8 @@ package domain.casesControllers;
 
 
 import domain.classes.Reserva;
-import domain.classes.ReservaAmbNotificacio;
-import domain.dataTypes.TupleUsers;
+import domain.structures.TupleUsers;
 import domain.factories.FactoriaCtrl;
-import domain.factories.FactoriaUseCase;
 
 import java.util.Date;
 import java.util.List;
