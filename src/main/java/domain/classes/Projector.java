@@ -15,9 +15,18 @@ public class Projector extends Recurs{
     private String resolucio;
     private Recurs recurs;
 
+    private Sala sala;
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
     public Projector(){
 
+
     }
+
+
 
     @Basic
     @Column(name = "resolucio", nullable = false, length = 255)
@@ -35,7 +44,21 @@ public class Projector extends Recurs{
         return recurs;
     }
 
+
+    @OneToOne
+    @JoinColumn(name = "nom", referencedColumnName = "nomprojector", nullable = true,insertable = false, updatable = false)
+    public Sala getSala() {
+        return sala;
+    }
+
+
     public void setRecurs(Recurs recurs) {
         this.recurs = recurs;
     }
+
+
+    protected boolean recursAssignatASala() {
+        return false;
+    }
+
 }

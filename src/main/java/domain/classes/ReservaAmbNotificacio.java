@@ -77,9 +77,9 @@ public class ReservaAmbNotificacio extends Reserva{
         usuaris.addAll(usuarisAAfegir);
 
 
-        TuplaEnviarDadesAReserva tupla = super.getInfoExtra();
+        //TuplaEnviarDadesAReserva tupla = super.getInfoExtra();
 
-        return tupla;
+        return null;
     }
 
 }

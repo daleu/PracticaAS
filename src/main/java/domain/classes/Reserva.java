@@ -148,10 +148,12 @@ public class Reserva {
     public void reservaValida() throws Exception{
 
     }
-
+/*
     public TuplaEnviarDadesAReserva getInfoExtra() {
 
         TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(nomrecurs,data,horainici,horafi,username,comentaris,null);
         return tupla;
     }
+    */
+
 }

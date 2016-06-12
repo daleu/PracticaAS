@@ -1,7 +1,5 @@
 package domain.dataTypes;
 
-
-
 import java.sql.Date;
 import java.util.List;
 
@@ -14,6 +12,10 @@ public class TuplaEnviarDadesAReserva {
     private String username;
     private String comentari;
     private List<String> emailList;
+
+    public TuplaEnviarDadesAReserva(){
+
+    }
 
     public TuplaEnviarDadesAReserva(String nomR, java.sql.Date data, Integer horaIni,
                                     Integer horaFi, String username, String comentari, List<String> emailList) {

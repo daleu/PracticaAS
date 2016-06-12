@@ -1,7 +1,5 @@
 package domain.casesControllers;
 
-
-import domain.classes.Reserva;
 import domain.classes.ReservaAmbNotificacio;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.exceptions.NoHiHaRecursos;

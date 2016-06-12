@@ -17,6 +17,11 @@ public class Sala extends Recurs{
     private String nomprojector;
     private Recurs recurs;
     private Ordinador ordinador;
+
+    public void setOrdinador(Projector ordinador) {
+        //this.ordinador = ordinador;
+    }
+
     private Projector projector;
 
     public Sala(){
@@ -92,4 +97,12 @@ public class Sala extends Recurs{
     public void setProjector(Projector projector) {
         this.projector = projector;
     }
+
+    @Override
+    protected boolean recursAssignatASala() {
+        return true;
+    }
+
+
+
 }
