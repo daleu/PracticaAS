@@ -1,5 +1,7 @@
 package domain.classes;
 
+import domain.dataTypes.RecursDisponiblesPerData;
+
 import javax.persistence.*;
 
 /**

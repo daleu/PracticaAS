@@ -1,10 +1,5 @@
 package domain.exceptions;
 
-import domain.classes.EsNotifica;
-
-import javax.persistence.*;
-import java.util.Set;
-
 /**
  * Created by aleue on 11/6/2016.
  */

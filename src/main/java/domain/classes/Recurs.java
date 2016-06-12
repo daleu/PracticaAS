@@ -1,5 +1,7 @@
 package domain.classes;
 
+import domain.dataTypes.RecursDisponiblesPerData;
+
 import javax.persistence.*;
 
 /**
@@ -8,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "recurs", schema = "public", catalog = "postgres")
-public class Recurs {
+public abstract class Recurs {
     private String nom;
 
     public Recurs() {
@@ -27,6 +29,7 @@ public class Recurs {
         this.nom = nom;
     }
 
+    //public abstract RecursDisponiblesPerData getInfo();
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

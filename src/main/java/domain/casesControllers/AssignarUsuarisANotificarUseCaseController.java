@@ -2,13 +2,14 @@ package domain.casesControllers;
 
 
 import domain.classes.Reserva;
+import domain.structures.TupleUsers;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Usuari;
 import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class AssignarUsuarisANotificarUseCaseController {
@@ -22,7 +23,8 @@ public class AssignarUsuarisANotificarUseCaseController {
                 .getCtrlReserva()
                 .getReserva(nomR,horaInici,data);
 
-        //reserva.reservaValida();
+        reserva.reservaValida();
+
         return null;
     }
 

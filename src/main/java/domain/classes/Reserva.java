@@ -1,7 +1,5 @@
 package domain.classes;
 
-import domain.exceptions.NoEsReservaAmbNotificacio;
-import domain.exceptions.NoHiHaReserva;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
@@ -13,8 +11,7 @@ import java.sql.Time;
  */
 @Entity
 @Table(name = "reserva", schema = "public", catalog = "postgres")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Check(constraints = "(horainici < horafi) AND horaInici <= '23' AND horaFi>= '1' AND  horaFi<='24' AND horaInici >='0'")
+@Check(constraints = "(horainici < horafi) AND horainici <= '23' AND horafi>= '1' AND  horafi<='24' AND horainici >='0'")
 @IdClass(ReservaPK.class)
 public class Reserva {
     private Date data;
@@ -81,11 +78,11 @@ public class Reserva {
 
     @Id
     @Column(name = "nomrecurs", nullable = false, length = 255)
-    public String getnomrecurs() {
+    public String getNomrecurs() {
         return nomrecurs;
     }
 
-    public void setnomrecurs(String nomrecurs) {
+    public void setNomrecurs(String nomrecurs) {
         this.nomrecurs = nomrecurs;
     }
 
@@ -143,5 +140,9 @@ public class Reserva {
 
     public void setUsuari(Usuari usuari) {
         this.usuari = usuari;
+    }
+
+    public void reservaValida() throws Exception{
+
     }
 }

@@ -1,5 +1,6 @@
 package domain.classes;
 
+import domain.dataTypes.RecursDisponiblesPerData;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;

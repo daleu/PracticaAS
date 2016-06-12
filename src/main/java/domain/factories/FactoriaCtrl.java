@@ -1,5 +1,8 @@
 package domain.factories;
 
+import domain.classesDBCtrls.CtrlRecursDB;
+import domain.classesDBCtrls.CtrlReservaDB;
+import domain.classesDBCtrls.CtrlUsuariDB;
 import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
 import domain.controllers.CtrlUsuari;
@@ -11,8 +14,8 @@ public class FactoriaCtrl {
 
     private static FactoriaCtrl ourInstance = new FactoriaCtrl();
     private CtrlUsuari ctrlUsuari;
-    private CtrlRecurs ctrlRecurs;
     private CtrlReserva ctrlReserva;
+    private CtrlRecurs ctrlRecurs;
 
     public static FactoriaCtrl getInstance() {
         return ourInstance;
@@ -25,23 +28,23 @@ public class FactoriaCtrl {
 
     public CtrlUsuari getCtrlUsuari(){
         if (ctrlUsuari == null) {
-           //ctrlUsuari = new CtrlUsuari();
+           ctrlUsuari = new CtrlUsuariDB();
         }
         return ctrlUsuari;
     }
 
-    public CtrlRecurs getCtrlRecurs(){
-        if (ctrlRecurs == null) {
-            //ctrlRecurs = new CtrlRecurs();
-        }
-        return ctrlRecurs;
-    }
-
-    public CtrlReserva getCtrlReserva(){
+    public CtrlReserva getCtrlReserva() {
         if (ctrlReserva == null) {
-            //ctrlUsuari = new CtrlUsuari();
+            ctrlReserva = new CtrlReservaDB();
         }
         return ctrlReserva;
+    }
+
+    public CtrlRecurs getCtrlRecurs() {
+        if (ctrlRecurs == null) {
+            ctrlRecurs = new CtrlRecursDB();
+        }
+        return ctrlRecurs;
     }
 
     //TODO: Anar assignant els demes controladors de OBJECTES
