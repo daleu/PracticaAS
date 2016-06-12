@@ -10,25 +10,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ordinador", schema = "public", catalog = "postgres")
-public class Ordinador {
+public class Ordinador extends Recurs {
 
-    private String nom;
     private String marca;
     private String model;
     private Recurs recurs;
 
     public Ordinador(){
 
-    }
-
-    @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nomP) {
-        this.nom = nomP;
     }
 
     @ManyToOne
@@ -60,12 +49,4 @@ public class Ordinador {
     public void setModel(String model) {
         this.model = model;
     }
-
-    /*public RecursDisponiblesPerData getInfo(){
-        RecursDisponiblesPerData r = new RecursDisponiblesPerData();
-        r.nom = this.getNom();
-        r.marca = this.marca;
-        r.model = this.model;
-        return r;
-    }*/
 }

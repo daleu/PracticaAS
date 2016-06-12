@@ -12,9 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sala", schema = "public", catalog = "postgres")
 @Check(constraints = "aforament>0")
-public class Sala {
+public class Sala extends Recurs{
 
-    private String nom;
     private Integer aforament;
     private String ubicacio;
     private String nomordinador;
@@ -25,16 +24,6 @@ public class Sala {
 
     public Sala(){
 
-    }
-
-    @Id
-    @Column(name = "nom", nullable = false, length = 255)
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nomP) {
-        this.nom = nomP;
     }
 
     @Basic
@@ -58,7 +47,7 @@ public class Sala {
     }
 
     @Basic
-    @Column(name = "nomordinador", nullable = true, length = 255, unique=true)
+    @Column(name = "nomordinador", nullable = false, length = 255, unique=true)
     public String getNomordinador() {
         return nomordinador;
     }
@@ -68,7 +57,7 @@ public class Sala {
     }
 
     @Basic
-    @Column(name = "nomprojector", nullable = true, length = 255, unique= true)
+    @Column(name = "nomprojector", nullable = false, length = 255, unique= true)
     public String getNomprojector() {
         return nomprojector;
     }
@@ -95,7 +84,6 @@ public class Sala {
 
     public void setOrdinador(Ordinador ordinador) {
         this.ordinador = ordinador;
-        this.nomordinador = ordinador.getNom();
     }
 
     @OneToOne
@@ -106,7 +94,5 @@ public class Sala {
 
     public void setProjector(Projector projector) {
         this.projector = projector;
-        this.nomprojector = projector.getNom();
     }
-
 }
