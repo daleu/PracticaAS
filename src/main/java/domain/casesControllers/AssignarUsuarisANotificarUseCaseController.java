@@ -6,7 +6,7 @@ import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class AssignarUsuarisANotificarUseCaseController {

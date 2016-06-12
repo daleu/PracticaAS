@@ -3,7 +3,7 @@ package domain.controllers;
 import domain.classes.Reserva;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by crist_000 on 11/06/2016.

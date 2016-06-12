@@ -34,6 +34,13 @@ public class FactoriaUseCase {
         return assignarUsuarisANotificarAUnaReserva;
     }
 
+    public ConsultarRecursosDisponiblesPerDataUseCaseController getConsultarRecursosDisponiblesPerData(){
+        if (consultarRecursosDisponiblesPerData == null) {
+            consultarRecursosDisponiblesPerData = new ConsultarRecursosDisponiblesPerDataUseCaseController();
+        }
+        return consultarRecursosDisponiblesPerData;
+    }
+
     //TODO: Fer les demes getInstances
 
 }

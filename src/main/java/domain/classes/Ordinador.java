@@ -1,5 +1,7 @@
 package domain.classes;
 
+import domain.dataTypes.RecursDisponiblesPerData;
+
 import javax.persistence.*;
 
 /**
@@ -47,4 +49,12 @@ public class Ordinador extends Recurs {
     public void setModel(String model) {
         this.model = model;
     }
+
+    /*public RecursDisponiblesPerData getInfo(){
+        RecursDisponiblesPerData r = new RecursDisponiblesPerData();
+        r.nom = this.getNom();
+        r.marca = this.marca;
+        r.model = this.model;
+        return r;
+    }*/
 }

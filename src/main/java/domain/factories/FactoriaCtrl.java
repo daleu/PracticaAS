@@ -1,5 +1,8 @@
 package domain.factories;
 
+import domain.casesControllers.CrearReservaAmbNotificacioUseCaseController;
+import domain.classesDBCtrls.CtrlRecursDB;
+import domain.classesDBCtrls.CtrlReservaDB;
 import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
 import domain.controllers.CtrlUsuari;
@@ -31,14 +34,14 @@ public class FactoriaCtrl {
 
     public CtrlRecurs getCtrlRecurs(){
         if (ctrlRecurs == null) {
-            //ctrlRecurs = new CtrlRecurs();
+            ctrlRecurs = new CtrlRecursDB();
         }
         return ctrlRecurs;
     }
 
     public CtrlReserva getCtrlReserva(){
         if (ctrlReserva == null) {
-            //ctrlUsuari = new CtrlUsuari();
+            ctrlReserva = new CtrlReservaDB();
         }
         return ctrlReserva;
     }

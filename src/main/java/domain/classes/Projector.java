@@ -1,5 +1,7 @@
 package domain.classes;
 
+import domain.dataTypes.RecursDisponiblesPerData;
+
 import javax.persistence.*;
 
 /**
@@ -36,4 +38,11 @@ public class Projector extends Recurs{
     public void setRecurs(Recurs recurs) {
         this.recurs = recurs;
     }
+
+    /*public RecursDisponiblesPerData getInfo(){
+        RecursDisponiblesPerData r = new RecursDisponiblesPerData();
+        r.nom = this.getNom();
+        r.resolucio = this.resolucio;
+        return r;
+    }*/
 }
