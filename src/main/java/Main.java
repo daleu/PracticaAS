@@ -13,9 +13,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by usuario on 06/06/2016.
- */
+
 public class Main {
 
     public static void main(final String[] args) throws Exception {

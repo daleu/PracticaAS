@@ -1,5 +1,6 @@
 package domain.casesControllers;
 
+import domain.adaptadors.IAdaptadorMissatgeria;
 import domain.classes.Recurs;
 import domain.classes.ReservaAmbNotificacio;
 import domain.classes.Sala;
@@ -11,6 +12,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 import domain.exceptions.NoHiHaRecursos;
 import domain.exceptions.PeriodeErrorni;
 import domain.exceptions.recursSalaSolapada;
+import domain.factories.FactoriaAdaptadors;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 import domain.dataTypes.TupleUsers;
@@ -44,7 +46,6 @@ public class CrearReservaAmbNotificacioUseCaseController {
         CtrlUsuari cUsu = fatoriaACtrl.getCtrlUsuari();
         CtrlReserva cRes = fatoriaACtrl.getCtrlReserva();
 
-
         Usuari u = cUsu.getUsuari(username);
         Recurs r = cRec.getRecurs(nomR);
 
@@ -53,9 +54,10 @@ public class CrearReservaAmbNotificacioUseCaseController {
             if(u.teSalaEnPeriode(dateRActual,hiActual,hfActual)) {
              throw new recursSalaSolapada();
             }
+
+           //ReservaAmbNotificacio reservaAmbNotificacio = new ReservaAmbNotificacio(nomR,dateRActual,hiActual,hfActual,u,null);
+
         }
-
-
 
     }
 
