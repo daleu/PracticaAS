@@ -33,7 +33,7 @@ public class cResAmbNot_selec_data extends JFrame {
     private crearReservaController c;
 
     public cResAmbNot_selec_data(crearReservaController ctrl) {
-
+        this.c = ctrl;
         setContentPane(contentPane);
         pack();
         getRootPane().setDefaultButton(buttonOK);
@@ -43,6 +43,8 @@ public class cResAmbNot_selec_data extends JFrame {
                 try {
                     onOK();
                 } catch (ParseException e1) {
+                    e1.printStackTrace();
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
@@ -103,13 +105,12 @@ public class cResAmbNot_selec_data extends JFrame {
         });
     }
 
-    private void onOK() throws ParseException{
+    private void onOK() throws Exception {
 // add your code here
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
       try {
-
           date = df.parse(data);
           System.out.println("fecha =" + date);
           //get current date time with Date()
@@ -118,16 +119,13 @@ public class cResAmbNot_selec_data extends JFrame {
                 errorMessageLabel.setText("data incorrecta");
           }
           else{
-
+              java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+              c.seleccionarRecurs(sqlDate,hi,hf);
           }
       }
       catch (ParseException e){
           System.out.println("fail parsing");
         }
-
-
-
-
     }
 
     public void open(){

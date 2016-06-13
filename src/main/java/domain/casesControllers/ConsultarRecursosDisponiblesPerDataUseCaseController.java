@@ -20,12 +20,17 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
 
         List <RecursDisponiblesPerData>  result = new ArrayList<RecursDisponiblesPerData>();
+        System.out.println("hi "+hi+" ieffqwf "+hf);
         if(hf < hi) {
             throw new PeriodeErrorni();
         }
 
         Calendar today = Calendar.getInstance();
         Date todaySQL = new Date((today.getTime()).getTime());
+
+        System.out.println(d);
+        System.out.println(todaySQL);
+        System.out.println(d.before(todaySQL));
 
         if(d.before(todaySQL)){
             throw new PeriodeErrorni();

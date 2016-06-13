@@ -22,8 +22,51 @@ public class Main {
 
      //  provaConsultarUsuarisAAssignar();
 
-        provaCrearReservaAmbNotificacio();
-        //crearReservaController crc = new crearReservaController();
+        //provaCrearReservaAmbNotificacio();
+        crearReservaController crc = new crearReservaController();
+        jocProvesInterficieGrafica();
+    }
+
+    private static void jocProvesInterficieGrafica() {
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+        Usuari uR = new Usuari("Elena","elenabdn","elena.bdn@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uR);
+        Usuari uX = new Usuari("David","aleueet","aleueet@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uX);
+
+        Ordinador ord2 = new Ordinador();
+        ord2.setNom("ord2");
+        ord2.setMarca("HP");
+        ord2.setModel("125");
+        ord2.setModel("125");
+        persistence.hibernate.HibernateUtils.save(ord2);
+
+        Projector proj = new Projector();
+        proj.setNom("proj");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Projector proj2 = new Projector();
+        proj2.setNom("proj2");
+        proj2.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj2);
+
+        Sala s = new Sala("S1",30, "OMEGA", ord2.getNom(),null);
+        persistence.hibernate.HibernateUtils.save(s);
+
+        ord2.setNomsala(s.getNom());
+        persistence.hibernate.HibernateUtils.update(ord2);
+
+        Sala s2 = new Sala("S2",30, "OMEGA", null,proj.getNom());
+        persistence.hibernate.HibernateUtils.save(s2);
+
+        proj.setNomsala(s2.getNom());
+        persistence.hibernate.HibernateUtils.update(proj);
+
+      //  crearReservaController crc = new crearReservaController();
+
     }
 
     private static void provaCrearReservaAmbNotificacio() throws Exception {
