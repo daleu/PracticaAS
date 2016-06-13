@@ -109,7 +109,7 @@ public class cResAmbNot_selec_data extends JFrame {
         });
     }
 
-    private void onOK() throws ParseException{
+    private void onOK() throws Exception {
 // add your code here
 
         hi = (Integer)HoraInici.getValue();
@@ -134,7 +134,8 @@ public class cResAmbNot_selec_data extends JFrame {
                         //llamada a dominio
                         hi = hi*100 + mi;
                         hf = hf*100 + mf;
-                        c.OkDate(date, hi, hf);
+                        java.sql.Date aux = new java.sql.Date(date.getTime());
+                        c.OkDate(aux, hi, hf);
 
                     }
                     else {errorMessageLabel.setText("hores incorrectes");}

@@ -8,7 +8,6 @@ import java.sql.Date;
 import java.util.List;
 
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -41,13 +40,11 @@ public class crearReservaController {
         vista.seleccionarRecurs(aux);
     }
 
-    public void OkDate(Date d, int horaInici, int horaFi){
+    public void OkDate(Date d, int horaInici, int horaFi) throws Exception {
         FactoriaUseCase fuc = new FactoriaUseCase();
         java.sql.Date sqlDate = new java.sql.Date(d.getTime());
         CrearReservaAmbNotificacioUseCaseController  cranucc = fuc.getCrearReservaAmbNotificacio();
-        try {
-            List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
-        } catch (Exception e){
-            vista = ViewFactory.getinstance().
+        List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
+        vista.seleccionarRecurs(info);
     }
 }
