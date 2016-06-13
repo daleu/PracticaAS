@@ -81,7 +81,7 @@ public class ReservaAmbNotificacio extends Reserva{
 
     private Collection<Usuari> usuaris;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.ALL}, fetch = FetchType.EAGER)
     public Collection<Usuari> getUsuaris() {
         return usuaris;
     }
@@ -95,7 +95,15 @@ public class ReservaAmbNotificacio extends Reserva{
         if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
 
         //Afegeix nous usuaris
-        usuaris.addAll(usuarisAAfegir);
+       usuaris.addAll(usuarisAAfegir);
+
+        //Assigna l'altre navegavilitat
+        ArrayList<ReservaAmbNotificacio> rr = new ArrayList<ReservaAmbNotificacio>();
+        rr.add(this);
+        for (Usuari u:
+             usuarisAAfegir) {
+            u.setReserves(rr);
+        }
 
         //Agafa info per a enviar la info al servei
         TuplaEnviarDadesAReserva tupla = new TuplaEnviarDadesAReserva(super.getNomrecurs(),
@@ -111,10 +119,4 @@ public class ReservaAmbNotificacio extends Reserva{
     public int UsuarisANotificar() {
         return usuaris.size();
     }
-
-
-    public void associarUsuaris(Collection<Usuari> usuarisAAssignar) {
-        this.usuaris = usuarisAAssignar;
-    }
-
 }

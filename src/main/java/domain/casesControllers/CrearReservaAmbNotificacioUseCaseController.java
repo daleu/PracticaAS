@@ -54,7 +54,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
          throw new RecursSalaSolapada();
         }
 
-        //CREA
+        //CREACIO
         //Assigna data, hores, comentaris, recurs i usuari a la classe pare
         //Inicialitza llista d'usuaris a notificar
         rN = new ReservaAmbNotificacio(dateRActual,hiActual,hfActual,comentari,r.getNom(),u.getUsername());
@@ -64,6 +64,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
         ArrayList<Usuari> users = new ArrayList<Usuari>();
         users.add(u);
         rN.setUsuaris(users);
+        //Guardar a persistencia
         persistence.hibernate.HibernateUtils.save(rN);
 
     }

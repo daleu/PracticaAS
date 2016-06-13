@@ -168,4 +168,11 @@ public class Reserva {
     public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuaris) {
         return null;
     }
+
+    public boolean teSalaEnPeriode(Date dateRActual, Integer hiActual, Integer hfActual) {
+
+        if ( recurs instanceof  Sala) return true;
+
+        return false;
+    }
 }

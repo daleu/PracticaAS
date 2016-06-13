@@ -7,9 +7,6 @@ import domain.controllers.CtrlRecurs;
 import domain.controllers.CtrlReserva;
 import domain.controllers.CtrlUsuari;
 
-/**
- * Created by usuario on 10/06/2016.
- */
 public class FactoriaCtrl {
 
     private static FactoriaCtrl ourInstance = new FactoriaCtrl();
@@ -22,8 +19,6 @@ public class FactoriaCtrl {
     }
 
     private FactoriaCtrl() {
-
-
     }
 
     public CtrlUsuari getCtrlUsuari(){
@@ -47,5 +42,4 @@ public class FactoriaCtrl {
         return ctrlRecurs;
     }
 
-    //TODO: Anar assignant els demes controladors de OBJECTES
 }

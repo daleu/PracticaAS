@@ -20,9 +20,9 @@ public class Main {
         //createJocProves();
         //provaConsultarRecursosDisponibles();
 
-     //  provaConsultarUsuarisAAssignar();
+      provaConsultarUsuarisAAssignar();
 
-        provaCrearReservaAmbNotificacio();
+      //  provaCrearReservaAmbNotificacio();
         //crearReservaController crc = new crearReservaController();
     }
 
@@ -79,8 +79,6 @@ public class Main {
 
         List<TupleUsers> res2 = FactoriaUseCase.getInstance().getCrearReservaAmbNotificacio().obteUsuarisPerAssignar();
 
-
-        hf=4;
     }
 
     private static void provaConsultarUsuarisAAssignar() {
@@ -105,17 +103,19 @@ public class Main {
         Integer hf = 3;
 
         ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername());
+
         ArrayList<Usuari> aux = new ArrayList<Usuari>();
         aux.add(uR);
         aux.add(uE);
-        rr.setUsuaris(aux);
-        persistence.hibernate.HibernateUtils.save(rr);
 
-        uR.setReserves(Collections.singletonList(rr));
-        persistence.hibernate.HibernateUtils.update(uR);
+       // rr.setUsuaris(aux);
+       persistence.hibernate.HibernateUtils.save(rr);
 
-        uE.setReserves(Collections.singletonList(rr));
-        persistence.hibernate.HibernateUtils.update(uE);
+       // uR.setReserves(Collections.singletonList(rr));
+        //persistence.hibernate.HibernateUtils.update(uR);
+
+       // uE.setReserves(Collections.singletonList(rr));
+       // persistence.hibernate.HibernateUtils.update(uE);
 
 
         FactoriaUseCase facCU = FactoriaUseCase.getInstance();
@@ -133,10 +133,7 @@ public class Main {
 
         try{
             List<String> users = new ArrayList<String>();
-            for(TupleUsers t : res) {
-                users.add(t.getUsername());
-            }
-
+                users.add(uX.getUsername());
             auanucc.afegirUsuarisAReserva(users);
         }
         catch (Exception e) {

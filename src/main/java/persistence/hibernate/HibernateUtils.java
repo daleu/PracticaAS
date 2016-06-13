@@ -1,5 +1,6 @@
 package persistence.hibernate;
 
+import domain.classes.ReservaAmbNotificacio;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -96,6 +97,21 @@ public class HibernateUtils {
         session.close();
 
         return res;
+
+    }
+
+    public static void merge(Object o) {
+        SessionFactory sf = HibernateUtils.getSessionFactory();
+        Session session = sf.openSession();
+
+        session.beginTransaction();
+
+        session.merge(o);
+
+        session.getTransaction().commit();
+
+        session.close();
+
 
     }
 }
