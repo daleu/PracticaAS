@@ -37,6 +37,7 @@ public class cResAmbNot_selec_data extends JFrame {
         MinutInici.setValue(-1);
         HoraFi.setValue(-1);
         MinutFi.setValue(-1);
+        this.c = ctrl;
         setContentPane(contentPane);
         pack();
         getRootPane().setDefaultButton(buttonOK);
@@ -46,6 +47,8 @@ public class cResAmbNot_selec_data extends JFrame {
                 try {
                     onOK();
                 } catch (ParseException e1) {
+                    e1.printStackTrace();
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
@@ -106,7 +109,7 @@ public class cResAmbNot_selec_data extends JFrame {
         });
     }
 
-    private void onOK() throws ParseException{
+    private void onOK() throws Exception {
 // add your code here
 
         hi = (Integer)HoraInici.getValue();
@@ -131,7 +134,8 @@ public class cResAmbNot_selec_data extends JFrame {
                         //llamada a dominio
                         hi = hi*100 + mi;
                         hf = hf*100 + mf;
-                        c.OkDate(date, hi, hf);
+                        java.sql.Date aux = new java.sql.Date(date.getTime());
+                        c.OkDate(aux, hi, hf);
 
                     }
                     else {errorMessageLabel.setText("hores incorrectes");}

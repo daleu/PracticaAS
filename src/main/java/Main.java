@@ -20,10 +20,53 @@ public class Main {
         //createJocProves();
         //provaConsultarRecursosDisponibles();
 
-      provaConsultarUsuarisAAssignar();
+     //  provaConsultarUsuarisAAssignar();
 
-      //  provaCrearReservaAmbNotificacio();
-        //crearReservaController crc = new crearReservaController();
+        //provaCrearReservaAmbNotificacio();
+        crearReservaController crc = new crearReservaController();
+        jocProvesInterficieGrafica();
+    }
+
+    private static void jocProvesInterficieGrafica() {
+
+        Usuari uE = new Usuari("Maria","mariae20","marimari@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uE);
+        Usuari uR = new Usuari("Elena","elenabdn","elena.bdn@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uR);
+        Usuari uX = new Usuari("David","aleueet","aleueet@gmail.com");
+        persistence.hibernate.HibernateUtils.save(uX);
+
+        Ordinador ord2 = new Ordinador();
+        ord2.setNom("ord2");
+        ord2.setMarca("HP");
+        ord2.setModel("125");
+        ord2.setModel("125");
+        persistence.hibernate.HibernateUtils.save(ord2);
+
+        Projector proj = new Projector();
+        proj.setNom("proj");
+        proj.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj);
+
+        Projector proj2 = new Projector();
+        proj2.setNom("proj2");
+        proj2.setResolucio("1080");
+        persistence.hibernate.HibernateUtils.save(proj2);
+
+        Sala s = new Sala("S1",30, "OMEGA", ord2.getNom(),null);
+        persistence.hibernate.HibernateUtils.save(s);
+
+        ord2.setNomsala(s.getNom());
+        persistence.hibernate.HibernateUtils.update(ord2);
+
+        Sala s2 = new Sala("S2",30, "OMEGA", null,proj.getNom());
+        persistence.hibernate.HibernateUtils.save(s2);
+
+        proj.setNomsala(s2.getNom());
+        persistence.hibernate.HibernateUtils.update(proj);
+
+      //  crearReservaController crc = new crearReservaController();
+
     }
 
     private static void provaCrearReservaAmbNotificacio() throws Exception {
@@ -79,6 +122,8 @@ public class Main {
 
         List<TupleUsers> res2 = FactoriaUseCase.getInstance().getCrearReservaAmbNotificacio().obteUsuarisPerAssignar();
 
+
+        hf=4;
     }
 
     private static void provaConsultarUsuarisAAssignar() {
@@ -103,19 +148,17 @@ public class Main {
         Integer hf = 3;
 
         ReservaAmbNotificacio rr = new ReservaAmbNotificacio(dia,hi,hf, null,proj.getNom(),uE.getUsername());
-
         ArrayList<Usuari> aux = new ArrayList<Usuari>();
         aux.add(uR);
         aux.add(uE);
+        rr.setUsuaris(aux);
+        persistence.hibernate.HibernateUtils.save(rr);
 
-       // rr.setUsuaris(aux);
-       persistence.hibernate.HibernateUtils.save(rr);
+        uR.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uR);
 
-       // uR.setReserves(Collections.singletonList(rr));
-        //persistence.hibernate.HibernateUtils.update(uR);
-
-       // uE.setReserves(Collections.singletonList(rr));
-       // persistence.hibernate.HibernateUtils.update(uE);
+        uE.setReserves(Collections.singletonList(rr));
+        persistence.hibernate.HibernateUtils.update(uE);
 
 
         FactoriaUseCase facCU = FactoriaUseCase.getInstance();
@@ -133,7 +176,10 @@ public class Main {
 
         try{
             List<String> users = new ArrayList<String>();
-                users.add(uX.getUsername());
+            for(TupleUsers t : res) {
+                users.add(t.getUsername());
+            }
+
             auanucc.afegirUsuarisAReserva(users);
         }
         catch (Exception e) {
