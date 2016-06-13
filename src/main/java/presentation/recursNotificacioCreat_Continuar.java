@@ -8,10 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-/**
- * Created by usuario on 13/06/2016.
- */
-public class recursNotificacioCreat_Continuar extends  JFrame{
+
+public class recursNotificacioCreat_Continuar {
     private JPanel panel1;
     private JButton noButton1;
     private JButton siButton;

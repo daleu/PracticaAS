@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class assignacioCorrecte extends JDialog {
+public class assignacioCorrecte extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
+    private crearReservaController c;
 
-    public assignacioCorrecte() {
+    public assignacioCorrecte(crearReservaController ctrl){
+        this.c = ctrl;
         setContentPane(contentPane);
-        setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -21,14 +22,8 @@ public class assignacioCorrecte extends JDialog {
     }
 
     private void onOK() {
-// add your code here
+        c.goinici();
         dispose();
     }
 
-    public static void main(String[] args) {
-        assignacioCorrecte dialog = new assignacioCorrecte();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }

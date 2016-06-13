@@ -4,13 +4,17 @@ import domain.dataTypes.TupleUsers;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.List;
 
+public class LlistarUsuarisANotificar extends JFrame{
 public class LlistarUsuarisANotificar extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
+    private crearReservaController c;
 
     public LlistarUsuarisANotificar(List<TupleUsers> usuarisANotificar) {
         setContentPane(contentPane);
@@ -18,7 +22,11 @@ public class LlistarUsuarisANotificar extends JFrame {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                try {
+                    onOK();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -44,9 +52,10 @@ public class LlistarUsuarisANotificar extends JFrame {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+    private void onOK() throws Exception {
         //Assignar usuaris
-
+        List<String> usernames = new ArrayList<String>();
+        c.assignarUsuaris(usernames);
         dispose();
     }
 
@@ -54,4 +63,5 @@ public class LlistarUsuarisANotificar extends JFrame {
 // add your code here if necessary
         dispose();
     }
+
 }

@@ -70,7 +70,7 @@
                 </constraints>
                 <properties>
                   <font name="Consolas" size="18" style="1"/>
-                  <foreground color="-1"/>
+                  <foreground color="-16777216"/>
                   <text value="Seleccionar Usuaris:"/>
                 </properties>
               </component>
