@@ -38,14 +38,13 @@ public class ReservaAmbNotificacio extends Reserva{
 
 
     @Override
-    public boolean reservaValida() throws Exception{
+    public void reservaValida() throws Exception{
         boolean bool = esReservaAmbNotificacio();
         if(bool==false) throw new NoEsReservaAmbNotificacio();
         boolean bool2 = esReservaCaduca();
         if(bool2==false) throw new ReservaCaducada();
         int usuarisnotificats = UsuarisANotificar();
         if(usuarisnotificats==10) throw new ReservaATope();
-        return true;
     }
 
     public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Recurs r, Usuari u) {
@@ -64,6 +63,7 @@ public class ReservaAmbNotificacio extends Reserva{
         else return true;
     }
 
+    @Override
     public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuarisexistents) {
         List<TupleUsers> aux = new ArrayList<TupleUsers>();
         for(Usuari u : usuarisexistents){
@@ -81,7 +81,7 @@ public class ReservaAmbNotificacio extends Reserva{
 
     private Collection<Usuari> usuaris;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.ALL}, fetch = FetchType.EAGER)
     public Collection<Usuari> getUsuaris() {
         return usuaris;
     }
@@ -93,7 +93,6 @@ public class ReservaAmbNotificacio extends Reserva{
     public TuplaEnviarDadesAReserva afegirUsuaris(Collection<Usuari> usuarisAAfegir) throws Exception {
 
         if(usuaris.size() + usuarisAAfegir.size() > 10) throw new ReservaATope();
-
 
         //Afegeix nous usuaris
        usuaris.addAll(usuarisAAfegir);

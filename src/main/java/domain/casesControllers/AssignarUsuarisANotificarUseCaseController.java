@@ -17,13 +17,10 @@ import java.util.List;
 
 public class AssignarUsuarisANotificarUseCaseController {
 
-    private String nomR;
-    private Date data;
-    private Integer horaInici;
+    private Reserva reserva;
 
     public List<TupleUsers> obteUsuarisAAssignar(String nomR, Date data, Integer horaInici) throws Exception{
-
-        Reserva reserva = FactoriaCtrl
+        reserva = FactoriaCtrl
                 .getInstance()
                 .getCtrlReserva()
                 .getReserva(nomR,horaInici,data);
@@ -34,36 +31,20 @@ public class AssignarUsuarisANotificarUseCaseController {
                 .getCtrlUsuari()
                 .getall();
 
-        ReservaAmbNotificacio r = (ReservaAmbNotificacio) reserva;
+        List<TupleUsers> llistaUsuarisAAssignar = reserva.usuarisAAssignar(usuaris);
+        if (llistaUsuarisAAssignar==null) throw new NoHiHaProusUsuaris();
 
-        if( r.reservaValida()) {
-
-            //TODO: Mira si reserva valida
-
-            List<TupleUsers> llistaUsuarisAAssignar = r.usuarisAAssignar(usuaris);
-
-            if (llistaUsuarisAAssignar == null) throw new NoHiHaProusUsuaris();
-
-            return llistaUsuarisAAssignar;
-        }
-
-        return null;
-
+        return llistaUsuarisAAssignar;
     }
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{
-
-
-        ReservaAmbNotificacio reserva = (ReservaAmbNotificacio) FactoriaCtrl
-                .getInstance()
-                .getCtrlReserva()
-                .getReserva(nomR,horaInici,data);
 
         Collection<Usuari> usuaris = FactoriaCtrl.getInstance()
                                         .getCtrlUsuari().getall();
 
 
         List<String> emails = new ArrayList<String>();
+
         ArrayList<Usuari> user = new ArrayList<Usuari>();
 
         for(Usuari u: usuaris) {
@@ -73,7 +54,9 @@ public class AssignarUsuarisANotificarUseCaseController {
             }
         }
 
-        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reserva.afegirUsuaris(user);
+        //Afegir Usuaris
+        ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
+        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(user);
 
         //Enviar dades
         tuplaEnviarDadesAReserva.setEmails(emails);

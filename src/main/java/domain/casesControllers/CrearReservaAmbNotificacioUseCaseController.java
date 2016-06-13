@@ -41,6 +41,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
 
         CtrlRecurs cRec = fatoriaACtrl.getCtrlRecurs();
         CtrlUsuari cUsu = fatoriaACtrl.getCtrlUsuari();
+        CtrlReserva cRes = fatoriaACtrl.getCtrlReserva();
 
         Usuari u = cUsu.getUsuari(username);
         Recurs r = cRec.getRecurs(nomR);
@@ -53,6 +54,10 @@ public class CrearReservaAmbNotificacioUseCaseController {
          throw new RecursSalaSolapada();
         }
 
+
+        System.out.println("ejgiejgeigjeif "+dateRActual);
+        System.out.println("ejgiejgeigjeif "+hiActual);
+        System.out.println("ejgiejgeigjeif "+hfActual);
         //CREACIO
         //Assigna data, hores, comentaris, recurs i usuari a la classe pare
         //Inicialitza llista d'usuaris a notificar
@@ -60,7 +65,9 @@ public class CrearReservaAmbNotificacioUseCaseController {
 
         //Associacions de classes i per a bd
         rN.associarUsuari(u);
-
+        ArrayList<Usuari> users = new ArrayList<Usuari>();
+        users.add(u);
+        rN.setUsuaris(users);
         //Guardar a persistencia
         persistence.hibernate.HibernateUtils.save(rN);
 
@@ -70,6 +77,8 @@ public class CrearReservaAmbNotificacioUseCaseController {
     /* 2. OBTE RECURSOS DISPONIBLES */
     public List<RecursDisponiblesPerData> obteRecursosDisponibles(Date d, Integer hi, Integer hf) throws Exception {
 
+        if(hf < hf) throw new PeriodeErrorni();
+
         List<RecursDisponiblesPerData> recursos = factoriaUseCase
                                                     .getConsultarRecursosDisponiblesPerData()
                                                     .obtéRecursosDisponiblesPerData(d,hi,hf);
@@ -77,6 +86,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
         this.hfActual = hf;
         this.hiActual = hi;
 
+         if (recursos == null) throw new NoHiHaRecursos();
         return recursos;
     }
 

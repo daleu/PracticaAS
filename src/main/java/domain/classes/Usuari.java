@@ -89,7 +89,7 @@ public class Usuari {
 //    }
     private Collection<ReservaAmbNotificacio> reserves;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.ALL}, mappedBy = "usuaris")
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "usuaris")
     public Collection<ReservaAmbNotificacio> getReserves() {
         return reserves;
     }
@@ -103,26 +103,11 @@ public class Usuari {
         for(Reserva r: reserves) {
 
             if (r.teSalaEnPeriode(dateRActual,hiActual,hfActual)) {
-                return true;
+
             }
         }
 
+
         return false;
-    }
-
-    private Collection<Reserva> reservesCreades=null;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuari")
-    public Collection<Reserva> getReservesCreades() {
-        return reservesCreades;
-    }
-
-    public void setReservesCreades(Collection<Reserva> reservesCreades) {
-        this.reservesCreades = reservesCreades;
-    }
-
-    public void associarReservaCreada(Reserva reserva) {
-        reservesCreades.add(reserva);
-        reserves.add((ReservaAmbNotificacio) reserva);
     }
 }
