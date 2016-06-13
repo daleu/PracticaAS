@@ -45,17 +45,18 @@ public class AssignarUsuarisANotificarUseCaseController {
 
         List<String> emails = new ArrayList<String>();
 
+        ArrayList<Usuari> user = new ArrayList<Usuari>();
+
         for(Usuari u: usuaris) {
-            if (!usernameList.contains(u.getUsername())) {
-               usuaris.remove(u);
+            if(usernameList.contains(u.getUsername())) {
+                user.add(u);
+                emails.add(u.getEmail());
             }
         }
 
         //Afegir Usuaris
         ReservaAmbNotificacio reservaAmbNotificacio = (ReservaAmbNotificacio) reserva;
-
-        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(usuaris);
-
+        TuplaEnviarDadesAReserva tuplaEnviarDadesAReserva = reservaAmbNotificacio.afegirUsuaris(user);
 
         //Enviar dades
         tuplaEnviarDadesAReserva.setEmails(emails);

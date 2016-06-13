@@ -89,7 +89,7 @@ public class Usuari {
 //    }
     private Collection<ReservaAmbNotificacio> reserves;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usuaris")
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "usuaris")
     public Collection<ReservaAmbNotificacio> getReserves() {
         return reserves;
     }
@@ -100,7 +100,12 @@ public class Usuari {
 
     public boolean teSalaEnPeriode(Date dateRActual, Integer hiActual, Integer hfActual) {
 
+        for(Reserva r: reserves) {
 
+            if (r.teSalaEnPeriode(dateRActual,hiActual,hfActual)) {
+
+            }
+        }
 
 
         return false;
