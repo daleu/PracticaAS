@@ -51,7 +51,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <hspacer id="2a87e">
