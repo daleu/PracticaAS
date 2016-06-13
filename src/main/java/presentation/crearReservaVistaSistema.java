@@ -34,7 +34,7 @@ public class crearReservaVistaSistema implements crearReservaVista {
 
     public void assignarUsuaris(List<TupleUsers> aux2){
         c.setVisible(false);
-        c = new LlistarUsuarisANotificar(aux2);
+        c = new LlistarUsuarisANotificar(aux2, ctrl);
     }
 
     public void goMenuPrincipal(){

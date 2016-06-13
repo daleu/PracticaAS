@@ -102,7 +102,7 @@ public class CrearReservaAmbNotificacioUseCaseController {
     /*4. ASSIGNAR USUARIS A RESERVA*/
     public void assignarUsuarisAReserva(List<String> usuariList) throws Exception {
 
-        FactoriaUseCase.getInstance().getAssignarUsuarisANotificarAUnaReserva().afegirUsuarisAReserva(usuariList);
+        factoriaUseCase.getAssignarUsuarisANotificarAUnaReserva().afegirUsuarisAReserva(usuariList);
 
     }
 }

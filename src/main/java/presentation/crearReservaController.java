@@ -6,6 +6,7 @@ import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -87,5 +88,11 @@ public class crearReservaController {
 
     public void introNomUsuari(String nom){
         vista.vistaNomUsuari(nom);
+    }
+
+    public void assignarUsuarisAReserva(String aux) throws Exception {
+        ArrayList aux2 = new ArrayList();
+        aux2.add(aux);
+        cranucc.assignarUsuarisAReserva(aux2);
     }
 }

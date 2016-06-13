@@ -31,7 +31,6 @@ public class seleccionarRecurs extends JFrame {
     public seleccionarRecurs(crearReservaController ctrl, List<RecursDisponiblesPerData> aux){
         this.c = ctrl;
         String results = new String("<html>");
-        String newline = System.getProperty("line.separator");
         for(RecursDisponiblesPerData r: aux){
 
             lmodel.addElement(r.nom);
