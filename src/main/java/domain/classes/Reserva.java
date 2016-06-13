@@ -7,6 +7,7 @@ import org.hibernate.annotations.Check;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -137,7 +138,7 @@ public class Reserva {
         this.recurs = recurs;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "username", referencedColumnName = "username", nullable = true,insertable = false, updatable = false)
     public Usuari getUsuari() {
         return usuari;
@@ -147,9 +148,31 @@ public class Reserva {
         this.usuari = usuari;
     }
 
-    public void reservaValida() throws Exception{
+    public boolean reservaValida() throws Exception{
+        if(!(this instanceof ReservaAmbNotificacio)){
+            throw new Exception("noEsDeTipusNotificacio");
+        }
 
+        if (esReservaCaducada()) {
+            throw new Exception("reservaCaducada");
+        }
+        ReservaAmbNotificacio r = (ReservaAmbNotificacio) this;
+        if ( r.UsuarisANotificar() == 10){
+            throw new Exception("reservaATope");
+        }
+        return true;
     }
+
+    private boolean esReservaCaducada() {
+        Calendar c = Calendar.getInstance();
+
+        if (data.getTime() < c.getTimeInMillis()) return false;
+        if ((data.getTime() == c.getTimeInMillis())){
+            if (horainici < c.getTime().getTime()) return false;
+        }
+        return true;
+    }
+
     public Boolean reservaFeta(Date d, Integer hi, Integer hf){
         Boolean b = false;
         if(d == data && ((hi <= horainici && hf > horainici)|| (hi <horafi && hf > horafi)||(hi>=horainici && hf <= horafi))){
@@ -164,15 +187,21 @@ public class Reserva {
 
     public void associarUsuari(Usuari u) {
         this.usuari = u;
+        u.associarReservaCreada(this);
+
+        persistence.hibernate.HibernateUtils.update(u);
     }
-    public List<TupleUsers> usuarisAAssignar(Collection<Usuari> usuaris) {
-        return null;
-    }
+
 
     public boolean teSalaEnPeriode(Date dateRActual, Integer hiActual, Integer hfActual) {
 
-        if ( recurs instanceof  Sala) return true;
+        if ( recurs instanceof  Sala) {
+            if (this.reservaFeta(dateRActual, hiActual, hfActual)) {
+                return true;
+            }
+        }
 
         return false;
     }
+
 }

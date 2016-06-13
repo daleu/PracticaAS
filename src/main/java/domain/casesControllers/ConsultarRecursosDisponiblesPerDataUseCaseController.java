@@ -17,6 +17,7 @@ import java.util.*;
 
 
 public class ConsultarRecursosDisponiblesPerDataUseCaseController {
+
     public List<RecursDisponiblesPerData> obtéRecursosDisponiblesPerData(Date d, Integer hi, Integer hf) throws Exception {
 
         List <RecursDisponiblesPerData>  result = new ArrayList<RecursDisponiblesPerData>();

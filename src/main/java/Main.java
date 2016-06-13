@@ -20,11 +20,11 @@ public class Main {
         //createJocProves();
         //provaConsultarRecursosDisponibles();
 
-        //provaConsultarUsuarisAAssignar();
+        provaConsultarUsuarisAAssignar();
 
         //provaCrearReservaAmbNotificacio();
-        crearReservaController crc = new crearReservaController();
-        jocProvesInterficieGrafica();
+       // crearReservaController crc = new crearReservaController();
+        //jocProvesInterficieGrafica();
     }
 
     private static void jocProvesInterficieGrafica() {
