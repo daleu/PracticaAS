@@ -18,13 +18,13 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         //createJocProves();
-        provaConsultarRecursosDisponibles();
+        //provaConsultarRecursosDisponibles();
 
         //provaConsultarUsuarisAAssignar();
-
+        jocProvesInterficieGrafica();
         //provaCrearReservaAmbNotificacio();
         crearReservaController crc = new crearReservaController();
-        //jocProvesInterficieGrafica();
+
     }
 
     private static void jocProvesInterficieGrafica() {
