@@ -81,18 +81,18 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="2baa3" class="javax.swing.JButton" binding="siButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <font size="18"/>
-                  <text value="Si"/>
-                </properties>
-              </component>
-              <component id="29450" class="javax.swing.JButton" binding="noButton" default-binding="true">
+              <component id="2baa3" class="javax.swing.JButton" binding="noButton1" default-binding="true">
                 <constraints/>
                 <properties>
                   <font size="18"/>
                   <text value="No"/>
+                </properties>
+              </component>
+              <component id="29450" class="javax.swing.JButton" binding="siButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <font size="18"/>
+                  <text value="Si"/>
                 </properties>
               </component>
             </children>
