@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.dataTypes.RecursDisponiblesPerData;
+import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 
@@ -14,15 +15,14 @@ import java.util.List;
 import domain.casesControllers.CrearReservaAmbNotificacioUseCaseController;
 import domain.dataTypes.RecursDisponiblesPerData;
 import domain.factories.FactoriaUseCase;
-/**
- * Created by Usuario on 11/06/2016.
- */
-public class crearReservaController {
-    menuPrincipal mp;
-    cResAmbNot_selec_data creaAmbNot1;
-    FactoriaUseCase factoriaDomain;
 
-    crearReservaVista vista;
+
+public class crearReservaController {
+    private menuPrincipal mp;
+    private cResAmbNot_selec_data creaAmbNot1;
+    private FactoriaUseCase factoriaDomain;
+    private crearReservaVista vista;
+
 
     public crearReservaController(){
         vista = ViewFactory.getInstance().getcrearReservaVista();
@@ -47,5 +47,40 @@ public class crearReservaController {
         List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
         System.out.println(info.size());
         vista.seleccionarRecurs(info);
+
+    }
+
+    public void goinici() {
+        vista = ViewFactory.getInstance().getcrearReservaVista();
+        vista.init(this);
+    }
+
+    public List<TupleUsers> getUsuarisANotifcar() throws Exception {
+
+        return factoriaDomain.getCrearReservaAmbNotificacio().obteUsuarisPerAssignar();
+    }
+
+    public void assignarUsuaris(List<String> usernames) throws Exception {
+        factoriaDomain.getCrearReservaAmbNotificacio().assignarUsuarisAReserva(usernames);
+
+        vista.assignacioCorrecte(this);
+    }
+
+    public void assignarUsuaris() throws Exception {
+        FactoriaUseCase fuc = new FactoriaUseCase();
+        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        List<TupleUsers> aux2 = aux.obteUsuarisPerAssignar();
+        vista.assignarUsuaris(aux2);
+    }
+
+    public void noAssignarUsuaris(){
+        vista.goMenuPrincipal();
+    }
+
+    public void crearReserva(String nomrecurs, String username, String comentari) throws Exception {
+        FactoriaUseCase fuc = new FactoriaUseCase();
+        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        aux.crearReservaAmbNotificacio(nomrecurs,username,comentari);
+        vista.vistacreadaCorrectament();
     }
 }

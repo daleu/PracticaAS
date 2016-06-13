@@ -20,7 +20,7 @@
               <font name="Consolas" size="18" style="1"/>
               <foreground color="-1"/>
               <horizontalAlignment value="0"/>
-              <text value="Recurs amb notificacio creat correctament"/>
+              <text value="Recurs amb notificacio creat correctament!"/>
             </properties>
           </component>
         </children>

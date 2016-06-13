@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.dataTypes.RecursDisponiblesPerData;
+import domain.dataTypes.TupleUsers;
 
 import java.util.List;
 
@@ -11,4 +12,10 @@ public interface crearReservaVista {
     void init(crearReservaController c);
     void mostraIntroduccioData();
     void seleccionarRecurs(List<RecursDisponiblesPerData> aux);
+    void assignacioCorrecte(crearReservaController crearReservaController);
+    void assignarUsuaris(List<TupleUsers> aux2);
+
+    void goMenuPrincipal();
+
+    void vistacreadaCorrectament();
 }
