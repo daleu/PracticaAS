@@ -13,6 +13,13 @@ public class TupleUsers {
         this.email = email;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getUsername() {
         return username;
