@@ -38,4 +38,9 @@ public class crearReservaVistaSistema implements crearReservaVista {
         c = new menuPrincipal(ctrl);
     }
 
+    public void vistacreadaCorrectament(){
+        c.setVisible(false);
+        c = new recursNotificacioCreat_Continuar(ctrl);
+    }
+
 }

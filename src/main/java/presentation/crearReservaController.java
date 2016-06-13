@@ -59,4 +59,11 @@ public class crearReservaController {
     public void noAssignarUsuaris(){
         vista.goMenuPrincipal();
     }
+
+    public void crearReserva(String nomrecurs, String username, String comentari) throws Exception {
+        FactoriaUseCase fuc = new FactoriaUseCase();
+        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        aux.crearReservaAmbNotificacio(nomrecurs,username,comentari);
+        vista.vistacreadaCorrectament();
+    }
 }

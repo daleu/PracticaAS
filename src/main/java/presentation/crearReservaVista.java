@@ -15,4 +15,6 @@ public interface crearReservaVista {
     void assignarUsuaris(List<TupleUsers> aux2);
 
     void goMenuPrincipal();
+
+    void vistacreadaCorrectament();
 }
