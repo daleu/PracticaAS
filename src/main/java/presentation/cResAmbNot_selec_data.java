@@ -33,7 +33,10 @@ public class cResAmbNot_selec_data extends JFrame {
     private crearReservaController c;
 
     public cResAmbNot_selec_data(crearReservaController ctrl) {
-
+        HoraInici.setValue(-1);
+        MinutInici.setValue(-1);
+        HoraFi.setValue(-1);
+        MinutFi.setValue(-1);
         setContentPane(contentPane);
         pack();
         getRootPane().setDefaultButton(buttonOK);
@@ -106,24 +109,38 @@ public class cResAmbNot_selec_data extends JFrame {
     private void onOK() throws ParseException{
 // add your code here
 
+        hi = (Integer)HoraInici.getValue();
+        hf = (Integer)HoraFi.getValue();
+        mi = (Integer)MinutInici.getValue();
+        mf = (Integer)MinutFi.getValue();
+
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
-      try {
+        if((data != null) && (hi != -1) &&  (mi != -1) && (hf != -1) && (mf != -1)) {
+            System.out.println("potato");
+            try {
 
-          date = df.parse(data);
-          System.out.println("fecha =" + date);
-          //get current date time with Date()
-          Date dateActual = new Date();
-          if (date.compareTo(dateActual) < 0){
-                errorMessageLabel.setText("data incorrecta");
-          }
-          else{
+                date = df.parse(data);
+                System.out.println("fecha =" + date);
+                //get current date time with Date()
+                Date dateActual = new Date();
+                if (date.compareTo(dateActual) < 0) {
+                    errorMessageLabel.setText("data incorrecta");
+                } else {
+                    if((hi == hf && mi < mf) || hi < hf ){
+                        //llamada a dominio
+                        hi = hi*100 + mi;
+                        hf = hf*100 + mf;
+                        c.OkDate(date, hi, hf);
 
-          }
-      }
-      catch (ParseException e){
-          System.out.println("fail parsing");
+                    }
+                    else {errorMessageLabel.setText("hores incorrectes");}
+                }
+            } catch (ParseException e) {
+                System.out.println("fail parsing");
+            }
         }
+        else errorMessageLabel.setText("dades insuficients");
 
 
 
