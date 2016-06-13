@@ -17,27 +17,40 @@ import java.util.List;
 
 public class AssignarUsuarisANotificarUseCaseController {
 
-    private Reserva reserva;
+    private Date data;
+    private String nomR;
+    private Integer horaInici;
 
     public List<TupleUsers> obteUsuarisAAssignar(String nomR, Date data, Integer horaInici) throws Exception{
-        reserva = FactoriaCtrl
+         ReservaAmbNotificacio reserva = (ReservaAmbNotificacio) FactoriaCtrl
                 .getInstance()
                 .getCtrlReserva()
                 .getReserva(nomR,horaInici,data);
 
         reserva.reservaValida();
-        Collection<Usuari> usuaris = FactoriaCtrl
-                .getInstance()
-                .getCtrlUsuari()
-                .getall();
 
-        List<TupleUsers> llistaUsuarisAAssignar = reserva.usuarisAAssignar(usuaris);
-        if (llistaUsuarisAAssignar==null) throw new NoHiHaProusUsuaris();
+        if(reserva.reservaValida()) {
 
-        return llistaUsuarisAAssignar;
+            Collection<Usuari> usuaris = FactoriaCtrl
+                    .getInstance()
+                    .getCtrlUsuari()
+                    .getall();
+
+            List<TupleUsers> llistaUsuarisAAssignar = reserva.usuarisAAssignar(usuaris);
+            if (llistaUsuarisAAssignar == null) throw new NoHiHaProusUsuaris();
+
+            return llistaUsuarisAAssignar;
+        }
+        return null;
     }
 
     public void afegirUsuarisAReserva(List<String> usernameList) throws Exception{
+
+        ReservaAmbNotificacio reserva = (ReservaAmbNotificacio) FactoriaCtrl
+                .getInstance()
+                .getCtrlReserva()
+                .getReserva(nomR,horaInici,data);
+
 
         Collection<Usuari> usuaris = FactoriaCtrl.getInstance()
                                         .getCtrlUsuari().getall();

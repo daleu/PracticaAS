@@ -38,13 +38,14 @@ public class ReservaAmbNotificacio extends Reserva{
 
 
     @Override
-    public void reservaValida() throws Exception{
+    public boolean reservaValida() throws Exception{
         boolean bool = esReservaAmbNotificacio();
         if(bool==false) throw new NoEsReservaAmbNotificacio();
         boolean bool2 = esReservaCaduca();
         if(bool2==false) throw new ReservaCaducada();
         int usuarisnotificats = UsuarisANotificar();
         if(usuarisnotificats==10) throw new ReservaATope();
+        return true;
     }
 
     public ReservaAmbNotificacio(Date data, Integer horainici, Integer horafi, String comentaris, Recurs r, Usuari u) {

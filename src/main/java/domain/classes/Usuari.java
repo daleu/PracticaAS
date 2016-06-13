@@ -103,7 +103,7 @@ public class Usuari {
         for(Reserva r: reserves) {
 
             if (r.teSalaEnPeriode(dateRActual,hiActual,hfActual)) {
-
+                return true;
             }
         }
 

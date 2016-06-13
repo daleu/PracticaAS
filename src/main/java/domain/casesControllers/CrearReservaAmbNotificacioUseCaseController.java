@@ -41,7 +41,6 @@ public class CrearReservaAmbNotificacioUseCaseController {
 
         CtrlRecurs cRec = fatoriaACtrl.getCtrlRecurs();
         CtrlUsuari cUsu = fatoriaACtrl.getCtrlUsuari();
-        CtrlReserva cRes = fatoriaACtrl.getCtrlReserva();
 
         Usuari u = cUsu.getUsuari(username);
         Recurs r = cRec.getRecurs(nomR);
@@ -54,10 +53,6 @@ public class CrearReservaAmbNotificacioUseCaseController {
          throw new RecursSalaSolapada();
         }
 
-
-        System.out.println("ejgiejgeigjeif "+dateRActual);
-        System.out.println("ejgiejgeigjeif "+hiActual);
-        System.out.println("ejgiejgeigjeif "+hfActual);
         //CREACIO
         //Assigna data, hores, comentaris, recurs i usuari a la classe pare
         //Inicialitza llista d'usuaris a notificar
@@ -65,11 +60,12 @@ public class CrearReservaAmbNotificacioUseCaseController {
 
         //Associacions de classes i per a bd
         rN.associarUsuari(u);
-        ArrayList<Usuari> users = new ArrayList<Usuari>();
-        users.add(u);
-        rN.setUsuaris(users);
-        //Guardar a persistencia
         persistence.hibernate.HibernateUtils.save(rN);
+
+        List<String> l = new ArrayList<String>();
+        l.add(u.getUsername());
+        FactoriaUseCase.getInstance().getAssignarUsuarisANotificarAUnaReserva().afegirUsuarisAReserva(l);
+
 
     }
 

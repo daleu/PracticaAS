@@ -60,6 +60,7 @@ public class ConsultarRecursosDisponiblesPerDataUseCaseController {
             Recurs r = iterator.next();
             if (r.getNom().equals(s)) {
                 iterator.remove();
+
             }
         }
         return l;

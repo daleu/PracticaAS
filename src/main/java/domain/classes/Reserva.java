@@ -141,14 +141,15 @@ public class Reserva {
     @JoinColumn(name = "username", referencedColumnName = "username", nullable = true,insertable = false, updatable = false)
     public Usuari getUsuari() {
         return usuari;
+
     }
 
     public void setUsuari(Usuari usuari) {
         this.usuari = usuari;
     }
 
-    public void reservaValida() throws Exception{
-
+    public boolean reservaValida() throws Exception{
+        return false;
     }
     public Boolean reservaFeta(Date d, Integer hi, Integer hf){
         Boolean b = false;
@@ -171,8 +172,11 @@ public class Reserva {
 
     public boolean teSalaEnPeriode(Date dateRActual, Integer hiActual, Integer hfActual) {
 
-        if ( recurs instanceof  Sala) return true;
-
+        if ( recurs instanceof  Sala){
+            if(!this.teSalaEnPeriode(dateRActual, hiActual, hfActual)) {
+                return true;
+            }
+        }
         return false;
     }
 }
