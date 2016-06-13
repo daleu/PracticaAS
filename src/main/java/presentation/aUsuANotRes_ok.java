@@ -13,6 +13,7 @@ public class aUsuANotRes_ok extends JFrame{
     private JTextField textField1;
     private JTextField textField2;
     private JPanel contentPane;
+    private JLabel errorMessage;
     private crearReservaController c;
 
     public aUsuANotRes_ok(crearReservaController ctrl, String nom) {
@@ -28,6 +29,7 @@ public class aUsuANotRes_ok extends JFrame{
                 try {
                     onOK();
                 } catch (Exception e1) {
+                    errorMessage.setText(e1.getMessage());
                     e1.printStackTrace();
                 }
             }
