@@ -1,17 +1,19 @@
 package presentation;
 
+import domain.dataTypes.TupleUsers;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.List;
 
-public class LlistarUsuarisANotificar extends JDialog {
+public class LlistarUsuarisANotificar extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
 
-    public LlistarUsuarisANotificar() {
+    public LlistarUsuarisANotificar(List<TupleUsers> usuarisANotificar) {
         setContentPane(contentPane);
-        setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -51,12 +53,5 @@ public class LlistarUsuarisANotificar extends JDialog {
     private void onCancel() {
 // add your code here if necessary
         dispose();
-    }
-
-    public static void main(String[] args) {
-        LlistarUsuarisANotificar dialog = new LlistarUsuarisANotificar();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 }

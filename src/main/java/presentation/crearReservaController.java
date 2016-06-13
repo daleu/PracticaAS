@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.dataTypes.RecursDisponiblesPerData;
+import domain.dataTypes.TupleUsers;
 import domain.factories.FactoriaCtrl;
 import domain.factories.FactoriaUseCase;
 
@@ -46,5 +47,16 @@ public class crearReservaController {
         CrearReservaAmbNotificacioUseCaseController  cranucc = fuc.getCrearReservaAmbNotificacio();
         List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
         vista.seleccionarRecurs(info);
+    }
+
+    public void assignarUsuaris() throws Exception {
+        FactoriaUseCase fuc = new FactoriaUseCase();
+        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        List<TupleUsers> aux2 = aux.obteUsuarisPerAssignar();
+        vista.assignarUsuaris(aux2);
+    }
+
+    public void noAssignarUsuaris(){
+        vista.goMenuPrincipal();
     }
 }
