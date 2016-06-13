@@ -5,9 +5,7 @@ import domain.dataTypes.RecursDisponiblesPerData;
 import javax.swing.*;
 import java.util.List;
 
-/**
- * Created by Usuario on 11/06/2016.
- */
+
 public class crearReservaVistaSistema implements crearReservaVista {
     JFrame c;
     crearReservaController ctrl;
@@ -26,5 +24,11 @@ public class crearReservaVistaSistema implements crearReservaVista {
         c.setVisible(false);
         c = new seleccionarRecurs(ctrl,aux);
     }
+
+    public void assignacioCorrecte(crearReservaController crearReservaController) {
+        c.setVisible(false);
+        c = new assignacioCorrecte(ctrl);
+    }
+
 
 }

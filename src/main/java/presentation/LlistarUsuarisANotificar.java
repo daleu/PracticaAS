@@ -1,22 +1,34 @@
 package presentation;
 
+import domain.dataTypes.TupleUsers;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LlistarUsuarisANotificar extends JDialog {
+public class LlistarUsuarisANotificar extends JFrame{
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
+    private crearReservaController c;
 
-    public LlistarUsuarisANotificar() {
+    public LlistarUsuarisANotificar(crearReservaController ctrl) throws Exception {
+
+        this.c = ctrl;
+        List<TupleUsers> llista = c.getUsuarisANotifcar();
+
         setContentPane(contentPane);
-        setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                try {
+                    onOK();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -42,9 +54,10 @@ public class LlistarUsuarisANotificar extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+    private void onOK() throws Exception {
         //Assignar usuaris
-
+        List<String> usernames = new ArrayList<String>();
+        c.assignarUsuaris(usernames);
         dispose();
     }
 
@@ -53,10 +66,4 @@ public class LlistarUsuarisANotificar extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        LlistarUsuarisANotificar dialog = new LlistarUsuarisANotificar();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }

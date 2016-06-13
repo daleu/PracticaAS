@@ -57,7 +57,7 @@
                 </constraints>
                 <properties>
                   <font name="Consolas" size="18" style="1"/>
-                  <foreground color="-1"/>
+                  <foreground color="-16777216"/>
                   <horizontalAlignment value="0"/>
                   <text value="S'han assignat les notificacions"/>
                   <verticalAlignment value="3"/>
@@ -71,7 +71,7 @@
             </constraints>
             <properties>
               <font name="Consolas" size="18" style="1"/>
-              <foreground color="-1"/>
+              <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
               <text value="correctament a la reserva"/>
             </properties>
