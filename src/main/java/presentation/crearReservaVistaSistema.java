@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.dataTypes.RecursDisponiblesPerData;
+import domain.dataTypes.TupleUsers;
 
 import javax.swing.*;
 import java.util.List;
@@ -30,5 +31,15 @@ public class crearReservaVistaSistema implements crearReservaVista {
         c = new assignacioCorrecte(ctrl);
     }
 
+
+    public void assignarUsuaris(List<TupleUsers> aux2){
+        c.setVisible(false);
+        c = new LlistarUsuarisANotificar(aux2);
+    }
+
+    public void goMenuPrincipal(){
+        c.setVisible(false);
+        c = new menuPrincipal(ctrl);
+    }
 
 }

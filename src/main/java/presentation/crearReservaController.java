@@ -64,4 +64,15 @@ public class crearReservaController {
 
         vista.assignacioCorrecte(this);
     }
+
+    public void assignarUsuaris() throws Exception {
+        FactoriaUseCase fuc = new FactoriaUseCase();
+        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        List<TupleUsers> aux2 = aux.obteUsuarisPerAssignar();
+        vista.assignarUsuaris(aux2);
+    }
+
+    public void noAssignarUsuaris(){
+        vista.goMenuPrincipal();
+    }
 }

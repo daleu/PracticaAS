@@ -6,19 +6,17 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.List;
 
 public class LlistarUsuarisANotificar extends JFrame{
+public class LlistarUsuarisANotificar extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList list1;
     private crearReservaController c;
 
-    public LlistarUsuarisANotificar(crearReservaController ctrl) throws Exception {
-
-        this.c = ctrl;
-        List<TupleUsers> llista = c.getUsuarisANotifcar();
-
+    public LlistarUsuarisANotificar(List<TupleUsers> usuarisANotificar) {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
 
