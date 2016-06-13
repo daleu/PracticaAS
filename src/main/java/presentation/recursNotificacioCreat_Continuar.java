@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 
-public class recursNotificacioCreat_Continuar {
+public class recursNotificacioCreat_Continuar extends JFrame {
     private JPanel panel1;
     private JButton noButton1;
     private JButton siButton;

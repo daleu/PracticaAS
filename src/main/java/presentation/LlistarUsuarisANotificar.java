@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.List;
 
 public class LlistarUsuarisANotificar extends JFrame{
-public class LlistarUsuarisANotificar extends JFrame {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
