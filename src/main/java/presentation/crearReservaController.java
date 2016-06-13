@@ -83,4 +83,8 @@ public class crearReservaController {
         aux.crearReservaAmbNotificacio(nomrecurs,username,comentari);
         vista.vistacreadaCorrectament();
     }
+
+    public void introNomUsuari(String nom){
+        vista.vistaNomUsuari(nom);
+    }
 }

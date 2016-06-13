@@ -47,4 +47,9 @@ public class crearReservaVistaSistema implements crearReservaVista {
         c = new recursNotificacioCreat_Continuar(ctrl);
     }
 
+    public void vistaNomUsuari(String nom){
+        c.setVisible(false);
+        c = new aUsuANotRes_ok(ctrl, nom);
+    }
+
 }

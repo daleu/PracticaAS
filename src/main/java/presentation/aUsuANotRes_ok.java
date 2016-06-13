@@ -15,9 +15,10 @@ public class aUsuANotRes_ok extends JFrame{
     private JPanel contentPane;
     private crearReservaController c;
 
-    public aUsuANotRes_ok(crearReservaController ctrl) {
+    public aUsuANotRes_ok(crearReservaController ctrl, String nom) {
         this.c = ctrl;
         setContentPane(contentPane);
+        nomRecurs.setText(nom);
         //setModal(true);
         pack();
         setResizable(false);

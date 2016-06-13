@@ -18,4 +18,6 @@ public interface crearReservaVista {
     void goMenuPrincipal();
 
     void vistacreadaCorrectament();
+
+    void vistaNomUsuari(String nom);
 }
