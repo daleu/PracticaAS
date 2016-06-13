@@ -7,7 +7,6 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,11 +18,14 @@ public class seleccionarRecurs extends JFrame {
     private JButton cancelarButton;
     private JPanel contentPane;
     private JScrollPane listScroller;
+    private JPanel scrollPanel;
+    private JButton testButton;
     private DefaultListModel lmodel = new DefaultListModel();
 
 
 
     public seleccionarRecurs(crearReservaController ctrl, List<RecursDisponiblesPerData> aux){
+
         setContentPane(contentPane);
         pack();
         getRootPane().setDefaultButton(OKButton);
@@ -50,17 +52,41 @@ public class seleccionarRecurs extends JFrame {
         lmodel.addElement("Item1");
         lmodel.addElement("Item2");
 
+        GridBagConstraints constraint = new GridBagConstraints();
+        constraint.anchor = GridBagConstraints.CENTER;
+        constraint.fill = GridBagConstraints.NONE;
+        constraint.gridx = 0;
+        constraint.gridy = GridBagConstraints.RELATIVE;
+        constraint.weightx = 1.0f;
+        constraint.weighty = 1.0f;
+
+        for (RecursDisponiblesPerData r: aux){
+            System.out.println("-----------------------------");
+            JButton button = new JButton();
+            button.setText(r.nom);
+            //scrollPanel.add(button, constraint);
+            //scrollPanel.add(button);
+        }
+
         list1 = new JList(lmodel);
+        System.out.println(list1.getModel().getElementAt(1));
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list1.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         list1.setVisibleRowCount(-1);
+
+
 
         JScrollPane listScroller = new JScrollPane(list1);
         listScroller.setPreferredSize(new Dimension(250, 80));
 
         setVisible(true);
-
+        list1.setVisible(true);
         System.out.println(aux);
+        /*list1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+
+            }
+        });*/
     }
 
     private void onCancel() {

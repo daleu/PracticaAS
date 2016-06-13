@@ -45,6 +45,7 @@ public class crearReservaController {
         java.sql.Date sqlDate = new java.sql.Date(d.getTime());
         CrearReservaAmbNotificacioUseCaseController  cranucc = fuc.getCrearReservaAmbNotificacio();
         List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
+        System.out.println(info.size());
         vista.seleccionarRecurs(info);
     }
 }

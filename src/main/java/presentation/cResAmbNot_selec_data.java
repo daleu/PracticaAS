@@ -19,24 +19,24 @@ public class cResAmbNot_selec_data extends JFrame {
     private JTextField textField1;
     private JLabel errorMessageLabel;
     private JSpinner HoraInici;
-    private JSpinner MinutInici;
+
     private JSpinner HoraFi;
-    private JSpinner MinutFi;
+
     private JButton buttonCancel;
 
     private int hi;
-    private int mi;
+
     private int hf;
-    private int mf;
+
     private String data;
 
     private crearReservaController c;
 
     public cResAmbNot_selec_data(crearReservaController ctrl) {
         HoraInici.setValue(-1);
-        MinutInici.setValue(-1);
+
         HoraFi.setValue(-1);
-        MinutFi.setValue(-1);
+
         this.c = ctrl;
         setContentPane(contentPane);
         pack();
@@ -77,17 +77,7 @@ public class cResAmbNot_selec_data extends JFrame {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        MinutInici.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                System.out.print(MinutInici.getValue());
-                mi = (Integer)MinutInici.getValue();
-            }
-        });
-        MinutFi.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                mf = (Integer)MinutFi.getValue();
-            }
-        });
+
 
         HoraFi.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -114,34 +104,31 @@ public class cResAmbNot_selec_data extends JFrame {
 
         hi = (Integer)HoraInici.getValue();
         hf = (Integer)HoraFi.getValue();
-        mi = (Integer)MinutInici.getValue();
-        mf = (Integer)MinutFi.getValue();
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date date;
-        if((data != null) && (hi != -1) &&  (mi != -1) && (hf != -1) && (mf != -1)) {
-            System.out.println("potato");
+        if((data != null) && (hi != -1)  && (hf != -1) ) {
             try {
 
                 date = df.parse(data);
-                System.out.println("fecha =" + date);
                 //get current date time with Date()
                 Date dateActual = new Date();
                 if (date.compareTo(dateActual) < 0) {
                     errorMessageLabel.setText("data incorrecta");
                 } else {
-                    if((hi == hf && mi < mf) || hi < hf ){
+                    if((hi == hf ) || hi < hf ){
                         //llamada a dominio
-                        hi = hi*100 + mi;
-                        hf = hf*100 + mf;
+                        //hi = hi*100 + mi;
+                        //hf = hf*100 + mf;
                         java.sql.Date aux = new java.sql.Date(date.getTime());
                         c.OkDate(aux, hi, hf);
 
                     }
                     else {errorMessageLabel.setText("hores incorrectes");}
                 }
-            } catch (ParseException e) {
-                System.out.println("fail parsing");
+            } catch (Exception e) {
+               errorMessageLabel.setText(e.getMessage());
+
             }
         }
         else errorMessageLabel.setText("dades insuficients");
