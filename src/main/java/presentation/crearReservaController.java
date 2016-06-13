@@ -22,6 +22,7 @@ public class crearReservaController {
     private cResAmbNot_selec_data creaAmbNot1;
     private FactoriaUseCase factoriaDomain;
     private crearReservaVista vista;
+    private CrearReservaAmbNotificacioUseCaseController cranucc;
 
 
     public crearReservaController(){
@@ -43,7 +44,7 @@ public class crearReservaController {
     public void OkDate(Date d, int horaInici, int horaFi) throws Exception {
         FactoriaUseCase fuc = new FactoriaUseCase();
         java.sql.Date sqlDate = new java.sql.Date(d.getTime());
-        CrearReservaAmbNotificacioUseCaseController  cranucc = fuc.getCrearReservaAmbNotificacio();
+        cranucc = fuc.getCrearReservaAmbNotificacio();
         List<RecursDisponiblesPerData> info = cranucc.obteRecursosDisponibles(sqlDate, horaInici, horaFi);
         System.out.println(info.size());
         vista.seleccionarRecurs(info);
@@ -61,15 +62,15 @@ public class crearReservaController {
     }
 
     public void assignarUsuaris(List<String> usernames) throws Exception {
-        factoriaDomain.getCrearReservaAmbNotificacio().assignarUsuarisAReserva(usernames);
+        cranucc.assignarUsuarisAReserva(usernames);
 
         vista.assignacioCorrecte(this);
     }
 
     public void assignarUsuaris() throws Exception {
-        FactoriaUseCase fuc = new FactoriaUseCase();
-        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
-        List<TupleUsers> aux2 = aux.obteUsuarisPerAssignar();
+//        FactoriaUseCase fuc = new FactoriaUseCase();
+//        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        List<TupleUsers> aux2 = cranucc.obteUsuarisPerAssignar();
         vista.assignarUsuaris(aux2);
     }
 
@@ -78,9 +79,9 @@ public class crearReservaController {
     }
 
     public void crearReserva(String nomrecurs, String username, String comentari) throws Exception {
-        FactoriaUseCase fuc = new FactoriaUseCase();
-        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
-        aux.crearReservaAmbNotificacio(nomrecurs,username,comentari);
+//        FactoriaUseCase fuc = new FactoriaUseCase();
+//        CrearReservaAmbNotificacioUseCaseController aux = fuc.getCrearReservaAmbNotificacio();
+        cranucc.crearReservaAmbNotificacio(nomrecurs,username,comentari);
         vista.vistacreadaCorrectament();
     }
 

@@ -54,6 +54,10 @@ public class CrearReservaAmbNotificacioUseCaseController {
          throw new RecursSalaSolapada();
         }
 
+
+        System.out.println("ejgiejgeigjeif "+dateRActual);
+        System.out.println("ejgiejgeigjeif "+hiActual);
+        System.out.println("ejgiejgeigjeif "+hfActual);
         //CREACIO
         //Assigna data, hores, comentaris, recurs i usuari a la classe pare
         //Inicialitza llista d'usuaris a notificar
